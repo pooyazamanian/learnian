@@ -21,9 +21,15 @@ object AppPaddings {
     val TopBarPadding: Dp = 16.dp
 }
 
+/**
+ * Ergonomic Radius Matrix (No Sharp Edges) - 8pt Grid System
+ */
 object AppCorners {
-    val Small: Dp = 8.dp
-    val Medium: Dp = 16.dp
-    val Large: Dp = 24.dp
-    val GlassCorner: Dp = 28.dp
+    val XS: Dp = 8.dp        // Icon caps & micro tags
+    val Small: Dp = 12.dp     // Tag padding & badges
+    val Medium: Dp = 16.dp    // Small card padding & radius
+    val Large: Dp = 20.dp     // Primary action buttons (clay-btn)
+    val XL: Dp = 24.dp        // Flashcard radius (clay-card)
+    val XXL: Dp = 32.dp       // Modal radius (clay-modal)
+    val Pill: Dp = 9999.dp    // Full rounded tags & pill chips
 }

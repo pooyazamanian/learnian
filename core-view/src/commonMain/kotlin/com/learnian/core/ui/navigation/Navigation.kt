@@ -50,19 +50,12 @@ sealed class AppRoute {
         object Register : Auth("auth_register")
     }
 
-    // 4: Main Lite App Nested Graph
-    sealed class LiteApp(val routeName: String, val title: String) : AppRoute() {
-        object LiteHome : LiteApp("lite_home", "خانه لايت")
-        object LiteServices : LiteApp("lite_services", "خدمات لايت")
-        object LiteSettings : LiteApp("lite_settings", "تنظیمات لايت")
-    }
 }
 
 val AppRoute.isSplash: Boolean get() = this is AppRoute.Splash
 val AppRoute.isMainApp: Boolean get() = this is AppRoute.MainApp
 val AppRoute.isIntro: Boolean get() = this is AppRoute.Intro
 val AppRoute.isAuth: Boolean get() = this is AppRoute.Auth
-val AppRoute.isLiteApp: Boolean get() = this is AppRoute.LiteApp
 
 /**
  * Type-Safe State-Driven NavController for Compose Multiplatform

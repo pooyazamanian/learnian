@@ -4,6 +4,8 @@ rootProject.name = "learnian"
 
 pluginManagement {
     repositories {
+        maven { url = uri("https://maven.myket.ir/") }
+
         google()
         mavenCentral()
         gradlePluginPortal()
@@ -12,6 +14,8 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
+        maven { url = uri("https://maven.myket.ir/") }
+
         google()
         mavenCentral()
         maven { url = URI.create("https://jitpack.io") }
@@ -24,4 +28,5 @@ include(":core-datastore")
 include(":core-network")
 include(":core-system")
 include(":core-view")
+include(":features:splash")
 include(":shared")

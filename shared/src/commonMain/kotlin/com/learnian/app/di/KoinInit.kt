@@ -3,7 +3,7 @@ package com.learnian.app.di
 import com.learnian.core.database.di.coreDatabaseModule
 import com.learnian.core.datastore.di.coreDataStoreModule
 import com.learnian.core.network.di.coreNetworkModule
-import com.learnian.core.view.di.coreViewModule
+import com.learnian.splash.di.splashModule
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.KoinAppDeclaration
@@ -13,7 +13,7 @@ val appModules: List<Module> = listOf(
     coreNetworkModule,
     coreDatabaseModule,
     coreDataStoreModule,
-    coreViewModule
+    splashModule,
 )
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) {

@@ -4,15 +4,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.learnian.app.di.initKoin
-import com.learnian.core.view.auth.AuthScreen
-import com.learnian.core.view.intro.IntroScreen
-import com.learnian.core.view.lite.MainLiteAppScreen
-import com.learnian.core.view.main.MainAppScreen
-import com.learnian.core.view.splash.SplashScreen
-import com.learnian.core.view.ui.navigation.AnimatedNavHost
-import com.learnian.core.view.ui.navigation.AppRoute
-import com.learnian.core.view.ui.navigation.rememberNavController
-import com.learnian.core.view.ui.theme.AppPlatformTheme
+import com.learnian.core.ui.navigation.AnimatedNavHost
+import com.learnian.core.ui.navigation.AppRoute
+import com.learnian.core.ui.navigation.rememberNavController
+import com.learnian.core.ui.theme.AppPlatformTheme
+import com.learnian.splash.presentation.ui.SplashScreen
 import org.koin.compose.KoinContext
 import org.koin.mp.KoinPlatform
 
@@ -34,41 +30,22 @@ fun App() {
                 when (route) {
                     is AppRoute.Splash -> {
                         SplashScreen(
-                            navController = rootNavController,
-                            modifier = Modifier.fillMaxSize()
+                            onSplashFinished = {
+                                rootNavController.replace(AppRoute.Intro.Welcome)
+                            }
                         )
                     }
 
                     is AppRoute.MainApp -> {
-                        MainAppScreen(
-                            currentRoute = route,
-                            navController = rootNavController,
-                            modifier = Modifier.fillMaxSize()
-                        )
+
                     }
 
                     is AppRoute.Intro -> {
-                        IntroScreen(
-                            currentRoute = route,
-                            navController = rootNavController,
-                            modifier = Modifier.fillMaxSize()
-                        )
+
                     }
 
                     is AppRoute.Auth -> {
-                        AuthScreen(
-                            currentRoute = route,
-                            navController = rootNavController,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
 
-                    is AppRoute.LiteApp -> {
-                        MainLiteAppScreen(
-                            currentRoute = route,
-                            navController = rootNavController,
-                            modifier = Modifier.fillMaxSize()
-                        )
                     }
                 }
             }
