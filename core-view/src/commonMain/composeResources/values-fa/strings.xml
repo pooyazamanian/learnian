@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">لرنیان</string>
+    <string name="nav_learn">آموزش</string>
+    <string name="nav_practice">تمرین</string>
+    <string name="nav_vocab">واژه‌نامه</string>
+    <string name="nav_profile">پروفایل</string>
+    <string name="nav_settings">تنظیمات</string>
+    <string name="language_label">زبان برنامه</string>
+    <string name="lang_fa">فارسی</string>
+    <string name="lang_en">English</string>
+    <string name="welcome_title">به لرنیان خوش آمدید</string>
+    <string name="welcome_subtitle">یادگیری هوشمند و تعاملی زبان‌های خارجی</string>
+    <string name="btn_next">بعدی</string>
+    <string name="btn_start">شروع کنید</string>
+    <string name="btn_login">ورود</string>
+    <string name="btn_register">ثبت‌نام</string>
+    <string name="phone_input_title">ورود شماره موبایل</string>
+    <string name="otp_title">کد تایید</string>
+</resources>
