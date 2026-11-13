@@ -1,8 +1,8 @@
 package com.learnian.core.ui.modifiers
 
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.Spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,129 +10,153 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
-import androidx.compose.ui.geometry.RoundRect
+import androidx.compose.ui.draw.dropShadow
+import androidx.compose.ui.draw.innerShadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.PathOperation
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.lerp
+import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import com.learnian.core.ui.theme.ClayTheme
 
+private fun Color.lighten(f: Float): Color = lerp(this, Color.White, f)
+private fun Color.darken(f: Float): Color = lerp(this, Color.Black, f)
+
 /**
  * Surface 2 • Action Raised (clay-btn)
- * Interactive state for buttons with bottom shadow and top-left inset light highlight.
+ * Real blurred ambient + contact shadow, lit gradient body, soft inner rims.
  */
 @Composable
 fun Modifier.clayActionRaised(
     backgroundColor: Color = ClayTheme.colors.primary,
-    cornerRadius: Dp = 20.dp,
-    shadowColor: Color = backgroundColor.copy(alpha = 0.35f),
+    cornerRadius: Dp = 28.dp,
+    shadowColor: Color = backgroundColor.copy(alpha = 0.28f),
     highlightColor: Color = Color.White.copy(alpha = 0.45f)
 ): Modifier {
     val shape = RoundedCornerShape(cornerRadius)
     return this
-        .drawBehind {
-            val cornerPx = cornerRadius.toPx()
-            val strokePx = 2.dp.toPx()
-
-            // Outer drop shadow
-            drawRoundRect(
+        // Ambient glow — tighter & weaker: reads as shadow, not fog
+        .dropShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 14.dp,
+                spread = (-4).dp,
                 color = shadowColor,
-                topLeft = Offset(0f, 6.dp.toPx()),
-                size = size,
-                cornerRadius = androidx.compose.ui.geometry.CornerRadius(cornerPx, cornerPx)
+                offset = DpOffset(0.dp, 8.dp)
             )
-
-            // Base clay surface
-            drawRoundRect(
-                color = backgroundColor,
-                size = size,
-                cornerRadius = androidx.compose.ui.geometry.CornerRadius(cornerPx, cornerPx)
+        )
+        // Contact shadow — keeps it grounded
+        .dropShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 4.dp,
+                spread = 0.dp,
+                color = shadowColor.copy(alpha = shadowColor.alpha * 0.5f),
+                offset = DpOffset(0.dp, 2.dp)
             )
-
-            // Top-left inset highlight
-            drawRoundRect(
-                color = highlightColor,
-                topLeft = Offset(strokePx, strokePx),
-                size = size.copy(
-                    width = (size.width - strokePx * 2).coerceAtLeast(0f),
-                    height = (size.height - strokePx * 2).coerceAtLeast(0f)
-                ),
-                cornerRadius = androidx.compose.ui.geometry.CornerRadius(
-                    (cornerPx - strokePx).coerceAtLeast(0f),
-                    (cornerPx - strokePx).coerceAtLeast(0f)
-                ),
-                style = Stroke(width = strokePx)
-            )
-        }
+        )
+        // Solid clay body
+        .background(
+            brush = Brush.verticalGradient(
+                0f to backgroundColor.lighten(0.10f),
+                0.55f to backgroundColor,
+                1f to backgroundColor.darken(0.06f)
+            ),
+            shape = shape
+        )
         .clip(shape)
+        // Thin, crisp light rim on top
+        .innerShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 3.dp,
+                spread = 0.dp,
+                color = highlightColor,
+                offset = DpOffset(0.dp, 1.dp)
+            )
+        )
+        // Thin dark rim at bottom
+        .innerShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 4.dp,
+                spread = 0.dp,
+                color = Color.Black.copy(alpha = 0.12f),
+                offset = DpOffset(0.dp, (-2).dp)
+            )
+        )
 }
 
 /**
  * Surface 1 • Resting Float (clay-card)
- * Default elevation for flashcards and panels with top white highlight and bottom soft shadow spread.
+ * Wide soft neutral shadow + barely-there top light.
  */
 @Composable
 fun Modifier.clayRestingFloat(
     backgroundColor: Color = ClayTheme.colors.surface,
     cornerRadius: Dp = 24.dp,
-    shadowColor: Color = ClayTheme.colors.shadowOuter,
+    shadowColor: Color = ClayTheme.colors.shadowOuter, // give this ~0.18–0.25 alpha in the theme
     highlightColor: Color = ClayTheme.colors.highlightTop
 ): Modifier {
     val shape = RoundedCornerShape(cornerRadius)
     return this
-        .drawBehind {
-            val cornerPx = cornerRadius.toPx()
-            val highlightPx = 1.5.dp.toPx()
-
-            // Soft floating spread shadow
-            drawRoundRect(
+        .dropShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 28.dp,
+                spread = (-4).dp,
                 color = shadowColor,
-                topLeft = Offset(0f, 8.dp.toPx()),
-                size = size,
-                cornerRadius = androidx.compose.ui.geometry.CornerRadius(cornerPx, cornerPx)
+                offset = DpOffset(0.dp, 14.dp)
             )
-
-            // Clay Surface
-            drawRoundRect(
-                color = backgroundColor,
-                size = size,
-                cornerRadius = androidx.compose.ui.geometry.CornerRadius(cornerPx, cornerPx)
+        )
+        .dropShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 8.dp,
+                spread = 0.dp,
+                color = shadowColor.copy(alpha = shadowColor.alpha * 0.5f),
+                offset = DpOffset(0.dp, 4.dp)
             )
-
-            // Top inset light highlight
-            drawRoundRect(
-                color = highlightColor,
-                topLeft = Offset(highlightPx, highlightPx),
-                size = size.copy(
-                    width = (size.width - highlightPx * 2).coerceAtLeast(0f),
-                    height = (size.height - highlightPx * 2).coerceAtLeast(0f)
-                ),
-                cornerRadius = androidx.compose.ui.geometry.CornerRadius(
-                    (cornerPx - highlightPx).coerceAtLeast(0f),
-                    (cornerPx - highlightPx).coerceAtLeast(0f)
-                ),
-                style = Stroke(width = highlightPx)
-            )
-        }
+        )
+        .background(
+            brush = Brush.verticalGradient(
+                0f to backgroundColor.lighten(0.2f),
+                1f to backgroundColor.darken(0.03f)
+            ),
+            shape = shape
+        )
         .clip(shape)
+        .innerShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 5.dp,
+                spread = 0.dp,
+                color = highlightColor,
+                offset = DpOffset(0.dp, 2.dp)
+            )
+        )
+        .innerShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 10.dp,
+                spread = 0.dp,
+                color = Color.Black.copy(alpha = 0.05f),
+                offset = DpOffset(0.dp, (-4).dp)
+            )
+        )
 }
 
 /**
  * Surface 0 • Inset Grooved (clay-sunken)
- * Deep trench effect for text inputs, progress tracks, and sunken docks.
+ * Dark soft rim at top, light reflex at bottom, faint light lip below the groove.
  */
 @Composable
 fun Modifier.clayInsetGrooved(
@@ -143,42 +167,46 @@ fun Modifier.clayInsetGrooved(
 ): Modifier {
     val shape = RoundedCornerShape(cornerRadius)
     return this
-        .background(color = backgroundColor, shape = shape)
-        .drawWithContent {
-            drawContent()
-
-            val cornerPx = cornerRadius.toPx()
-            val strokeWidth = 3.dp.toPx()
-
-            // Inner Top Shadow
-            drawRoundRect(
-                color = darkShadowColor,
-                topLeft = Offset(0f, 0f),
-                size = size,
-                cornerRadius = androidx.compose.ui.geometry.CornerRadius(cornerPx, cornerPx),
-                style = Stroke(width = strokeWidth)
+        .dropShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 4.dp,
+                spread = 0.dp,
+                color = lightHighlightColor.copy(alpha = 0.6f),
+                offset = DpOffset(0.dp, 2.dp)
             )
-
-            // Inner Bottom Reflex
-            drawRoundRect(
-                color = lightHighlightColor,
-                topLeft = Offset(strokeWidth, strokeWidth),
-                size = size.copy(
-                    width = (size.width - strokeWidth * 2).coerceAtLeast(0f),
-                    height = (size.height - strokeWidth * 2).coerceAtLeast(0f)
-                ),
-                cornerRadius = androidx.compose.ui.geometry.CornerRadius(
-                    (cornerPx - strokeWidth).coerceAtLeast(0f),
-                    (cornerPx - strokeWidth).coerceAtLeast(0f)
-                ),
-                style = Stroke(width = strokeWidth / 2)
-            )
-        }
+        )
+        .background(
+            brush = Brush.verticalGradient(
+                0f to backgroundColor.darken(0.05f),
+                1f to backgroundColor.lighten(0.04f)
+            ),
+            shape = shape
+        )
         .clip(shape)
+        .innerShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 8.dp,
+                spread = 1.dp,
+                color = darkShadowColor,
+                offset = DpOffset(0.dp, 3.dp)
+            )
+        )
+        .innerShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 6.dp,
+                spread = 0.dp,
+                color = lightHighlightColor,
+                offset = DpOffset(0.dp, (-2).dp)
+            )
+        )
 }
 
 /**
- * Scale down to 0.96 on interaction (:active spec)
+ * Scale down on press. Apply BEFORE the clay surface modifier so the
+ * shadow scales together with the body.
  */
 @Composable
 fun Modifier.clayPressable(
@@ -187,13 +215,15 @@ fun Modifier.clayPressable(
     onClick: (() -> Unit)? = null
 ): Modifier {
     var isPressed by remember { mutableStateOf(false) }
+    val currentOnClick by rememberUpdatedState(onClick)
 
     val scale by animateFloatAsState(
-        targetValue = if (isPressed && enabled) pressedScale else 1.0f,
+        targetValue = if (isPressed && enabled) pressedScale else 1f,
         animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessLow
-        )
+            dampingRatio = Spring.DampingRatioLowBouncy,
+            stiffness = Spring.StiffnessMediumLow
+        ),
+        label = "clay-press-scale"
     )
 
     return this
@@ -203,16 +233,14 @@ fun Modifier.clayPressable(
         }
         .then(
             if (enabled && onClick != null) {
-                Modifier.pointerInput(Unit) {
+                Modifier.pointerInput(enabled) {
                     detectTapGestures(
                         onPress = {
                             isPressed = true
                             tryAwaitRelease()
                             isPressed = false
                         },
-                        onTap = {
-                            onClick()
-                        }
+                        onTap = { currentOnClick?.invoke() }
                     )
                 }
             } else Modifier

@@ -29,6 +29,7 @@ sealed class AppRoute {
 
     // 1: Main App Nested Graph
     sealed class MainApp(val routeName: String, val title: String) : AppRoute() {
+        object Home : MainApp("main_home", "خانه")
         object Map : MainApp("main_map", "نقشه")
         object Services : MainApp("main_services", "خدمات شهری")
         object Wallet : MainApp("main_wallet", "کیف پول")

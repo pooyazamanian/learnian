@@ -50,6 +50,7 @@ kotlin {
             implementation(project(":core-database"))
             implementation(project(":core-datastore"))
             implementation(project(":core-system"))
+            implementation(project(":features:home"))
             implementation(project(":features:splash"))
             implementation(libs.ktor.client.core)
             implementation(libs.compose.runtime)
