@@ -1,6 +1,9 @@
 package com.learnian.core.ui.component.bottombar
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,25 +15,24 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.learnian.core.ui.modifiers.clayActionRaised
+import com.learnian.core.ui.component.icon.BaseIcon
 import com.learnian.core.ui.modifiers.clayPressable
 import com.learnian.core.ui.modifiers.clayRestingFloat
 import com.learnian.core.ui.theme.AppCorners
 import com.learnian.core.ui.theme.AppTypography
 import com.learnian.core.ui.theme.ClayTheme
 import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.painterResource
 
 /**
  * Claymorphism Floating Pill Dock Bottom Navigation Bar
@@ -39,7 +41,7 @@ import org.jetbrains.compose.resources.painterResource
 fun ClayBottomBar(
     modifier: Modifier = Modifier,
     cornerRadius: Dp = AppCorners.Pill,
-    content: @Composable RowScope.() -> Unit
+    content: @Composable RowScope.() -> Unit,
 ) {
     Box(
         modifier = modifier
@@ -71,8 +73,16 @@ fun RowScope.ClayBottomNavItem(
     label: String,
     modifier: Modifier = Modifier
 ) {
-    val animatedLabelColor by animateColorAsState(
+    val animatedColor by animateColorAsState(
         targetValue = if (selected) Color.White else ClayTheme.colors.textSecondary
+    )
+
+    val scale by animateFloatAsState(
+        targetValue = if (selected) 1.05f else 1.0f,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMediumLow
+        )
     )
 
     Box(
@@ -81,40 +91,44 @@ fun RowScope.ClayBottomNavItem(
             .clayPressable(onClick = onClick),
         contentAlignment = Alignment.Center
     ) {
-
-
         Box(
             modifier = Modifier
-                .padding(horizontal = 4.dp, vertical = 2.dp).let{
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                }
+                .padding(horizontal = 4.dp, vertical = 2.dp)
+                .then(
                     if (selected) {
-                        it.clayRestingFloat(
+                        Modifier.clayRestingFloat(
                             backgroundColor = ClayTheme.colors.primary,
                             cornerRadius = AppCorners.Pill
                         )
                     } else {
-                        it
+                        Modifier
                     }
-                }
-                .size(55.dp),
+                )
+                .size(56.dp),
             contentAlignment = Alignment.Center
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Icon(
-                    painter = painterResource(icon),
-                    contentDescription = "خانه",
-                    tint = animatedLabelColor
+                BaseIcon(
+                    resource = icon,
+                    contentDescription = label,
+                    tint = animatedColor,
+                    modifier = Modifier.size(22.dp)
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = label,
                     style = AppTypography.labelMedium.copy(
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = if (selected) FontWeight.ExtraBold else FontWeight.Medium,
                         fontSize = 11.sp
                     ),
-                    color =animatedLabelColor
+                    color = animatedColor
                 )
             }
         }

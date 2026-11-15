@@ -67,18 +67,33 @@
 
 ### ۵. نوار بالایی (`com.learnian.core.ui.component.topbar`)
 - **کلاس**: `ClayTopBar`
-- **توضیحات**: نوار عنوان شناور بالای صفحه با پشتیبانی از دکمه بازگشت و اکشن‌ها.
-- **مستندات اختصاصی**: [`component/topbar/README.md`](file:///Users/pooya/StudioProjects/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/topbar/README.md)
+- **توضیحات**: نوار عنوان شناور بالای صفحه بر اساس استانداردهای گیمفیکیشن و لرنینگ. شامل نمایش لوگوی اختصاصی لرنیان، انیمیشن عمودی تغییر عنوان، بج‌های قرصی استریک روزانه (`🔥`) و الماس‌ها (`💎`)، و دکمه سه‌نقطه تنظیمات بیشتر.
+- **مستندات اختصاصی**: [`component/topbar/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/topbar/README.md)
 
 ### ۶. نوار پایینی (`com.learnian.core.ui.component.bottombar`)
 - **کلاس‌ها**: `ClayBottomBar`, `ClayBottomNavItem`
 - **توضیحات**: داک پایینی فرورفته خمیری با آیتم‌های انتخابی برجسته و انیمیشن مقیاس.
-- **مستندات اختصاصی**: [`component/bottombar/README.md`](file:///Users/pooya/StudioProjects/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/bottombar/README.md)
+- **مستندات اختصاصی**: [`component/bottombar/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/bottombar/README.md)
 
 ### ۷. کانتینر اصلی صفحه (`com.learnian.core.ui.component.scaffold`)
 - **کلاس**: `ClayScaffold`
 - **توضیحات**: کانتینر اصلی صفحات اپلیکیشن بر اساس پالت رنگی و استانداردهای Claymorphism.
-- **مستندات اختصاصی**: [`component/scaffold/README.md`](file:///Users/pooya/StudioProjects/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/scaffold/README.md)
+- **مستندات اختصاصی**: [`component/scaffold/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/scaffold/README.md)
+
+### ۸. چیپ‌های وضعیت و بج‌ها (`com.learnian.core.ui.component.chip`)
+- **کلاس**: `ClayStatusChip`
+- **توضیحات**: چیپ‌های قرصی خمیری (`AppCorners.Pill`) برای نمایش آمارهای عددی گیمفیکیشن (استریک، الماس، سکه و XP) با فیدبک لمسی.
+- **مستندات اختصاصی**: [`component/chip/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/chip/README.md)
+
+### ۹. آیکون پایه (`com.learnian.core.ui.component.icon`)
+- **کلاس**: `BaseIcon`
+- **توضیحات**: مولفه مرکزی و پایه برای تمام آیکون‌های اپلیکیشن. پشتیبانی از `DrawableResource`, `ImageVector`, `Painter`. الزامی است تمامی آیکون‌های پروژه از طریق این کامپوننت فراخوانی شوند.
+- **مستندات اختصاصی**: [`component/icon/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/icon/README.md)
+
+### ۱۰. تصویر پایه (`com.learnian.core.ui.component.image`)
+- **کلاس**: `BaseImage`
+- **توضیحات**: مولفه مرکزی و پایه برای تمام تصاویر اپلیکیشن با امکان اعمال تنظیمات، مودیفایرها و کشینگ سراسری.
+- **مستندات اختصاصی**: [`component/image/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/image/README.md)
 
 ---
 

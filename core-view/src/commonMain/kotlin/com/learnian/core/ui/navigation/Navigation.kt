@@ -1,10 +1,19 @@
 package com.learnian.core.ui.navigation
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.ContentTransform
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
@@ -18,10 +27,9 @@ import androidx.compose.ui.Modifier
 /**
  * Unified App Routes & Nested Graphs connected to rootNavController:
  * 0 - Splash
- * 1 - MainApp (Nested: Map, Services, Wallet, Profile, Settings)
+ * 1 - MainApp (Nested: Home, Services, Wallet, Profile, Settings)
  * 2 - Intro (Nested: Welcome, Features, GetStarted)
  * 3 - Auth (Nested: PhoneInput, OtpVerify, Register)
- * 4 - MainLiteApp (Nested: LiteHome, LiteServices, LiteSettings)
  */
 sealed class AppRoute {
     // 0: Splash Screen
@@ -31,10 +39,10 @@ sealed class AppRoute {
     sealed class MainApp(val routeName: String, val title: String) : AppRoute() {
         object Home : MainApp("main_home", "خانه")
         object Map : MainApp("main_map", "نقشه")
-        object Services : MainApp("main_services", "خدمات شهری")
-        object Wallet : MainApp("main_wallet", "کیف پول")
-        object Profile : MainApp("main_profile", "پروفایل")
-        object Settings : MainApp("main_settings", "تنظیمات")
+        object Services : MainApp("main_services", "یادگیری")
+        object Wallet : MainApp("main_wallet", "مرور")
+        object Profile : MainApp("main_profile", "آمار")
+        object Settings : MainApp("main_settings", "پروفایل")
     }
 
     // 2: Intro Nested Graph
@@ -50,7 +58,6 @@ sealed class AppRoute {
         object OtpVerify : Auth("auth_otp")
         object Register : Auth("auth_register")
     }
-
 }
 
 val AppRoute.isSplash: Boolean get() = this is AppRoute.Splash
@@ -106,23 +113,83 @@ fun <T> rememberNavController(initialRoute: T): NavController<T> {
 }
 
 /**
+ * Polished transition specifications for root and non-bottom-bar screen transitions.
+ * - Splash -> Main/Intro/Auth: Cinematic fade & scale reveal.
+ * - Auth: Bottom modal sheet entry/exit.
+ * - Hierarchical Push/Pop: Smooth parallax slide with subtle scale & fade.
+ */
+val appRouteTransitionSpec: AnimatedContentTransitionScope<AppRoute>.() -> ContentTransform = {
+    when {
+        initialState is AppRoute.Splash -> {
+            // Splash reveal: cinematic fade & scale
+            (fadeIn(animationSpec = tween(450, delayMillis = 80, easing = LinearOutSlowInEasing)) +
+                    scaleIn(initialScale = 0.93f, animationSpec = tween(450, delayMillis = 80, easing = LinearOutSlowInEasing)))
+                .togetherWith(
+                    fadeOut(animationSpec = tween(350)) +
+                            scaleOut(targetScale = 1.05f, animationSpec = tween(350)),
+                )
+        }
+        (targetState is AppRoute.Auth) || (targetState is AppRoute.Intro && initialState !is AppRoute.Intro) -> {
+            // Modal entry
+            (slideInVertically(animationSpec = tween(420, easing = FastOutSlowInEasing)) { height -> (height * 0.35f).toInt() } +
+                    fadeIn(animationSpec = tween(320)) +
+                    scaleIn(initialScale = 0.95f, animationSpec = tween(420, easing = FastOutSlowInEasing)))
+                .togetherWith(
+                    fadeOut(animationSpec = tween(280)) +
+                            scaleOut(targetScale = 0.94f, animationSpec = tween(380))
+                )
+        }
+        initialState is AppRoute.Auth && targetState !is AppRoute.Auth -> {
+            // Modal exit
+            (fadeIn(animationSpec = tween(320)) +
+                    scaleIn(initialScale = 0.94f, animationSpec = tween(350)))
+                .togetherWith(
+                    slideOutVertically(animationSpec = tween(380, easing = FastOutSlowInEasing)) { height -> (height * 0.35f).toInt() } +
+                            fadeOut(animationSpec = tween(280))
+                )
+        }
+        else -> {
+            // Modern Parallax Slide + Fade + Scale (Push / Pop)
+            (slideInHorizontally(animationSpec = tween(380, easing = FastOutSlowInEasing)) { width -> (width * 0.45f).toInt() } +
+                    fadeIn(animationSpec = tween(300)) +
+                    scaleIn(initialScale = 0.96f, animationSpec = tween(380, easing = FastOutSlowInEasing)))
+                .togetherWith(
+                    slideOutHorizontally(animationSpec = tween(380, easing = FastOutSlowInEasing)) { width -> -(width * 0.25f).toInt() } +
+                            fadeOut(animationSpec = tween(280)) +
+                            scaleOut(targetScale = 0.94f, animationSpec = tween(380, easing = FastOutSlowInEasing))
+                )
+        }
+    }
+}
+
+/**
  * Animated Content Container for screen transitions
  */
 @Composable
 fun <T> AnimatedNavHost(
     currentRoute: T,
     modifier: Modifier = Modifier,
+    transitionSpec: (AnimatedContentTransitionScope<T>.() -> ContentTransform)? = null,
     content: @Composable (T) -> Unit
 ) {
+    val defaultSpec: AnimatedContentTransitionScope<T>.() -> ContentTransform = {
+        (slideInHorizontally(animationSpec = tween(380, easing = FastOutSlowInEasing)) { width -> (width * 0.4f).toInt() } +
+                fadeIn(animationSpec = tween(300)) +
+                scaleIn(initialScale = 0.96f, animationSpec = tween(380, easing = FastOutSlowInEasing)))
+            .togetherWith(
+                slideOutHorizontally(animationSpec = tween(380, easing = FastOutSlowInEasing)) { width -> -(width * 0.25f).toInt() } +
+                        fadeOut(animationSpec = tween(280)) +
+                        scaleOut(targetScale = 0.95f, animationSpec = tween(380, easing = FastOutSlowInEasing))
+            )
+    }
+
     AnimatedContent(
         targetState = currentRoute,
         modifier = modifier,
-        transitionSpec = {
-            (slideInHorizontally { width -> width } + fadeIn()) togetherWith
-                    (slideOutHorizontally { width -> -width } + fadeOut())
-        },
+        transitionSpec = transitionSpec ?: defaultSpec,
         label = "NavTransition"
     ) { targetRoute ->
         content(targetRoute)
     }
 }
+
