@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -94,7 +95,7 @@ fun RowScope.ClayBottomNavItem(
                         it
                     }
                 }
-                .padding(horizontal = 30.dp, vertical = 10.dp),
+                .size(55.dp),
             contentAlignment = Alignment.Center
         ) {
             Column(

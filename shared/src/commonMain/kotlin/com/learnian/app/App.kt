@@ -24,7 +24,7 @@ import com.learnian.splash.presentation.ui.SplashScreen
 import learnian.shared.generated.resources.Res
 import learnian.shared.generated.resources.account
 import learnian.shared.generated.resources.cards
-import learnian.shared.generated.resources.compass
+import learnian.shared.generated.resources.amar
 import learnian.shared.generated.resources.home
 import learnian.shared.generated.resources.learn
 import org.jetbrains.compose.resources.painterResource
@@ -65,25 +65,25 @@ fun App() {
                                 selected = currentRoute == AppRoute.MainApp.Services,
                                 onClick = { rootNavController.replace(AppRoute.MainApp.Services) },
                                 icon = Res.drawable.learn,
-                                label = "خدمات"
+                                label = "یادگیری"
                             )
                             ClayBottomNavItem(
                                 selected = currentRoute == AppRoute.MainApp.Wallet,
                                 onClick = { rootNavController.replace(AppRoute.MainApp.Wallet) },
                                 icon = Res.drawable.cards,
-                                label = "کیف پول"
+                                label = "مرور"
                             )
                             ClayBottomNavItem(
                                 selected = currentRoute == AppRoute.MainApp.Profile,
                                 onClick = { rootNavController.replace(AppRoute.MainApp.Profile) },
-                                icon = Res.drawable.account,
-                                label = "پروفایل"
+                                icon =Res.drawable.amar,
+                                label = "آمار"
                             )
                             ClayBottomNavItem(
                                 selected = currentRoute == AppRoute.MainApp.Settings,
                                 onClick = { rootNavController.replace(AppRoute.MainApp.Settings) },
-                                icon = Res.drawable.compass,
-                                label = "تنظیمات"
+                                icon =  Res.drawable.account,
+                                label = "پروفایل"
                             )
                         }
                     }
