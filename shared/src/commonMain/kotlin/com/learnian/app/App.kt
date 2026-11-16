@@ -1,13 +1,24 @@
 package com.learnian.app
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import com.learnian.app.di.initKoin
 import com.learnian.app.viewmodel.AppThemeViewModel
 import com.learnian.core.ui.navigation.AnimatedNavHost
@@ -44,47 +55,63 @@ fun App() {
                 transitionSpec = appRouteTransitionSpec,
                 modifier = Modifier.fillMaxSize(),
             ) { route ->
-                when (route) {
-                    is AppRoute.Splash -> {
-                        SplashScreen(
-                            onSplashFinished = {
-                                rootNavController.replace(AppRoute.MainApp.Home)
-                            },
+                Scaffold(
+                    modifier = Modifier.background(
+                        Brush.verticalGradient(
+                            listOf(
+                                MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.background
+                            )
                         )
-                    }
-
-                    is AppRoute.MainApp -> {
-                        MainAppScreen(
-                            initialRoute = route,
-                            onNavigateToRoute = { destination ->
-                                rootNavController.navigate(destination)
-                            },
-                        )
-                    }
-
-                    is AppRoute.Intro -> {
-                        Box(
-                            modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            Text(
-                                text = stringResource(CoreRes.string.intro_title),
-                                style = AppTypography.headlineLarge,
-                                color = ClayTheme.colors.textPrimary,
+                    )
+                        .imePadding()
+                        .fillMaxSize()
+                        .navigationBarsPadding()
+                        .statusBarsPadding()
+                        .windowInsetsPadding(WindowInsets.navigationBars)
+                ) {
+                    when (route) {
+                        is AppRoute.Splash -> {
+                            SplashScreen(
+                                onSplashFinished = {
+                                    rootNavController.replace(AppRoute.MainApp.Home)
+                                },
                             )
                         }
-                    }
 
-                    is AppRoute.Auth -> {
-                        Box(
-                            modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            Text(
-                                text = stringResource(CoreRes.string.auth_title),
-                                style = AppTypography.headlineLarge,
-                                color = ClayTheme.colors.textPrimary,
+                        is AppRoute.MainApp -> {
+                            MainAppScreen(
+                                initialRoute = route,
+                                onNavigateToRoute = { destination ->
+                                    rootNavController.navigate(destination)
+                                },
                             )
+                        }
+
+                        is AppRoute.Intro -> {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Text(
+                                    text = stringResource(CoreRes.string.intro_title),
+                                    style = AppTypography.headlineLarge,
+                                    color = ClayTheme.colors.textPrimary,
+                                )
+                            }
+                        }
+
+                        is AppRoute.Auth -> {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Text(
+                                    text = stringResource(CoreRes.string.auth_title),
+                                    style = AppTypography.headlineLarge,
+                                    color = ClayTheme.colors.textPrimary,
+                                )
+                            }
                         }
                     }
                 }
