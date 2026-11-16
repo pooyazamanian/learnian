@@ -38,7 +38,7 @@
     <string name="settings_language_desc">جهت چیدمان و زبان متن‌های برنامه</string>
     <string name="settings_language_fa">فارسی (FA)</string>
     <string name="settings_language_fa_sub">راست‌چین (RTL)</string>
-    <string name="settings_language_en">English (EN)</string>
+    <string name="settings_language_en">انکلیسی (EN)</string>
     <string name="settings_language_en_sub">چپ‌چین (LTR)</string>
     <string name="settings_font">قلم و رسم‌الخط</string>
     <string name="settings_font_desc">فونت دلخواه برای مطالعه متون و فلش‌کارت‌ها</string>

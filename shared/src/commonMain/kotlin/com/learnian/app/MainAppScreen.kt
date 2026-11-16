@@ -6,17 +6,25 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.learnian.core.ui.component.bottombar.ClayBottomBar
 import com.learnian.core.ui.component.bottombar.ClayBottomNavItem
 import com.learnian.core.ui.component.scaffold.ClayScaffold
 import com.learnian.core.ui.component.topbar.ClayTopBar
 import com.learnian.core.ui.navigation.AppRoute
-import com.learnian.core.view.resources.Res as CoreRes
+import com.learnian.core.view.resources.Res
+import com.learnian.core.view.resources.account
+import com.learnian.core.view.resources.amar
+import com.learnian.core.view.resources.cards
+import com.learnian.core.view.resources.home
+import com.learnian.core.view.resources.learn
 import com.learnian.core.view.resources.nav_home
 import com.learnian.core.view.resources.nav_learn
 import com.learnian.core.view.resources.nav_profile
@@ -25,12 +33,6 @@ import com.learnian.core.view.resources.nav_stats
 import com.learnian.home.presentation.ui.HomeScreen
 import com.learnian.profile.presentation.ui.ProfileScreen
 import kotlinx.coroutines.launch
-import learnian.shared.generated.resources.Res
-import learnian.shared.generated.resources.account
-import learnian.shared.generated.resources.amar
-import learnian.shared.generated.resources.cards
-import learnian.shared.generated.resources.home
-import learnian.shared.generated.resources.learn
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -44,27 +46,27 @@ enum class MainBottomTab(
     val route: AppRoute.MainApp,
 ) {
     Home(
-        titleRes = CoreRes.string.nav_home,
+        titleRes = Res.string.nav_home,
         icon = Res.drawable.home,
         route = AppRoute.MainApp.Home,
     ),
     Services(
-        titleRes = CoreRes.string.nav_learn,
+        titleRes = Res.string.nav_learn,
         icon = Res.drawable.learn,
         route = AppRoute.MainApp.Services,
     ),
     Wallet(
-        titleRes = CoreRes.string.nav_review,
+        titleRes = Res.string.nav_review,
         icon = Res.drawable.cards,
         route = AppRoute.MainApp.Wallet,
     ),
     Profile(
-        titleRes = CoreRes.string.nav_stats,
+        titleRes = Res.string.nav_stats,
         icon = Res.drawable.amar,
         route = AppRoute.MainApp.Profile,
     ),
     Settings(
-        titleRes = CoreRes.string.nav_profile,
+        titleRes = Res.string.nav_profile,
         icon = Res.drawable.account,
         route = AppRoute.MainApp.Settings,
     ),
@@ -143,30 +145,35 @@ fun MainAppScreen(
             }
         },
     ) { paddingValues ->
-        HorizontalPager(
-            state = pagerState,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-            beyondViewportPageCount = 1,
-        ) { pageIndex ->
-            when (tabs[pageIndex]) {
-                MainBottomTab.Home -> {
-                    HomeScreen()
-                }
-                MainBottomTab.Services -> {
 
-                }
-                MainBottomTab.Wallet -> {
 
-                }
-                MainBottomTab.Profile -> {
+            HorizontalPager(
+                state = pagerState,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()).padding(paddingValues),
+                beyondViewportPageCount = 1,
+                verticalAlignment = Alignment.Top
+            ) { pageIndex ->
 
-                }
-                MainBottomTab.Settings -> {
-                    ProfileScreen()
-                }
-            }
+                    when (tabs[pageIndex]) {
+                        MainBottomTab.Home -> {
+                            HomeScreen()
+                        }
+                        MainBottomTab.Services -> {
+
+                        }
+                        MainBottomTab.Wallet -> {
+
+                        }
+                        MainBottomTab.Profile -> {
+
+                        }
+                        MainBottomTab.Settings -> {
+                            ProfileScreen()
+                        }
+                    }
+
         }
     }
 }
