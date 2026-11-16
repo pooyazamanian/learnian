@@ -22,13 +22,88 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.foundation.border
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
+import com.learnian.core.ui.theme.AppCorners
 import com.learnian.core.ui.theme.ClayTheme
 
 private fun Color.lighten(f: Float): Color = lerp(this, Color.White, f)
 private fun Color.darken(f: Float): Color = lerp(this, Color.Black, f)
+
+/**
+ * Surface 3 • Embossed Raised Pill (clay-pill)
+ * Compact plump 3D pill with ambient and contact shadows, lit gradient body,
+ * and top inner highlight rim for gamification badges and status chips.
+ */
+@Composable
+fun Modifier.clayPillRaised(
+    backgroundColor: Color = ClayTheme.colors.surface,
+    cornerRadius: Dp = AppCorners.Pill,
+    borderColor: Color? = null,
+    borderWidth: Dp = 1.dp,
+    shadowColor: Color = if (ClayTheme.isDark) Color(0x66000000) else Color(0x22000000),
+    highlightColor: Color = if (ClayTheme.isDark) Color.White.copy(alpha = 0.16f) else Color.White.copy(alpha = 0.75f),
+): Modifier {
+    val shape = RoundedCornerShape(cornerRadius)
+    return this
+        // Ambient soft drop shadow
+        .dropShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 10.dp,
+                spread = (-1).dp,
+                color = shadowColor,
+                offset = DpOffset(0.dp, 4.dp),
+            )
+        )
+        // Contact shadow for sharp elevation
+        .dropShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 3.dp,
+                spread = 0.dp,
+                color = shadowColor.copy(alpha = shadowColor.alpha * 0.75f),
+                offset = DpOffset(0.dp, 1.5.dp),
+            )
+        )
+        // Plump lit clay gradient
+        .background(
+            brush = Brush.verticalGradient(
+                0f to backgroundColor.lighten(0.12f),
+                0.55f to backgroundColor,
+                1f to backgroundColor.darken(0.04f),
+            ),
+            shape = shape,
+        )
+        .then(
+            if ((borderColor != null) && (borderWidth > 0.dp)) {
+                Modifier.border(borderWidth, borderColor, shape)
+            } else Modifier
+        )
+        .clip(shape)
+        // Top crisp highlight rim
+        .innerShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 2.5.dp,
+                spread = 0.dp,
+                color = highlightColor,
+                offset = DpOffset(0.dp, 1.2.dp),
+            )
+        )
+        // Bottom inner shadow for 3D plump volume
+        .innerShadow(
+            shape = shape,
+            shadow = Shadow(
+                radius = 3.dp,
+                spread = 0.dp,
+                color = Color.Black.copy(alpha = 0.08f),
+                offset = DpOffset(0.dp, (-1.5).dp),
+            )
+        )
+}
 
 /**
  * Surface 2 • Action Raised (clay-btn)

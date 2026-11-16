@@ -1,13 +1,12 @@
 package com.learnian.core.network.auth
 
-import com.learnian.core.datastore.AppSettingsRepository
+import com.learnian.core.datastore.SettingsWrapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class TokenStorageImpl(
-    private val settingsRepository: AppSettingsRepository,
+    private val settingsRepository: SettingsWrapper,
     private val json: Json = Json { ignoreUnknownKeys = true }
 ) : TokenStorage {
 

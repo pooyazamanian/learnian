@@ -18,7 +18,7 @@
     <string name="topbar_gem_desc">الماس</string>
     <string name="topbar_streak_desc">استریک</string>
     <string name="topbar_profile_desc">پروفایل کاربری</string>
-    <string name="streak_days_format">%d روز</string>
+    <string name="streak_days_format">%1$s روز</string>
     <string name="default_streak">۱۲ روز</string>
     <string name="default_gems">۴۸۰</string>
 
@@ -30,23 +30,66 @@
     <string name="settings_title">پروفایل و تنظیمات</string>
     <string name="settings_appearance">ظاهر و نمایش</string>
     <string name="settings_theme">حالت تم</string>
-    <string name="settings_theme_system">خودکار (سیستم)</string>
+    <string name="settings_theme_desc">تنظیم خودکار یا دستی تم روشن و تاریک</string>
+    <string name="settings_theme_system">سیستم</string>
     <string name="settings_theme_light">روشن</string>
     <string name="settings_theme_dark">تیره</string>
     <string name="settings_language">زبان برنامه</string>
+    <string name="settings_language_desc">جهت چیدمان و زبان متن‌های برنامه</string>
     <string name="settings_language_fa">فارسی (FA)</string>
+    <string name="settings_language_fa_sub">راست‌چین (RTL)</string>
     <string name="settings_language_en">English (EN)</string>
-    <string name="settings_font">فونت</string>
-    <string name="settings_font_default">پیش‌فرض</string>
-    <string name="settings_font_vazir">وزیر</string>
+    <string name="settings_language_en_sub">چپ‌چین (LTR)</string>
+    <string name="settings_font">قلم و رسم‌الخط</string>
+    <string name="settings_font_desc">فونت دلخواه برای مطالعه متون و فلش‌کارت‌ها</string>
+    <string name="settings_font_default">سیستم</string>
+    <string name="settings_font_vazir">وزیرمتن</string>
     <string name="settings_font_iranyekan">ایران‌یکان</string>
-    <string name="settings_font_size">اندازه قلم</string>
+    <string name="settings_font_size">اندازه قلم و متون</string>
+    <string name="settings_font_size_desc">بزرگ‌نمایی و مقیاس متون و کارت‌ها</string>
     <string name="settings_font_size_small">کوچک</string>
     <string name="settings_font_size_medium">استاندارد</string>
     <string name="settings_font_size_large">بزرگ</string>
     <string name="settings_user_name">کاربر لرنیان</string>
     <string name="settings_user_badge">عضویت طلایی • لول ۷</string>
     <string name="settings_saved_success">تنظیمات با موفقیت ذخیره شد</string>
+
+    <!-- Profile Header Card -->
+    <string name="profile_user_name_default">پوریا رضایی</string>
+    <string name="profile_pro_badge">عضویت ویژه طلایی (Lurnian Pro) ✨</string>
+    <string name="profile_vocab_level">سطح واژگان: C1 Advanced • لول ۲۸</string>
+    <string name="profile_progress_to_level">پیشرفت تا لول %1$s</string>
+    <string name="profile_xp_format">XP %1$s / %2$s</string>
+    <string name="profile_edit_avatar_desc">ویرایش تصویر پروفایل</string>
+
+    <!-- Profile Pro Banner Card -->
+    <string name="profile_pro_card_title">لرنیان پرو (Pro) ✨</string>
+    <string name="profile_pro_card_desc">دسترسی نامحدود به مربی هوش مصنوعی، تکرار فاصله‌دار هوشمند و آزمون‌های شبیه‌ساز آیلتس</string>
+    <string name="profile_pro_card_btn">ارتقا و مدیریت اشتراک</string>
+
+    <!-- Profile Learning Settings Card -->
+    <string name="profile_learning_settings_title">تنظیمات یادگیری و تکرار</string>
+    <string name="profile_daily_goal_title">هدف روزانه لغات جدید</string>
+    <string name="profile_daily_goal_current">%1$s واژه در روز</string>
+    <string name="profile_words_count_format">%1$s لغت</string>
+    <string name="profile_fsrs_title">الگوریتم خودکار FSRS v5</string>
+    <string name="profile_fsrs_desc">تنظیم خودکار بازه‌های مرور هوشمند بر اساس عملکرد مغز</string>
+    <string name="profile_audio_title">تلفظ صوتی خودکار</string>
+    <string name="profile_audio_accent_label">لهجه پیش‌فرض</string>
+    <string name="profile_accent_us">آمریکایی (US)</string>
+    <string name="profile_accent_uk">بریتانیایی (UK)</string>
+    <string name="profile_reminder_title">یادآور مرور روزانه</string>
+    <string name="profile_reminder_desc">ارسال پوش‌نوتیفیکیشن شبانه</string>
+    <string name="profile_reminder_time_night_format">%1$s شب</string>
+
+    <!-- Profile Quick Actions & Services -->
+    <string name="profile_cloud_sync_title">همگام‌سازی ابری واژگان</string>
+    <string name="profile_cloud_sync_status">لحظاتی پیش</string>
+    <string name="profile_support_title">پشتیبانی و راهنمای صوتی</string>
+    <string name="profile_check_update_title">بررسی آخرین نسخه</string>
+    <string name="profile_check_update_status">به‌روز است</string>
+    <string name="profile_logout_btn">خروج از حساب کاربری</string>
+    <string name="profile_app_version_format">لرنیان • نسخه %1$s (ساخت %2$s)</string>
 
     <!-- Languages -->
     <string name="language_label">زبان برنامه</string>

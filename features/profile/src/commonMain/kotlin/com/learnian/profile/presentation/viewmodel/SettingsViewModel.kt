@@ -2,7 +2,7 @@ package com.learnian.profile.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.learnian.base.BaseViewModel
-import com.learnian.core.datastore.UserSettingsRepository
+import com.learnian.core.datastore.repository.UserSettingsRepository
 import com.learnian.profile.presentation.mvi.SettingsEffect
 import com.learnian.profile.presentation.mvi.SettingsIntent
 import com.learnian.profile.presentation.mvi.SettingsState
@@ -52,6 +52,31 @@ class SettingsViewModel(
             is SettingsIntent.SetCustomThemeId -> {
                 launchWithHandler {
                     userSettingsRepository.setCustomThemeId(intent.customThemeId)
+                }
+            }
+            is SettingsIntent.SetDailyWordGoal -> {
+                launchWithHandler {
+                    userSettingsRepository.setDailyWordGoal(intent.goal)
+                }
+            }
+            is SettingsIntent.SetAutoFsrsEnabled -> {
+                launchWithHandler {
+                    userSettingsRepository.setAutoFsrsEnabled(intent.enabled)
+                }
+            }
+            is SettingsIntent.SetAudioAccent -> {
+                launchWithHandler {
+                    userSettingsRepository.setAudioAccent(intent.accent)
+                }
+            }
+            is SettingsIntent.SetDailyReminderTime -> {
+                launchWithHandler {
+                    userSettingsRepository.setDailyReminderTime(intent.time)
+                }
+            }
+            is SettingsIntent.SetDailyReminderEnabled -> {
+                launchWithHandler {
+                    userSettingsRepository.setDailyReminderEnabled(intent.enabled)
                 }
             }
         }

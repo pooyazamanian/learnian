@@ -1,0 +1,34 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Top-right magic sparkle / star -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M18.5,2L19.3,4.2L21.5,5L19.3,5.8L18.5,8L17.7,5.8L15.5,5L17.7,4.2Z"/>
+    <!-- Circular update arrows -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M13,3.08C7.94,3.58 4,7.84 4,13C4,17.97 8.03,22 13,22C17.97,22 22,17.97 22,13C22,11.83 21.78,10.71 21.37,9.68"/>
+    <!-- Arrowhead at the cycle end -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M9,3L13,3.08L11.5,7"/>
+    <!-- Center pulse / check dot or upward rocket arrow -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M10,13L12,15L16,11"/>
+</vector>

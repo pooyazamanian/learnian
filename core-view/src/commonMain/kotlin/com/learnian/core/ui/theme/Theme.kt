@@ -82,6 +82,11 @@ object ClayTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalUserSettings.current
+
+    val isDark: Boolean
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalClayColors.current.isDark
 }
 
 /**

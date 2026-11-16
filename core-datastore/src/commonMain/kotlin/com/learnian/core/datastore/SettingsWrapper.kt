@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import org.koin.core.module.Module
 
 @OptIn(ExperimentalSettingsApi::class)
-class AppSettingsRepository(private val settings: ObservableSettings) {
+class SettingsWrapper(private val settings: ObservableSettings) {
     private val flowSettings = settings.toFlowSettings()
 
     fun saveString(key: String, value: String) {

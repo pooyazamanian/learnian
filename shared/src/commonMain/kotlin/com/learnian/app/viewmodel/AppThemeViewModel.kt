@@ -2,7 +2,7 @@ package com.learnian.app.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.learnian.core.datastore.UserSettingsRepository
+import com.learnian.core.datastore.repository.UserSettingsRepository
 import com.learnian.core.datastore.model.UserSettings
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

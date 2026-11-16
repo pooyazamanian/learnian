@@ -18,7 +18,7 @@
     <string name="topbar_gem_desc">Gems</string>
     <string name="topbar_streak_desc">Streak</string>
     <string name="topbar_profile_desc">User Profile</string>
-    <string name="streak_days_format">%d Days</string>
+    <string name="streak_days_format">%1$s Days</string>
     <string name="default_streak">12 Days</string>
     <string name="default_gems">480</string>
 
@@ -30,23 +30,66 @@
     <string name="settings_title">Profile &amp; Settings</string>
     <string name="settings_appearance">Appearance &amp; Display</string>
     <string name="settings_theme">Theme Mode</string>
+    <string name="settings_theme_desc">Auto or manual light and dark theme</string>
     <string name="settings_theme_system">System</string>
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
-    <string name="settings_language">Language</string>
-    <string name="settings_language_fa">فارسی (FA)</string>
+    <string name="settings_language">Application Language</string>
+    <string name="settings_language_desc">Layout direction and app text language</string>
+    <string name="settings_language_fa">Persian (FA)</string>
+    <string name="settings_language_fa_sub">Right-to-Left (RTL)</string>
     <string name="settings_language_en">English (EN)</string>
-    <string name="settings_font">Font</string>
-    <string name="settings_font_default">Default</string>
-    <string name="settings_font_vazir">Vazir</string>
+    <string name="settings_language_en_sub">Left-to-Right (LTR)</string>
+    <string name="settings_font">Typography &amp; Font Family</string>
+    <string name="settings_font_desc">Persian font for flashcards and texts</string>
+    <string name="settings_font_default">System</string>
+    <string name="settings_font_vazir">Vazirmatn</string>
     <string name="settings_font_iranyekan">IranYekan</string>
-    <string name="settings_font_size">Font Size</string>
+    <string name="settings_font_size">Text &amp; Font Size</string>
+    <string name="settings_font_size_desc">Scaling for text legibility</string>
     <string name="settings_font_size_small">Small</string>
-    <string name="settings_font_size_medium">Medium</string>
+    <string name="settings_font_size_medium">Standard</string>
     <string name="settings_font_size_large">Large</string>
     <string name="settings_user_name">Learnian Learner</string>
     <string name="settings_user_badge">Gold Member • Level 7</string>
     <string name="settings_saved_success">Settings saved successfully</string>
+
+    <!-- Profile Header Card -->
+    <string name="profile_user_name_default">Pouria Rezaei</string>
+    <string name="profile_pro_badge">Golden Pro Member (Learnian Pro) ✨</string>
+    <string name="profile_vocab_level">Vocabulary Level: C1 Advanced • Level 28</string>
+    <string name="profile_progress_to_level">Progress to Level %1$s</string>
+    <string name="profile_xp_format">XP %2$s / %1$s</string>
+    <string name="profile_edit_avatar_desc">Edit Profile Picture</string>
+
+    <!-- Profile Pro Banner Card -->
+    <string name="profile_pro_card_title">Learnian Pro ✨</string>
+    <string name="profile_pro_card_desc">Unlimited access to AI tutor, smart spaced repetition, and IELTS mock exams</string>
+    <string name="profile_pro_card_btn">Upgrade &amp; Manage Subscription</string>
+
+    <!-- Profile Learning Settings Card -->
+    <string name="profile_learning_settings_title">Learning &amp; Repetition Settings</string>
+    <string name="profile_daily_goal_title">Daily New Word Goal</string>
+    <string name="profile_daily_goal_current">%1$s words per day</string>
+    <string name="profile_words_count_format">%1$s words</string>
+    <string name="profile_fsrs_title">Automatic FSRS v5 Algorithm</string>
+    <string name="profile_fsrs_desc">Automatic smart review intervals based on brain memory retention</string>
+    <string name="profile_audio_title">Auto Audio Pronunciation</string>
+    <string name="profile_audio_accent_label">Default Accent</string>
+    <string name="profile_accent_us">American (US)</string>
+    <string name="profile_accent_uk">British (UK)</string>
+    <string name="profile_reminder_title">Daily Review Reminder</string>
+    <string name="profile_reminder_desc">Send nightly push notification</string>
+    <string name="profile_reminder_time_night_format">%1$s PM</string>
+
+    <!-- Profile Quick Actions & Services -->
+    <string name="profile_cloud_sync_title">همگام‌سازی ابری واژگان</string>
+    <string name="profile_cloud_sync_status">لحظاتی پیش</string>
+    <string name="profile_support_title">پشتیبانی و راهنمای صوتی</string>
+    <string name="profile_check_update_title">بررسی آخرین نسخه</string>
+    <string name="profile_check_update_status">به‌روز است</string>
+    <string name="profile_logout_btn">خروج از حساب کاربری</string>
+    <string name="profile_app_version_format">لرنیان • نسخه %1$s (ساخت %2$s)</string>
 
     <!-- Languages -->
     <string name="language_label">Language / زبان</string>

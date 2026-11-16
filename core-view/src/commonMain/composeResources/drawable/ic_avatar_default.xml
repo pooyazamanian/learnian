@@ -1,0 +1,72 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Soft ambient background circle glow -->
+    <path
+        android:fillColor="#F0EDFD"
+        android:pathData="M60,60m-58,0a58,58 0 1,1 116,0a58,58 0 1,1 -116,0" />
+
+    <!-- Green Body / Collar (Base shoulders) -->
+    <!-- Main green shoulders -->
+    <path
+        android:fillColor="#00A86B"
+        android:pathData="M24,106 C28,88 44,80 60,80 C76,80 92,88 96,106 C97,110 93,114 88,114 L32,114 C27,114 23,110 24,106 Z" />
+    <!-- Collar top highlight -->
+    <path
+        android:fillColor="#34D399"
+        android:pathData="M35,92 C43,84 52,82 60,82 C68,82 77,84 85,92 C77,87 69,85 60,85 C51,85 43,87 35,92 Z" />
+    <!-- Darker neck cutout / collar center -->
+    <path
+        android:fillColor="#006C45"
+        android:pathData="M52,82 C52,87 56,91 60,91 C64,91 68,87 68,82 C68,80 52,80 52,82 Z" />
+
+    <!-- Purple Hood (Outer head) -->
+    <!-- Base purple hood -->
+    <path
+        android:fillColor="#8C7BE4"
+        android:pathData="M34,54 C34,30 44,14 60,14 C76,14 86,30 86,54 C86,74 78,82 60,82 C42,82 34,74 34,54 Z" />
+    <!-- 3D Hood top highlight shine -->
+    <path
+        android:fillColor="#B7ABFF"
+        android:pathData="M44,28 C47,20 53,17 60,17 C67,17 73,20 76,28 C70,22 65,20 60,20 C55,20 50,22 44,28 Z" />
+
+    <!-- Peach Cute Face -->
+    <path
+        android:fillColor="#FBD4AD"
+        android:pathData="M42,54 C42,40 48,32 60,32 C72,32 78,40 78,54 C78,68 72,74 60,74 C48,74 42,68 42,54 Z" />
+
+    <!-- Cheeks (Blush) -->
+    <path
+        android:fillColor="#F9AA8B"
+        android:pathData="M46,59m-3.5,0a3.5,2.5 0 1,1 7,0a3.5,2.5 0 1,1 -7,0" />
+    <path
+        android:fillColor="#F9AA8B"
+        android:pathData="M74,59m-3.5,0a3.5,2.5 0 1,1 7,0a3.5,2.5 0 1,1 -7,0" />
+
+    <!-- Eyes -->
+    <!-- Left eye -->
+    <path
+        android:fillColor="#241B42"
+        android:pathData="M51.5,52m-3.5,0a3.5,4.5 0 1,1 7,0a3.5,4.5 0 1,1 -7,0" />
+    <!-- Left eye highlight -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M50.5,50m-1.2,0a1.2,1.5 0 1,1 2.4,0a1.2,1.5 0 1,1 -2.4,0" />
+
+    <!-- Right eye -->
+    <path
+        android:fillColor="#241B42"
+        android:pathData="M68.5,52m-3.5,0a3.5,4.5 0 1,1 7,0a3.5,4.5 0 1,1 -7,0" />
+    <!-- Right eye highlight -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M67.5,50m-1.2,0a1.2,1.5 0 1,1 2.4,0a1.2,1.5 0 1,1 -2.4,0" />
+
+    <!-- Cute Smiling Mouth -->
+    <path
+        android:fillColor="#703238"
+        android:pathData="M54,61 C55,67 65,67 66,61 C64,63 56,63 54,61 Z" />
+</vector>

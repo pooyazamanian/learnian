@@ -67,7 +67,8 @@ data class ClayColors(
     val textSecondary: Color,
     val highlightTop: Color,
     val shadowOuter: Color,
-    val shadowInner: Color
+    val shadowInner: Color,
+    val isDark: Boolean = false,
 )
 
 val LightClayColors = ClayColors(
@@ -82,7 +83,8 @@ val LightClayColors = ClayColors(
     textSecondary = Color(0xFF656275),
     highlightTop = Color(0xFFFFFFFF),
     shadowOuter = Color(0x1F3D3A4B),
-    shadowInner = Color(0x14000000)
+    shadowInner = Color(0x14000000),
+    isDark = false,
 )
 
 val DarkClayColors = ClayColors(
@@ -97,7 +99,8 @@ val DarkClayColors = ClayColors(
     textSecondary = Color(0xFFA09CBD),
     highlightTop = Color(0x1AFFFFFF), // 8% white reflex for subtle elevation in dark mode
     shadowOuter = Color(0x66000000),
-    shadowInner = Color(0xA6000000)
+    shadowInner = Color(0xA6000000),
+    isDark = true,
 )
 
 val LocalClayColors = staticCompositionLocalOf { LightClayColors }

@@ -40,6 +40,7 @@ kotlin {
             implementation(project(":core-database"))
             api(project(":core-datastore"))
             implementation(project(":core-system"))
+            implementation(libs.ktor.client.core)
 
             // Compose Multiplatform dependencies
             implementation(libs.compose.runtime)

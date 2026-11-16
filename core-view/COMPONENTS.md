@@ -82,7 +82,9 @@
 
 ### ۸. چیپ‌های وضعیت و بج‌ها (`com.learnian.core.ui.component.chip`)
 - **کلاس**: `ClayStatusChip`
-- **توضیحات**: چیپ‌های قرصی خمیری (`AppCorners.Pill`) برای نمایش آمارهای عددی گیمفیکیشن (استریک، الماس، سکه و XP) با فیدبک لمسی.
+- **توضیحات**: چیپ‌های قرصی خمیری چندکاره (`clay-pill`) با پشتیبانی از دو استایل مجزا:
+  - **`ClayChipStyle.Resting` (حالت پیش‌فرض تاپ‌بار)**: کپسول‌های شناور نرم و لطیف با سایه ملایم و گسترده (`clayRestingFloat`) که برای نشان‌های خلوت مانند الماس و استریک تاپ‌بار استفاده می‌شود.
+  - **`ClayChipStyle.Embossed` (حالت سه‌بعدی برجسته)**: کپسول‌های برآمده و حجیم خمیری (`clayPillRaised`) دارای سایه عمیق دوبل، گرادیان نوری بدنه، هایلایت بازتابی لبه بالا و کادر متناسب برای بج‌های عضویت و لول‌های پیشرفت در کارت‌ها و پروفایل.
 - **مستندات اختصاصی**: [`component/chip/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/chip/README.md)
 
 ### ۹. آیکون پایه (`com.learnian.core.ui.component.icon`)
@@ -92,8 +94,23 @@
 
 ### ۱۰. تصویر پایه (`com.learnian.core.ui.component.image`)
 - **کلاس**: `BaseImage`
-- **توضیحات**: مولفه مرکزی و پایه برای تمام تصاویر اپلیکیشن با امکان اعمال تنظیمات، مودیفایرها و کشینگ سراسری.
+- **توضیحات**: مولفه مرکزی و پایه برای تمام تصاویر اپلیکیشن با امکان اعمال تنظیمات، مودیفایرها، بارگذاری ناهمگام آدرس شبکه (Server Image URL) با Fallback خودکار به DrawableResource و کشینگ سراسری.
 - **مستندات اختصاصی**: [`component/image/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/image/README.md)
+
+### ۱۱. دکمه رادیویی و کارت انتخابی (`com.learnian.core.ui.component.radio`)
+- **کلاس‌ها**: `ClayRadioButton`, `ClayRadioCard`
+- **توضیحات**: کنترل‌های انتخاب تک‌گزینه‌ای خمیری با انیمیشن فنری مقیاس و رنگ، به همراه کارت تعاملی کامل برای لیست‌های گزینه‌ای (لهجه صوتی، انتخاب پلن و...).
+- **مستندات اختصاصی**: [`component/radio/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/radio/README.md)
+
+### ۱۲. کلید تغییر وضعیت خمیری (`com.learnian.core.ui.component.switch`)
+- **کلاس**: `ClaySwitch`
+- **توضیحات**: کلید تاگل خمیری ۳بعدی با شیار فرورفته (`clayInsetGrooved`) و کلید لغزنده شناور (`clay-thumb`) با انیمیشن روان تغییر وضعیت.
+- **مستندات اختصاصی**: [`component/switch/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/switch/README.md)
+
+### ۱۳. اسلایدر چندگزینه‌ای سگمنتد (`com.learnian.core.ui.component.segmented`)
+- **کلاس‌ها**: `ClaySegmentedSlider`, `ClaySegment`
+- **توضیحات**: اسلایدر تعاملی چندگزینه‌ای خمیری با شیار فرورفته (`clayInsetGrooved`) و نشانگر لغزان ۳بعدی برآمده (`clayActionRaised`) با فیزیک جهشی فنری (`spring`). پشتیبانی کامل از جهت‌های RTL و LTR، متن، آیکون و محتوای بصری دلخواه (نظیر پیش‌نمایش اندازه قلم یا تم‌های سیستم).
+- **مستندات اختصاصی**: [`component/segmented/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/segmented/README.md)
 
 ---
 

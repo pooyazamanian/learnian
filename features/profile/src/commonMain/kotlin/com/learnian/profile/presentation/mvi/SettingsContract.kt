@@ -21,6 +21,11 @@ sealed interface SettingsIntent : UiIntent {
     data class SetFont(val font: AppFont) : SettingsIntent
     data class SetFontSizeScale(val scale: FontSizeScale) : SettingsIntent
     data class SetCustomThemeId(val customThemeId: String?) : SettingsIntent
+    data class SetDailyWordGoal(val goal: Int) : SettingsIntent
+    data class SetAutoFsrsEnabled(val enabled: Boolean) : SettingsIntent
+    data class SetAudioAccent(val accent: com.learnian.core.datastore.model.AudioAccent) : SettingsIntent
+    data class SetDailyReminderTime(val time: String) : SettingsIntent
+    data class SetDailyReminderEnabled(val enabled: Boolean) : SettingsIntent
 }
 
 sealed interface SettingsEffect : UiEffect {
