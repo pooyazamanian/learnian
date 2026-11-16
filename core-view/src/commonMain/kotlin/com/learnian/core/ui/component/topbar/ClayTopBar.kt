@@ -7,8 +7,10 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -73,9 +76,17 @@ fun ClayTopBar(
     navigationIcon: (@Composable () -> Unit)? = null,
     actions: (@Composable RowScope.() -> Unit)? = null,
     cornerRadius: Dp = AppCorners.XL,
+    flat: Boolean = false,
 ) {
-    Box(
-        modifier = modifier
+    val containerModifier = if (flat) {
+        modifier
+            .fillMaxWidth()
+            .statusBarsPadding()
+            .background(ClayTheme.colors.surface)
+            .height(64.dp)
+            .padding(horizontal = 20.dp)
+    } else {
+        modifier
             .fillMaxWidth()
             .statusBarsPadding()
             .padding(horizontal = 16.dp, vertical = 8.dp)
@@ -84,123 +95,142 @@ fun ClayTopBar(
                 cornerRadius = cornerRadius
             )
             .height(64.dp)
-            .padding(horizontal = 12.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            .padding(horizontal = 12.dp)
+    }
+
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Box(
+            modifier = containerModifier,
+            contentAlignment = Alignment.Center
         ) {
-            // Start section: Navigation Icon OR Glossy Logo + localized Brand Name (or animated Title)
             Row(
+                modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                if (navigationIcon != null) {
-                    navigationIcon()
-                    Spacer(modifier = Modifier.width(8.dp))
-                } else if (showLogo) {
-                    if (logo != null) {
-                        logo()
-                    } else {
-                        BaseImage(
-                            resource = Res.drawable.ic_learnian_eye_logo,
-                            contentDescription = stringResource(Res.string.topbar_logo_desc),
-                            modifier = Modifier.size(40.dp)
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(5.dp))
-                }
-
-                val displayTitle = title ?: brandText
-                AnimatedContent(
-                    targetState = displayTitle,
-                    transitionSpec = {
-                        (slideInVertically(animationSpec = tween(260)) { -it / 2 } + fadeIn(animationSpec = tween(260)))
-                            .togetherWith(
-                                slideOutVertically(animationSpec = tween(200)) { it / 2 } + fadeOut(animationSpec = tween(200))
-                            )
-                    },
-                    label = "TopBarTitleAnimation"
-                ) { animatedTitle ->
-                    Text(
-                        text = animatedTitle,
-                        style = AppTypography.titleLarge.copy(
-                            fontWeight = FontWeight.ExtraBold,
-                            fontSize = 18.sp
-                        ),
-                        color = ClayTheme.colors.primary
-                    )
-                }
-            }
-
-            Row(
-                modifier = Modifier.fillMaxWidth(0.7f),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceAround
-            ) {
-                if (gemText != null) {
-                    ClayStatusChip(
-                        text = gemText,
-                        textColor = Color(0xFF00796B),
-                        icon = {
-                            BaseIcon(
-                                resource = Res.drawable.ic_gem,
-                                contentDescription = stringResource(Res.string.topbar_gem_desc),
-                                tint = Color.Unspecified,
-                                modifier = Modifier.size(18.dp)
-                            )
-                        },
-                        onClick = onGemClick
-                    )
-                }
-
-                if (streakText != null) {
-                    ClayStatusChip(
-                        text = streakText,
-                        textColor = Color(0xFFB5700A),
-                        icon = {
-                            BaseIcon(
-                                resource = Res.drawable.ic_streak_flame,
-                                contentDescription = stringResource(Res.string.topbar_streak_desc),
-                                tint = Color.Unspecified,
-                                modifier = Modifier.size(18.dp)
-                            )
-                        },
-                        onClick = onStreakClick
-                    )
-                }
-            }
-
-            // End section: Circular Purple Profile 3D Button & Custom Actions
-            if ((actions != null) || (onProfileClick != null) || (onMoreClick != null)) {
+                // Start section: Navigation Icon OR Glossy Logo + localized Brand Name (or animated Title)
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.End,
+                    horizontalArrangement = Arrangement.Start
                 ) {
-                    if (actions != null) {
-                        actions()
+                    if (navigationIcon != null) {
+                        navigationIcon()
+                        Spacer(modifier = Modifier.width(8.dp))
+                    } else if (showLogo) {
+                        if (logo != null) {
+                            logo()
+                        } else {
+                            BaseImage(
+                                resource = Res.drawable.ic_learnian_eye_logo,
+                                contentDescription = stringResource(Res.string.topbar_logo_desc),
+                                modifier = Modifier.size(40.dp)
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(5.dp))
                     }
 
-                    val profileClickAction = onProfileClick ?: onMoreClick
-                    if (profileClickAction != null) {
-                        ClayIconButton(
-                            onClick = profileClickAction,
-                            size = 42.dp,
-                            cornerRadius = AppCorners.Pill,
-                            backgroundColor = ClayTheme.colors.primary
-                        ) {
-                            BaseIcon(
-                                resource = Res.drawable.ic_person,
-                                contentDescription = stringResource(Res.string.topbar_profile_desc),
-                                tint = Color.White,
-                                modifier = Modifier.size(20.dp)
-                            )
+                    val displayTitle = title ?: brandText
+                    AnimatedContent(
+                        targetState = displayTitle,
+                        transitionSpec = {
+                            (slideInVertically(animationSpec = tween(260)) { -it / 2 } + fadeIn(
+                                animationSpec = tween(260)
+                            ))
+                                .togetherWith(
+                                    slideOutVertically(animationSpec = tween(200)) { it / 2 } + fadeOut(
+                                        animationSpec = tween(200)
+                                    )
+                                )
+                        },
+                        label = "TopBarTitleAnimation"
+                    ) { animatedTitle ->
+                        Text(
+                            text = animatedTitle,
+                            style = AppTypography.titleLarge.copy(
+                                fontWeight = FontWeight.ExtraBold,
+                                fontSize = 18.sp
+                            ),
+                            color = ClayTheme.colors.primary
+                        )
+                    }
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(0.7f),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    if (gemText != null) {
+                        ClayStatusChip(
+                            text = gemText,
+                            textColor = Color(0xFF00796B),
+                            icon = {
+                                BaseIcon(
+                                    resource = Res.drawable.ic_gem,
+                                    contentDescription = stringResource(Res.string.topbar_gem_desc),
+                                    tint = Color.Unspecified,
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            },
+                            onClick = onGemClick
+                        )
+                    }
+
+                    if (streakText != null) {
+                        ClayStatusChip(
+                            text = streakText,
+                            textColor = Color(0xFFB5700A),
+                            icon = {
+                                BaseIcon(
+                                    resource = Res.drawable.ic_streak_flame,
+                                    contentDescription = stringResource(Res.string.topbar_streak_desc),
+                                    tint = Color.Unspecified,
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            },
+                            onClick = onStreakClick
+                        )
+                    }
+                }
+
+                // End section: Circular Purple Profile 3D Button & Custom Actions
+                if ((actions != null) || (onProfileClick != null) || (onMoreClick != null)) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.End,
+                    ) {
+                        if (actions != null) {
+                            actions()
+                        }
+
+                        val profileClickAction = onProfileClick ?: onMoreClick
+                        if (profileClickAction != null) {
+                            ClayIconButton(
+                                onClick = profileClickAction,
+                                size = 42.dp,
+                                cornerRadius = AppCorners.Pill,
+                                backgroundColor = ClayTheme.colors.primary
+                            ) {
+                                BaseIcon(
+                                    resource = Res.drawable.ic_person,
+                                    contentDescription = stringResource(Res.string.topbar_profile_desc),
+                                    tint = Color.White,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                            }
                         }
                     }
                 }
             }
+            if (flat) {
+                HorizontalDivider(
+                    color = ClayTheme.colors.surfaceSunken.copy(alpha = 0.6f),
+                    thickness = 1.dp
+                )
+            }
         }
+
+
     }
 }
+

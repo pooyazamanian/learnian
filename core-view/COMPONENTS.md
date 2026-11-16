@@ -112,6 +112,16 @@
 - **توضیحات**: اسلایدر تعاملی چندگزینه‌ای خمیری با شیار فرورفته (`clayInsetGrooved`) و نشانگر لغزان ۳بعدی برآمده (`clayActionRaised`) با فیزیک جهشی فنری (`spring`). پشتیبانی کامل از جهت‌های RTL و LTR، متن، آیکون و محتوای بصری دلخواه (نظیر پیش‌نمایش اندازه قلم یا تم‌های سیستم).
 - **مستندات اختصاصی**: [`component/segmented/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/segmented/README.md)
 
+### ۱۴. نوار ناوبری ستونی تبلت و دسکتاپ (`com.learnian.core.ui.component.navrail`)
+- **کلاس‌ها**: `ClayNavRail`, `ClayNavRailItem`
+- **توضیحات**: داک ستونی عمودی خمیری شناور برای تبلت‌ها، حالت افقی گوشی (Landscape)، تاشوها و دسکتاپ. دارای چیدمان خودکار در سمت راست در زبان‌های RTL (فارسی) و سمت چپ در زبان‌های LTR (انگلیسی)، پشتیبانی از هدر لوگو، اسکرول ایمن در ارتفاع‌های کم، و آیتم‌های ۳بعدی خمیری با انیمیشن فنری.
+- **مستندات اختصاصی**: [`component/navrail/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/sidebar/README.md)
+
+### ۱۵. سایدبار ناوبری داشبورد تبلت و دسکتاپ (`com.learnian.core.ui.component.sidebar`)
+- **کلاس‌ها**: `ClaySidebar`, `ClaySidebarItem`
+- **توضیحات**: پنل سایدبار تخت و یکدست (Flat Dashboard Drawer) متصل به لبه صفحه (سمت راست در فارسی / RTL و سمت چپ در انگلیسی / LTR) برای تبلت‌ها، حالت افقی گوشی‌ها و دسکتاپ به سبک داشبوردهای مدرن. شامل خط جداکننده ستونی ظریف، آیتم‌های عریض تعاملی افقی (آیکون + عنوان کنار هم) با پیل برجسته سه‌بعدی بنفش هنگام انتخاب، انیمیشن لمسی، و بخش هدر و فوتر اختصاصی.
+- **مستندات اختصاصی**: [`component/sidebar/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/sidebar/README.md)
+
 ---
 
 ## 🎨 ۴. مدیریت تم داینامیک، فونت، مقیاس و زبان (`AppPlatformTheme`)
