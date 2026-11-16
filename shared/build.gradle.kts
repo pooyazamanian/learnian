@@ -52,6 +52,7 @@ kotlin {
             implementation(project(":core-system"))
             implementation(project(":features:home"))
             implementation(project(":features:splash"))
+            implementation(project(":features:profile"))
             implementation(libs.ktor.client.core)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)

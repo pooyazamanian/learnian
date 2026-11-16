@@ -38,7 +38,7 @@ kotlin {
             
             implementation(project(":core-network"))
             implementation(project(":core-database"))
-            implementation(project(":core-datastore"))
+            api(project(":core-datastore"))
             implementation(project(":core-system"))
 
             // Compose Multiplatform dependencies

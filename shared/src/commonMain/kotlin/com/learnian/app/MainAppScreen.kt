@@ -23,6 +23,7 @@ import com.learnian.core.view.resources.nav_profile
 import com.learnian.core.view.resources.nav_review
 import com.learnian.core.view.resources.nav_stats
 import com.learnian.home.presentation.ui.HomeScreen
+import com.learnian.profile.presentation.ui.ProfileScreen
 import kotlinx.coroutines.launch
 import learnian.shared.generated.resources.Res
 import learnian.shared.generated.resources.account
@@ -102,7 +103,22 @@ fun MainAppScreen(
     ClayScaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            ClayTopBar()
+            ClayTopBar(
+                onProfileClick = {
+                    val settingsIndex = tabs.indexOf(MainBottomTab.Settings)
+                    if (settingsIndex >= 0) {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(
+                                page = settingsIndex,
+                                animationSpec = spring(
+                                    dampingRatio = Spring.DampingRatioLowBouncy,
+                                    stiffness = Spring.StiffnessMediumLow,
+                                ),
+                            )
+                        }
+                    }
+                },
+            )
         },
         bottomBar = {
             ClayBottomBar {
@@ -115,24 +131,24 @@ fun MainAppScreen(
                                     page = index,
                                     animationSpec = spring(
                                         dampingRatio = Spring.DampingRatioLowBouncy,
-                                        stiffness = Spring.StiffnessMediumLow
-                                    )
+                                        stiffness = Spring.StiffnessMediumLow,
+                                    ),
                                 )
                             }
                         },
                         icon = tab.icon,
-                        label = stringResource(tab.titleRes)
+                        label = stringResource(tab.titleRes),
                     )
                 }
             }
-        }
+        },
     ) { paddingValues ->
         HorizontalPager(
             state = pagerState,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues),
-            beyondViewportPageCount = 1
+            beyondViewportPageCount = 1,
         ) { pageIndex ->
             when (tabs[pageIndex]) {
                 MainBottomTab.Home -> {
@@ -148,7 +164,7 @@ fun MainAppScreen(
 
                 }
                 MainBottomTab.Settings -> {
-
+                    ProfileScreen()
                 }
             }
         }

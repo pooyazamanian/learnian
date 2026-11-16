@@ -7,6 +7,12 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
+import com.learnian.core.datastore.model.ThemeMode
+import com.learnian.core.datastore.model.UserSettings
 
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
@@ -22,7 +28,7 @@ private val LightColorScheme = lightColorScheme(
     background = md_theme_light_background,
     onBackground = md_theme_light_onBackground,
     surface = md_theme_light_surface,
-    onSurface = md_theme_light_onSurface
+    onSurface = md_theme_light_onSurface,
 )
 
 private val DarkColorScheme = darkColorScheme(
@@ -39,31 +45,91 @@ private val DarkColorScheme = darkColorScheme(
     background = md_theme_dark_background,
     onBackground = md_theme_dark_onBackground,
     surface = md_theme_dark_surface,
-    onSurface = md_theme_dark_onSurface
+    onSurface = md_theme_dark_onSurface,
 )
+
+/**
+ * Extensibility contract for user or brand custom themes.
+ */
+data class CustomTheme(
+    val id: String,
+    val name: String,
+    val lightColors: ClayColors,
+    val darkColors: ClayColors,
+)
+
+object CustomThemeRegistry {
+    private val themes = mutableMapOf<String, CustomTheme>()
+
+    fun register(theme: CustomTheme) {
+        themes[theme.id] = theme
+    }
+
+    fun get(id: String?): CustomTheme? = id?.let { themes[it] }
+
+    fun all(): List<CustomTheme> = themes.values.toList()
+}
+
+val LocalUserSettings = staticCompositionLocalOf { UserSettings() }
 
 object ClayTheme {
     val colors: ClayColors
         @Composable
         @ReadOnlyComposable
         get() = LocalClayColors.current
+
+    val userSettings: UserSettings
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalUserSettings.current
 }
 
+/**
+ * Root theme composable that reactively applies:
+ * - Theme mode (System, Light, Dark, or Custom)
+ * - Scaled typography with font selection
+ * - Layout direction (RTL for Persian, LTR for English)
+ */
 @Composable
 fun AppPlatformTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    userSettings: UserSettings = UserSettings(),
+    darkTheme: Boolean = when (userSettings.themeMode) {
+        ThemeMode.SYSTEM -> isSystemInDarkTheme()
+        ThemeMode.LIGHT -> false
+        ThemeMode.DARK -> true
+    },
+    content: @Composable () -> Unit,
 ) {
+    val customTheme = remember(userSettings.customThemeId) {
+        CustomThemeRegistry.get(userSettings.customThemeId)
+    }
+
+    val clayColors = when {
+        customTheme != null -> if (darkTheme) customTheme.darkColors else customTheme.lightColors
+        darkTheme -> DarkClayColors
+        else -> LightClayColors
+    }
+
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
-    val clayColors = if (darkTheme) DarkClayColors else LightClayColors
+
+    val typography = remember(userSettings.font, userSettings.fontSizeScale) {
+        createAppTypography(
+            font = userSettings.font,
+            fontScale = userSettings.fontSizeScale.scale,
+        )
+    }
+
+    val layoutDirection = if (userSettings.language.isRtl) LayoutDirection.Rtl else LayoutDirection.Ltr
 
     CompositionLocalProvider(
-        LocalClayColors provides clayColors
+        LocalClayColors provides clayColors,
+        LocalUserSettings provides userSettings,
+        LocalLayoutDirection provides layoutDirection,
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
-            typography = AppTypography,
-            content = content
+            typography = typography,
+            content = content,
         )
     }
 }

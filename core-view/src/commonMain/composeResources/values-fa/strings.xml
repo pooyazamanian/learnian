@@ -26,6 +26,28 @@
     <string name="intro_title">راهنما و معرفی</string>
     <string name="auth_title">احراز هویت و ورود</string>
 
+    <!-- Settings & Profile -->
+    <string name="settings_title">پروفایل و تنظیمات</string>
+    <string name="settings_appearance">ظاهر و نمایش</string>
+    <string name="settings_theme">حالت تم</string>
+    <string name="settings_theme_system">خودکار (سیستم)</string>
+    <string name="settings_theme_light">روشن</string>
+    <string name="settings_theme_dark">تیره</string>
+    <string name="settings_language">زبان برنامه</string>
+    <string name="settings_language_fa">فارسی (FA)</string>
+    <string name="settings_language_en">English (EN)</string>
+    <string name="settings_font">فونت</string>
+    <string name="settings_font_default">پیش‌فرض</string>
+    <string name="settings_font_vazir">وزیر</string>
+    <string name="settings_font_iranyekan">ایران‌یکان</string>
+    <string name="settings_font_size">اندازه قلم</string>
+    <string name="settings_font_size_small">کوچک</string>
+    <string name="settings_font_size_medium">استاندارد</string>
+    <string name="settings_font_size_large">بزرگ</string>
+    <string name="settings_user_name">کاربر لرنیان</string>
+    <string name="settings_user_badge">عضویت طلایی • لول ۷</string>
+    <string name="settings_saved_success">تنظیمات با موفقیت ذخیره شد</string>
+
     <!-- Languages -->
     <string name="language_label">زبان برنامه</string>
     <string name="lang_fa">فارسی</string>

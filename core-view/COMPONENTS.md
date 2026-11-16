@@ -97,6 +97,26 @@
 
 ---
 
+## 🎨 ۴. مدیریت تم داینامیک، فونت، مقیاس و زبان (`AppPlatformTheme`)
+
+کامپوننت `AppPlatformTheme` در `com.learnian.core.ui.theme` به طور کامل به `UserSettings` و لایه DataStore متصل است:
+- **حالت‌های تم (ThemeMode)**:
+  - `SYSTEM`: هماهنگ با تم تاریک/روشن سیستم عامل
+  - `LIGHT`: تم روشن خمیری
+  - `DARK`: تم تیره شبانه نئونی
+  - **پشتیبانی از تم‌های سفارشی (Custom Themes)**: از طریق `CustomThemeRegistry` برای اضافه کردن تم‌های رنگی در آینده.
+- **زبان و جهت صفحه (AppLanguage & LayoutDirection)**:
+  - `FA`: راست‌چین (RTL)
+  - `EN`: چپ‌چین (LTR)
+- **مقیاس داینامیک فونت (FontSizeScale)**:
+  - `SMALL` (0.88x)
+  - `MEDIUM` (1.0x پیش‌فرض)
+  - `LARGE` (1.15x)
+- **فونت‌های پشتیبانی‌شده (AppFont)**:
+  - `DEFAULT`, `VAZIR`, `IRANYEKAN`
+
+---
+
 ## 🛠 نحوه استفاده در صفحات جدید
 
 ```kotlin
