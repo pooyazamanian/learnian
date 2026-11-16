@@ -2,7 +2,6 @@ package com.learnian.app
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
@@ -17,6 +16,12 @@ import com.learnian.core.ui.component.bottombar.ClayBottomNavItem
 import com.learnian.core.ui.component.scaffold.ClayScaffold
 import com.learnian.core.ui.component.topbar.ClayTopBar
 import com.learnian.core.ui.navigation.AppRoute
+import com.learnian.core.view.resources.Res as CoreRes
+import com.learnian.core.view.resources.nav_home
+import com.learnian.core.view.resources.nav_learn
+import com.learnian.core.view.resources.nav_profile
+import com.learnian.core.view.resources.nav_review
+import com.learnian.core.view.resources.nav_stats
 import com.learnian.home.presentation.ui.HomeScreen
 import kotlinx.coroutines.launch
 import learnian.shared.generated.resources.Res
@@ -26,37 +31,39 @@ import learnian.shared.generated.resources.cards
 import learnian.shared.generated.resources.home
 import learnian.shared.generated.resources.learn
 import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 
 /**
- * Bottom Navigation Tabs definition.
+ * Bottom Navigation Tabs definition with localized title resources.
  */
 enum class MainBottomTab(
-    val title: String,
+    val titleRes: StringResource,
     val icon: DrawableResource,
     val route: AppRoute.MainApp,
 ) {
     Home(
-        title = "خانه",
+        titleRes = CoreRes.string.nav_home,
         icon = Res.drawable.home,
         route = AppRoute.MainApp.Home,
     ),
     Services(
-        title = "یادگیری",
+        titleRes = CoreRes.string.nav_learn,
         icon = Res.drawable.learn,
         route = AppRoute.MainApp.Services,
     ),
     Wallet(
-        title = "مرور",
+        titleRes = CoreRes.string.nav_review,
         icon = Res.drawable.cards,
         route = AppRoute.MainApp.Wallet,
     ),
     Profile(
-        title = "آمار",
+        titleRes = CoreRes.string.nav_stats,
         icon = Res.drawable.amar,
         route = AppRoute.MainApp.Profile,
     ),
     Settings(
-        title = "پروفایل",
+        titleRes = CoreRes.string.nav_profile,
         icon = Res.drawable.account,
         route = AppRoute.MainApp.Settings,
     ),
@@ -64,8 +71,8 @@ enum class MainBottomTab(
 
 /**
  * MainApp container hosting:
- * - TopBar with animated title matching the active tab
- * - BottomBar with claymorphic items
+ * - TopBar with claymorphic status badges and branding
+ * - BottomBar with localized claymorphic items
  * - Swipeable HorizontalPager allowing seamless gesture navigation (swipe left/right)
  */
 @Composable
@@ -92,14 +99,10 @@ fun MainAppScreen(
         }
     }
 
-    val currentTab = tabs[pagerState.currentPage]
-
     ClayScaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            ClayTopBar(
-//                title = currentTab.title
-            )
+            ClayTopBar()
         },
         bottomBar = {
             ClayBottomBar {
@@ -118,7 +121,7 @@ fun MainAppScreen(
                             }
                         },
                         icon = tab.icon,
-                        label = tab.title
+                        label = stringResource(tab.titleRes)
                     )
                 }
             }

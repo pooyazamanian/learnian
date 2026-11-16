@@ -52,7 +52,7 @@ fun ClayStatusChip(
                 text = text,
                 style = AppTypography.titleMedium.copy(
                     fontWeight = FontWeight.ExtraBold,
-                    fontSize = 13.sp
+                    fontSize = 14.sp
                 ),
                 color = textColor
             )

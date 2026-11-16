@@ -36,28 +36,36 @@ import com.learnian.core.ui.theme.AppCorners
 import com.learnian.core.ui.theme.AppTypography
 import com.learnian.core.ui.theme.ClayTheme
 import com.learnian.core.view.resources.Res
+import com.learnian.core.view.resources.app_name
+import com.learnian.core.view.resources.default_gems
+import com.learnian.core.view.resources.default_streak
 import com.learnian.core.view.resources.ic_gem
 import com.learnian.core.view.resources.ic_learnian_eye_logo
 import com.learnian.core.view.resources.ic_person
 import com.learnian.core.view.resources.ic_streak_flame
+import com.learnian.core.view.resources.topbar_gem_desc
+import com.learnian.core.view.resources.topbar_logo_desc
+import com.learnian.core.view.resources.topbar_profile_desc
+import com.learnian.core.view.resources.topbar_streak_desc
+import org.jetbrains.compose.resources.stringResource
 
 /**
  * Claymorphism Floating Top App Bar (clay-topbar)
  *
  * Implements the brand gamification pattern:
- * - Start: Glossy 3D Brand Logo + "لرنیان" brand title (or custom title with vertical slide/fade animation)
- * - Center: Dual Gamification Pills ("۱۲ روز 🔥" in warm amber + "۴۸۰ 💎" in dark emerald)
+ * - Start: Glossy 3D Brand Logo + localized brand title (or custom title with vertical slide/fade animation)
+ * - Center: Dual Gamification Pills (Streak Flame + Gem Stone)
  * - End: Circular 3D purple profile button with person icon (and custom action hooks)
  */
 @Composable
 fun ClayTopBar(
     modifier: Modifier = Modifier,
     title: String? = null,
-    brandText: String = "لرنیان",
+    brandText: String = stringResource(Res.string.app_name),
     showLogo: Boolean = true,
     logo: (@Composable () -> Unit)? = null,
-    streakText: String? = "۱۲ روز",
-    gemText: String? = "۴۸۰",
+    streakText: String? = stringResource(Res.string.default_streak),
+    gemText: String? = stringResource(Res.string.default_gems),
     onStreakClick: (() -> Unit)? = null,
     onGemClick: (() -> Unit)? = null,
     onProfileClick: (() -> Unit)? = null,
@@ -84,7 +92,7 @@ fun ClayTopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // Start section: Navigation Icon OR Glossy Logo + "لرنیان" (or animated Title)
+            // Start section: Navigation Icon OR Glossy Logo + localized Brand Name (or animated Title)
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
@@ -98,11 +106,11 @@ fun ClayTopBar(
                     } else {
                         BaseImage(
                             resource = Res.drawable.ic_learnian_eye_logo,
-                            contentDescription = "لوگوی لرنیان",
-                            modifier = Modifier.size(36.dp)
+                            contentDescription = stringResource(Res.string.topbar_logo_desc),
+                            modifier = Modifier.size(40.dp)
                         )
                     }
-                    Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(5.dp))
                 }
 
                 val displayTitle = title ?: brandText
@@ -127,10 +135,10 @@ fun ClayTopBar(
                 }
             }
 
-            // Center section: Status Badges (Streak Flame & Gem Stone)
             Row(
+                modifier = Modifier.fillMaxWidth(0.7f),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.SpaceAround
             ) {
                 if (gemText != null) {
                     ClayStatusChip(
@@ -139,7 +147,7 @@ fun ClayTopBar(
                         icon = {
                             BaseIcon(
                                 resource = Res.drawable.ic_gem,
-                                contentDescription = "الماس",
+                                contentDescription = stringResource(Res.string.topbar_gem_desc),
                                 tint = Color.Unspecified,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -155,7 +163,7 @@ fun ClayTopBar(
                         icon = {
                             BaseIcon(
                                 resource = Res.drawable.ic_streak_flame,
-                                contentDescription = "استریک",
+                                contentDescription = stringResource(Res.string.topbar_streak_desc),
                                 tint = Color.Unspecified,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -166,27 +174,31 @@ fun ClayTopBar(
             }
 
             // End section: Circular Purple Profile 3D Button & Custom Actions
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.End,
-            ) {
-                if (actions != null) {
-                    actions()
-                }
-
-                val profileClickAction = onProfileClick ?: onMoreClick ?: {}
-                ClayIconButton(
-                    onClick = profileClickAction,
-                    size = 42.dp,
-                    cornerRadius = AppCorners.Pill,
-                    backgroundColor = ClayTheme.colors.primary
+            if ((actions != null) || (onProfileClick != null) || (onMoreClick != null)) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.End,
                 ) {
-                    BaseIcon(
-                        resource = Res.drawable.ic_person,
-                        contentDescription = "پروفایل کاربری",
-                        tint = Color.White,
-                        modifier = Modifier.size(20.dp)
-                    )
+                    if (actions != null) {
+                        actions()
+                    }
+
+                    val profileClickAction = onProfileClick ?: onMoreClick
+                    if (profileClickAction != null) {
+                        ClayIconButton(
+                            onClick = profileClickAction,
+                            size = 42.dp,
+                            cornerRadius = AppCorners.Pill,
+                            backgroundColor = ClayTheme.colors.primary
+                        ) {
+                            BaseIcon(
+                                resource = Res.drawable.ic_person,
+                                contentDescription = stringResource(Res.string.topbar_profile_desc),
+                                tint = Color.White,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        }
+                    }
                 }
             }
         }

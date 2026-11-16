@@ -31,8 +31,12 @@ import com.learnian.core.ui.component.scaffold.ClayScaffold
 import com.learnian.core.ui.theme.AppCorners
 import com.learnian.core.ui.theme.AppTypography
 import com.learnian.core.ui.theme.ClayTheme
+import com.learnian.core.view.resources.Res
+import com.learnian.core.view.resources.app_subtitle
+import com.learnian.core.view.resources.app_title
 import com.learnian.splash.presentation.mvi.SplashEffect
 import com.learnian.splash.presentation.viewmodel.SplashViewModel
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 /**
@@ -116,7 +120,7 @@ fun SplashScreen(
 
                 // App Title
                 Text(
-                    text = "Learnian",
+                    text = stringResource(Res.string.app_title),
                     style = AppTypography.headlineLarge.copy(
                         color = ClayTheme.colors.primary,
                         fontWeight = FontWeight.ExtraBold,
@@ -128,7 +132,7 @@ fun SplashScreen(
 
                 // App Subtitle
                 Text(
-                    text = "سیستم هوشمند یادگیری زبان با جعبه لایتنر",
+                    text = stringResource(Res.string.app_subtitle),
                     style = AppTypography.bodyMedium,
                     color = ClayTheme.colors.textSecondary
                 )

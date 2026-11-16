@@ -1,13 +1,37 @@
 <resources>
     <string name="app_name">لرنیان</string>
-    <string name="nav_learn">آموزش</string>
-    <string name="nav_practice">تمرین</string>
-    <string name="nav_vocab">واژه‌نامه</string>
+    <string name="app_title">لرنیان</string>
+    <string name="app_subtitle">سیستم هوشمند یادگیری زبان با جعبه لایتنر</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_home">خانه</string>
+    <string name="nav_learn">یادگیری</string>
+    <string name="nav_review">مرور</string>
+    <string name="nav_stats">آمار</string>
     <string name="nav_profile">پروفایل</string>
     <string name="nav_settings">تنظیمات</string>
+    <string name="nav_practice">تمرین</string>
+    <string name="nav_vocab">واژه‌نامه</string>
+
+    <!-- TopBar & Gamification -->
+    <string name="topbar_logo_desc">لوگوی لرنیان</string>
+    <string name="topbar_gem_desc">الماس</string>
+    <string name="topbar_streak_desc">استریک</string>
+    <string name="topbar_profile_desc">پروفایل کاربری</string>
+    <string name="streak_days_format">%d روز</string>
+    <string name="default_streak">۱۲ روز</string>
+    <string name="default_gems">۴۸۰</string>
+
+    <!-- Root / Auth / Intro -->
+    <string name="intro_title">راهنما و معرفی</string>
+    <string name="auth_title">احراز هویت و ورود</string>
+
+    <!-- Languages -->
     <string name="language_label">زبان برنامه</string>
     <string name="lang_fa">فارسی</string>
     <string name="lang_en">English</string>
+
+    <!-- Common Buttons & Actions -->
     <string name="welcome_title">به لرنیان خوش آمدید</string>
     <string name="welcome_subtitle">یادگیری هوشمند و تعاملی زبان‌های خارجی</string>
     <string name="btn_next">بعدی</string>
