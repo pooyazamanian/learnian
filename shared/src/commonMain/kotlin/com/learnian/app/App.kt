@@ -35,11 +35,10 @@ fun App() {
     KoinContext {
         val themeViewModel: AppThemeViewModel = koinViewModel()
         val userSettings by themeViewModel.userSettings.collectAsState()
+        val rootNavController = rememberNavController<AppRoute>(AppRoute.Splash)
+        val currentRoute = rootNavController.currentRoute
 
         AppPlatformTheme(userSettings = userSettings) {
-            val rootNavController = rememberNavController<AppRoute>(AppRoute.Splash)
-            val currentRoute = rootNavController.currentRoute
-
             AnimatedNavHost(
                 currentRoute = currentRoute,
                 transitionSpec = appRouteTransitionSpec,

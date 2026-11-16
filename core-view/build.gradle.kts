@@ -53,6 +53,12 @@ kotlin {
             implementation(libs.koinCompose)
             implementation(libs.koinComposeViewModel)
         }
+
+        val iosMain by creating {
+            dependsOn(commonMain.get())
+        }
+        val iosArm64Main by getting { dependsOn(iosMain) }
+        val iosSimulatorArm64Main by getting { dependsOn(iosMain) }
     }
 }
 

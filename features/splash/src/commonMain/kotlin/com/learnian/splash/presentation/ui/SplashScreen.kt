@@ -51,6 +51,10 @@ fun SplashScreen(
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
+        if (uiState.isCompleted) {
+            onSplashFinished?.invoke()
+            return@LaunchedEffect
+        }
         viewModel.effect.collect { effect ->
             when (effect) {
                 is SplashEffect.NavigateToNext -> {

@@ -100,6 +100,8 @@ fun AppPlatformTheme(
     },
     content: @Composable () -> Unit,
 ) {
+    PlatformLocaleEffect(userSettings.language)
+
     val customTheme = remember(userSettings.customThemeId) {
         CustomThemeRegistry.get(userSettings.customThemeId)
     }
