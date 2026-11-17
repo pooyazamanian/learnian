@@ -71,8 +71,8 @@ fun ProfileQuickActionsCard(
                 title = stringResource(Res.string.profile_cloud_sync_title),
                 status = stringResource(Res.string.profile_cloud_sync_status),
                 iconResource = Res.drawable.ic_cloud_sync,
-                iconTint = if (ClayTheme.isDark) Color(0xFFA78BFA) else Color(0xFF7C3AED),
-                badgeBackground = if (ClayTheme.isDark) Color(0xFF2E264E) else Color(0xFFEDE9FE),
+                iconTint = ClayTheme.colors.primary,
+                badgeBackground = ClayTheme.colors.primaryContainer,
                 onClick = onCloudSyncClick,
             )
 
@@ -87,8 +87,8 @@ fun ProfileQuickActionsCard(
                 title = stringResource(Res.string.profile_support_title),
                 status = null,
                 iconResource = Res.drawable.ic_headset_support,
-                iconTint = if (ClayTheme.isDark) Color(0xFF34D399) else Color(0xFF006B5C),
-                badgeBackground = if (ClayTheme.isDark) Color(0xFF064E3B) else Color(0xFFD1FAE5),
+                iconTint = ClayTheme.colors.secondary,
+                badgeBackground = ClayTheme.colors.secondaryContainer,
                 onClick = onSupportClick,
             )
 
@@ -103,8 +103,8 @@ fun ProfileQuickActionsCard(
                 title = stringResource(Res.string.profile_check_update_title),
                 status = stringResource(Res.string.profile_check_update_status),
                 iconResource = Res.drawable.ic_update_check,
-                iconTint = if (ClayTheme.isDark) Color(0xFFFBBF24) else Color(0xFFD97706),
-                badgeBackground = if (ClayTheme.isDark) Color(0xFF382B15) else Color(0xFFFEF3C7),
+                iconTint = ClayTheme.colors.tertiary,
+                badgeBackground = ClayTheme.colors.tertiaryContainer,
                 onClick = onCheckUpdateClick,
             )
         }

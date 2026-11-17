@@ -22,13 +22,17 @@ class SettingsViewModel(
     private fun observeSettings() {
         userSettingsRepository.userSettingsFlow
             .onEach { settings ->
-                updateState { copy(userSettings = settings, isLoading = false) }
+                updateState { copy(data = settings, cachedData = settings, isLoading = false, isRefreshing = false) }
             }
             .launchIn(viewModelScope)
     }
 
     override fun onIntent(intent: SettingsIntent) {
         when (intent) {
+            is SettingsIntent.Refresh -> {
+                // Settings are reactive from DataStore
+                updateState { copy(isRefreshing = false) }
+            }
             is SettingsIntent.SetThemeMode -> {
                 launchWithHandler {
                     userSettingsRepository.setThemeMode(intent.themeMode)

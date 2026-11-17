@@ -5,9 +5,14 @@ import androidx.compose.ui.unit.dp
 
 object Spacing {
     val None: Dp = 0.dp
+    val Tiny: Dp = 2.dp
     val ExtraSmall: Dp = 4.dp
+    val Compact: Dp = 6.dp
     val Small: Dp = 8.dp
+    val Standard: Dp = 10.dp
+    val Comfortable: Dp = 12.dp
     val Medium: Dp = 16.dp
+    val Section: Dp = 20.dp
     val Large: Dp = 24.dp
     val ExtraLarge: Dp = 32.dp
     val Huge: Dp = 48.dp
@@ -17,8 +22,12 @@ object AppPaddings {
     val ScreenHorizontal: Dp = 16.dp
     val ScreenVertical: Dp = 16.dp
     val CardPadding: Dp = 16.dp
+    val CardPaddingComfortable: Dp = 18.dp
+    val CardPaddingCompact: Dp = 10.dp
     val ItemPadding: Dp = 12.dp
     val TopBarPadding: Dp = 16.dp
+    val BadgePaddingVertical: Dp = 6.dp
+    val BadgePaddingHorizontal: Dp = 10.dp
 }
 
 /**

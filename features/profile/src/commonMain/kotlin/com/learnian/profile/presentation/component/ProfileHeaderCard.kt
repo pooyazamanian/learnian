@@ -74,14 +74,14 @@ fun ProfileHeaderCard(
     val progress = (currentXp.toFloat() / maxXp.toFloat()).coerceIn(0f, 1f)
 
     // Mint palette for Pro membership
-    val proBg = if (ClayTheme.isDark) Color(0xFF0F3830) else Color(0xFFE8F7F2)
-    val proBorder = if (ClayTheme.isDark) Color(0xFF1B6354) else Color(0xFFA5EAD5)
-    val proText = if (ClayTheme.isDark) Color(0xFF4EE3BF) else Color(0xFF006B5C)
+    val proBg = ClayTheme.colors.secondaryContainer
+    val proBorder = ClayTheme.colors.secondary.copy(alpha = 0.3f)
+    val proText = ClayTheme.colors.secondary
 
     // Lavender palette for Vocab badge
-    val vocabBg = if (ClayTheme.isDark) Color(0xFF272147) else Color(0xFFF1EEFC)
-    val vocabBorder = if (ClayTheme.isDark) Color(0xFF42377A) else Color(0xFFD6CEF8)
-    val vocabText = if (ClayTheme.isDark) Color(0xFFA594F9) else Color(0xFF5949C0)
+    val vocabBg = ClayTheme.colors.primaryContainer
+    val vocabBorder = ClayTheme.colors.primary.copy(alpha = 0.3f)
+    val vocabText = ClayTheme.colors.primary
 
     ClayCard(
         modifier = modifier.fillMaxWidth(),
@@ -158,7 +158,7 @@ fun ProfileHeaderCard(
                     backgroundColor = proBg,
                     borderColor = proBorder,
                     borderWidth = 1.dp,
-                    shadowColor = if (ClayTheme.isDark) Color(0x66000000) else Color(0x3500A86B),
+                    shadowColor = ClayTheme.colors.shadowOuter,
                     textStyle = AppTypography.bodyMedium.copy(
                         fontWeight = FontWeight.ExtraBold,
                         fontSize = 14.sp,
@@ -184,7 +184,7 @@ fun ProfileHeaderCard(
                 backgroundColor = vocabBg,
                 borderColor = vocabBorder,
                 borderWidth = 1.dp,
-                shadowColor = if (ClayTheme.isDark) Color(0x66000000) else Color(0x385949C0),
+                shadowColor = ClayTheme.colors.shadowOuter,
                 textStyle = AppTypography.bodyMedium.copy(
                     fontWeight = FontWeight.ExtraBold,
                     fontSize = 14.sp,

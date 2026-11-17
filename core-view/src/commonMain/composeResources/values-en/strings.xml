@@ -105,4 +105,24 @@
     <string name="btn_register">Sign Up</string>
     <string name="phone_input_title">Enter Mobile Number</string>
     <string name="otp_title">Verification Code</string>
+
+    <!-- Home Dashboard & Cards -->
+    <string name="home_greeting_format">Hello %1$s! 👋</string>
+    <string name="home_user_level_default">Level B1 • Intermediate</string>
+    <string name="home_streak_continuous">Continuous Streak</string>
+    <string name="home_owl_title">Learnyan Wise Owl</string>
+    <string name="home_owl_speech_format">Today you have %1$s golden words near forgetting! It only takes %2$s to consolidate them</string>
+    <string name="home_owl_retention_label">Memory retention rate:</string>
+    <string name="home_owl_retention_percent">94%</string>
+    <string name="home_stat_review_today">Today's Review</string>
+    <string name="home_stat_review_unit">words in queue</string>
+    <string name="home_stat_new_words">New Words</string>
+    <string name="home_stat_new_words_unit">ready to learn</string>
+    <string name="home_stat_daily_goal">Daily Goal</string>
+    <string name="home_stat_daily_goal_progress_format">%1$s of %2$s words</string>
+    <string name="home_fsrs_tag">FSRS v5 Smart Spaced Repetition</string>
+    <string name="home_fsrs_title">Rapid Daily Vocabulary Review</string>
+    <string name="home_fsrs_desc">Recall words right before memory decay using dynamic stability coefficient</string>
+    <string name="home_fsrs_btn_action">Start Smart FSRS Review</string>
+    <string name="home_fsrs_time_estimate">%1$s min</string>
 </resources>

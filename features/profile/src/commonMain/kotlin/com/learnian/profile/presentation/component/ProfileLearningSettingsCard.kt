@@ -302,7 +302,7 @@ fun ProfileLearningSettingsCard(
                     iconPosition = ChipIconPosition.Start,
                     style = ClayChipStyle.Resting,
                     textColor = ClayTheme.colors.primary,
-                    backgroundColor = if (ClayTheme.isDark) Color(0xFF272147) else Color(0xFFF1EEFC),
+                    backgroundColor = ClayTheme.colors.primaryContainer,
                     onClick = onDailyReminderClick,
                 )
             }

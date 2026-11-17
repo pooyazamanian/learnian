@@ -43,8 +43,8 @@ fun Modifier.clayPillRaised(
     cornerRadius: Dp = AppCorners.Pill,
     borderColor: Color? = null,
     borderWidth: Dp = 1.dp,
-    shadowColor: Color = if (ClayTheme.isDark) Color(0x66000000) else Color(0x22000000),
-    highlightColor: Color = if (ClayTheme.isDark) Color.White.copy(alpha = 0.16f) else Color.White.copy(alpha = 0.75f),
+    shadowColor: Color = ClayTheme.colors.shadowOuter,
+    highlightColor: Color = ClayTheme.colors.highlightTop,
 ): Modifier {
     val shape = RoundedCornerShape(cornerRadius)
     return this

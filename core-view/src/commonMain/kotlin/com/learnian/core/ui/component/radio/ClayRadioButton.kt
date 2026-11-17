@@ -98,8 +98,8 @@ fun ClayRadioCard(
     subtitle: String? = null,
     enabled: Boolean = true,
     selectedColor: Color = ClayTheme.colors.primary,
-    selectedBackground: Color = if (ClayTheme.isDark) Color(0xFF262044) else Color(0xFFF1EEFC),
-    unselectedBackground: Color = if (ClayTheme.isDark) Color(0xFF1E1C2B) else Color(0xFFF4F2F9),
+    selectedBackground: Color = ClayTheme.colors.primaryContainer,
+    unselectedBackground: Color = ClayTheme.colors.surfaceSunken,
 ) {
     val borderColor = if (selected) selectedColor.copy(alpha = 0.5f) else Color.Transparent
     val titleColor = if (selected) selectedColor else ClayTheme.colors.textPrimary
@@ -114,7 +114,7 @@ fun ClayRadioCard(
                         cornerRadius = AppCorners.Large,
                         borderColor = borderColor,
                         borderWidth = 1.2.dp,
-                        shadowColor = if (ClayTheme.isDark) Color(0x66000000) else selectedColor.copy(alpha = 0.22f),
+                        shadowColor = ClayTheme.colors.shadowOuter,
                     )
                 } else {
                     Modifier.clayRestingFloat(

@@ -11,12 +11,18 @@ class HomeRepositoryImpl : HomeRepository {
 
     override suspend fun getHomeDashboard(): HomeDashboard {
         val dto = HomeDashboardDto(
-            userName = "پویا",
-            streakDays = 7,
-            dueReviewsCount = 24,
+            userName = "شایان",
+            streakDays = 12,
+            dueReviewsCount = 18,
             xpPoints = 740,
             currentLevel = 29,
-            targetLevelXp = 1000
+            targetLevelXp = 1000,
+            userLevel = "سطح B1 • Intermediate",
+            newWordsCount = 10,
+            dailyGoalCompleted = 13,
+            dailyGoalTarget = 20,
+            retentionRate = 94,
+            estimatedReviewMinutes = 7,
         )
         return dto.toDomain()
     }

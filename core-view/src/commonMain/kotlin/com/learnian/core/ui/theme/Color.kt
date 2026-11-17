@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 // Claymorphism Primary Palette (Light Clay Spec)
 val ClayPrimaryLavender = Color(0xFF5949C0)
 val ClaySecondaryMint = Color(0xFF006B5C)
-val ClayTertiaryAmber = Color(0xFFF3BE67)
+val ClayTertiaryAmber = Color(0xFFC05621)
 val ClayErrorPeach = Color(0xFFBA1A1A)
 
 // Dark Clay Spec
@@ -25,12 +25,12 @@ val ClayLightSunken = Color(0xFFEDE9F5)
 // Standard Android Material 3 Color Definitions mapped to Clay
 val md_theme_light_primary = ClayPrimaryLavender
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
-val md_theme_light_primaryContainer = Color(0xFFE5E0FF)
-val md_theme_light_onPrimaryContainer = Color(0xFF190065)
+val md_theme_light_primaryContainer = Color(0xFFE8E2F8)
+val md_theme_light_onPrimaryContainer = Color(0xFF4C3AA3)
 val md_theme_light_secondary = ClaySecondaryMint
 val md_theme_light_onSecondary = Color(0xFFFFFFFF)
 val md_theme_light_tertiary = ClayTertiaryAmber
-val md_theme_light_onTertiary = Color(0xFF1F1000)
+val md_theme_light_onTertiary = Color(0xFFFFFFFF)
 val md_theme_light_error = ClayErrorPeach
 val md_theme_light_onError = Color(0xFFFFFFFF)
 val md_theme_light_background = ClayLightBackground
@@ -40,8 +40,8 @@ val md_theme_light_onSurface = Color(0xFF1C1A29)
 
 val md_theme_dark_primary = ClayDarkVibrantNeon
 val md_theme_dark_onPrimary = Color(0xFFFFFFFF)
-val md_theme_dark_primaryContainer = Color(0xFF4130A6)
-val md_theme_dark_onPrimaryContainer = Color(0xFFE5E0FF)
+val md_theme_dark_primaryContainer = Color(0xFF272147)
+val md_theme_dark_onPrimaryContainer = Color(0xFFA594F9)
 val md_theme_dark_secondary = ClayDarkSecondaryMint
 val md_theme_dark_onSecondary = Color(0xFFFFFFFF)
 val md_theme_dark_tertiary = Color(0xFFFFD166)
@@ -57,9 +57,21 @@ val md_theme_dark_onSurface = Color(0xFFFFFFFF)
 @Immutable
 data class ClayColors(
     val primary: Color,
+    val onPrimary: Color = Color.White,
+    val primaryContainer: Color,
+    val onPrimaryContainer: Color,
     val secondary: Color,
+    val onSecondary: Color = Color.White,
+    val secondaryContainer: Color,
+    val onSecondaryContainer: Color,
     val tertiary: Color,
+    val onTertiary: Color = Color.White,
+    val tertiaryContainer: Color,
+    val onTertiaryContainer: Color,
     val error: Color,
+    val onError: Color = Color.White,
+    val errorContainer: Color,
+    val onErrorContainer: Color,
     val background: Color,
     val surface: Color,
     val surfaceSunken: Color,
@@ -73,9 +85,21 @@ data class ClayColors(
 
 val LightClayColors = ClayColors(
     primary = ClayPrimaryLavender,
+    onPrimary = Color.White,
+    primaryContainer = Color(0xFFE8E2F8),
+    onPrimaryContainer = Color(0xFF4C3AA3),
     secondary = ClaySecondaryMint,
+    onSecondary = Color.White,
+    secondaryContainer = Color(0xFFD6F2EA),
+    onSecondaryContainer = Color(0xFF006B5C),
     tertiary = ClayTertiaryAmber,
+    onTertiary = Color.White,
+    tertiaryContainer = Color(0xFFFDE4C3),
+    onTertiaryContainer = Color(0xFFC05621),
     error = ClayErrorPeach,
+    onError = Color.White,
+    errorContainer = Color(0xFFFFECEC),
+    onErrorContainer = Color(0xFFBA1A1A),
     background = ClayLightBackground,
     surface = ClayLightContainer,
     surfaceSunken = ClayLightSunken,
@@ -89,9 +113,21 @@ val LightClayColors = ClayColors(
 
 val DarkClayColors = ClayColors(
     primary = ClayDarkVibrantNeon,
+    onPrimary = Color.White,
+    primaryContainer = Color(0xFF272147),
+    onPrimaryContainer = Color(0xFFA594F9),
     secondary = ClayDarkSecondaryMint,
+    onSecondary = Color.White,
+    secondaryContainer = Color(0xFF0F3830),
+    onSecondaryContainer = Color(0xFF4EE3BF),
     tertiary = Color(0xFFFFD166),
+    onTertiary = Color(0xFF3E2800),
+    tertiaryContainer = Color(0xFF382B15),
+    onTertiaryContainer = Color(0xFFFFD166),
     error = Color(0xFFFF5252),
+    onError = Color.White,
+    errorContainer = Color(0xFF381A22),
+    onErrorContainer = Color(0xFFF87171),
     background = ClayDarkSurface,
     surface = ClayDarkContainer,
     surfaceSunken = ClayDarkDeepTrench,

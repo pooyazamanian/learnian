@@ -105,4 +105,24 @@
     <string name="btn_register">ثبت‌نام</string>
     <string name="phone_input_title">ورود شماره موبایل</string>
     <string name="otp_title">کد تایید</string>
+
+    <!-- Home Dashboard & Cards -->
+    <string name="home_greeting_format">سلام %1$s! 👋</string>
+    <string name="home_user_level_default">سطح B1 • Intermediate</string>
+    <string name="home_streak_continuous">استریک پیوسته</string>
+    <string name="home_owl_title">جغد دانا لرنیان</string>
+    <string name="home_owl_speech_format">امروز %1$s لغت طلایی در آستانه فراموشی داری! فقط %2$s زمان می‌بره تا تثبیت بشن</string>
+    <string name="home_owl_retention_label">نرخ ماندگاری در حافظه:</string>
+    <string name="home_owl_retention_percent">۹۴٪</string>
+    <string name="home_stat_review_today">مرور امروز</string>
+    <string name="home_stat_review_unit">لغت در نوبت</string>
+    <string name="home_stat_new_words">واژه جدید</string>
+    <string name="home_stat_new_words_unit">آماده یادگیری</string>
+    <string name="home_stat_daily_goal">هدف روزانه</string>
+    <string name="home_stat_daily_goal_progress_format">%1$s از %2$s لغت</string>
+    <string name="home_fsrs_tag">الگوریتم تکرار هوشمند FSRS v5</string>
+    <string name="home_fsrs_title">مرور موشک‌وار واژگان روزانه</string>
+    <string name="home_fsrs_desc">یادآوری کلمات درست قبل از لحظه فراموشی مغز با ضریب پایداری پویا</string>
+    <string name="home_fsrs_btn_action">شروع مرور هوشمند FSRS</string>
+    <string name="home_fsrs_time_estimate">%1$s دقیقه</string>
 </resources>

@@ -23,6 +23,7 @@ fun ClayCard(
     backgroundColor: Color = ClayTheme.colors.surface,
     cornerRadius: Dp = AppCorners.XL,
     padding: Dp = Spacing.Medium,
+    shadowColor: Color = ClayTheme.colors.shadowOuter,
     onClick: (() -> Unit)? = null,
     content: @Composable BoxScope.() -> Unit
 ) {
@@ -34,7 +35,8 @@ fun ClayCard(
             )
             .clayRestingFloat(
                 backgroundColor = backgroundColor,
-                cornerRadius = cornerRadius
+                cornerRadius = cornerRadius,
+                shadowColor = shadowColor
             )
             .padding(padding),
         content = content

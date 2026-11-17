@@ -7,9 +7,9 @@ import com.learnian.home.presentation.mvi.HomeIntent
 import com.learnian.home.presentation.mvi.HomeState
 
 class HomeViewModel(
-    private val getHomeDashboardUseCase: GetHomeDashboardUseCase
+    private val getHomeDashboardUseCase: GetHomeDashboardUseCase,
 ) : BaseViewModel<HomeState, HomeIntent, HomeEffect>(
-    initialState = HomeState()
+    initialState = HomeState(),
 ) {
 
     init {
@@ -18,28 +18,59 @@ class HomeViewModel(
 
     override fun onIntent(intent: HomeIntent) {
         when (intent) {
-            HomeIntent.LoadDashboard, HomeIntent.Refresh -> loadDashboardData()
+            HomeIntent.LoadDashboard -> loadDashboardData(isRefresh = false)
+            HomeIntent.Refresh -> loadDashboardData(isRefresh = true)
             HomeIntent.StartReview -> {
                 sendEffect(HomeEffect.NavigateToReview)
             }
         }
     }
 
-    private fun loadDashboardData() {
-        updateState { copy(isLoading = true, errorMessage = null) }
+    private fun loadDashboardData(isRefresh: Boolean = false) {
+        val current = currentState
+        val existingData = current.safeData ?: current.cachedData
+
+        updateState {
+            copy(
+                isLoading = !isRefresh,
+                isRefreshing = isRefresh,
+                errorMessage = null,
+                cachedData = existingData, // Preserve cache during reload!
+            )
+        }
+
         launchWithHandler(
             onError = { throwable ->
-                updateState { copy(isLoading = false, errorMessage = throwable.message) }
+                updateState {
+                    copy(
+                        isLoading = false,
+                        isRefreshing = false,
+                        errorMessage = throwable.message ?: "خطا در دریافت اطلاعات",
+                    )
+                }
                 sendEffect(HomeEffect.ShowMessage(throwable.message ?: "خطا در دریافت اطلاعات"))
             }
         ) {
             val result = getHomeDashboardUseCase()
             val dashboard = result.getOrNull()
-            updateState {
-                copy(
-                    isLoading = false,
-                    dashboard = dashboard
-                )
+            if (dashboard != null) {
+                updateState {
+                    copy(
+                        isLoading = false,
+                        isRefreshing = false,
+                        data = dashboard,
+                        cachedData = dashboard,
+                        errorMessage = null,
+                    )
+                }
+            } else {
+                updateState {
+                    copy(
+                        isLoading = false,
+                        isRefreshing = false,
+                        errorMessage = "داده‌ای یافت نشد",
+                    )
+                }
             }
         }
     }

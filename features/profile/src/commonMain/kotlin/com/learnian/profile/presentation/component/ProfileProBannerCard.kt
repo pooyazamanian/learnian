@@ -45,7 +45,7 @@ fun ProfileProBannerCard(
     modifier: Modifier = Modifier,
     onUpgradeClick: () -> Unit = {},
 ) {
-    val cardBackground = if (ClayTheme.isDark) Color(0xFF272144) else Color(0xFFF3EFFF)
+    val cardBackground = ClayTheme.colors.primaryContainer
 
     ClayCard(
         modifier = modifier.fillMaxWidth(),

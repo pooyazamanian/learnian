@@ -47,9 +47,9 @@ fun ProfileFooterSection(
 ) {
     val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
 
-    val buttonBgColor = if (ClayTheme.isDark) Color(0xFF381A22) else Color(0xFFFFECEC)
-    val buttonContentColor = if (ClayTheme.isDark) Color(0xFFF87171) else Color(0xFFBA1A1A)
-    val buttonShadowColor = if (ClayTheme.isDark) Color(0x66000000) else Color(0x22BA1A1A)
+    val buttonBgColor = ClayTheme.colors.errorContainer
+    val buttonContentColor = ClayTheme.colors.onErrorContainer
+    val buttonShadowColor = ClayTheme.colors.shadowOuter
 
     val localizedVersion = if (isRtl) formatDigits(appVersionInfo.versionName) else appVersionInfo.versionName
     val localizedBuild = if (isRtl) formatDigits(appVersionInfo.versionCode.toString()) else appVersionInfo.versionCode.toString()

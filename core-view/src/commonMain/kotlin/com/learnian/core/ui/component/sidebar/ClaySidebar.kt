@@ -167,7 +167,7 @@ fun ColumnScope.ClaySidebarItem(
                     Modifier.clayActionRaised(
                         backgroundColor = ClayTheme.colors.primary,
                         cornerRadius = AppCorners.Large,
-                        shadowColor = if (ClayTheme.isDark) Color(0x66000000) else ClayTheme.colors.primary.copy(alpha = 0.35f),
+                        shadowColor = ClayTheme.colors.shadowOuter,
                     )
                 } else {
                     Modifier

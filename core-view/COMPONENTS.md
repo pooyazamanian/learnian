@@ -115,12 +115,22 @@
 ### ۱۴. نوار ناوبری ستونی تبلت و دسکتاپ (`com.learnian.core.ui.component.navrail`)
 - **کلاس‌ها**: `ClayNavRail`, `ClayNavRailItem`
 - **توضیحات**: داک ستونی عمودی خمیری شناور برای تبلت‌ها، حالت افقی گوشی (Landscape)، تاشوها و دسکتاپ. دارای چیدمان خودکار در سمت راست در زبان‌های RTL (فارسی) و سمت چپ در زبان‌های LTR (انگلیسی)، پشتیبانی از هدر لوگو، اسکرول ایمن در ارتفاع‌های کم، و آیتم‌های ۳بعدی خمیری با انیمیشن فنری.
-- **مستندات اختصاصی**: [`component/navrail/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/sidebar/README.md)
+- **مستندات اختصاصی**: [`component/navrail/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/navrail/README.md)
 
 ### ۱۵. سایدبار ناوبری داشبورد تبلت و دسکتاپ (`com.learnian.core.ui.component.sidebar`)
 - **کلاس‌ها**: `ClaySidebar`, `ClaySidebarItem`
 - **توضیحات**: پنل سایدبار تخت و یکدست (Flat Dashboard Drawer) متصل به لبه صفحه (سمت راست در فارسی / RTL و سمت چپ در انگلیسی / LTR) برای تبلت‌ها، حالت افقی گوشی‌ها و دسکتاپ به سبک داشبوردهای مدرن. شامل خط جداکننده ستونی ظریف، آیتم‌های عریض تعاملی افقی (آیکون + عنوان کنار هم) با پیل برجسته سه‌بعدی بنفش هنگام انتخاب، انیمیشن لمسی، و بخش هدر و فوتر اختصاصی.
 - **مستندات اختصاصی**: [`component/sidebar/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/sidebar/README.md)
+
+### ۱۶. کارت‌های آماری و متریک خمیری (`com.learnian.core.ui.component.stats`)
+- **کلاس‌ها**: `ClayStatCard`, `ClayStatsRow`, `ClayStatCardVariant`
+- **توضیحات**: کارت‌های متریک و آماری خمیری سه‌بعدی و ماژولار مناسب برای صفحه اصلی، صفحه مرور، جزئیات دسته‌ها و جعبه لایتنر. پشتیبانی از سه تم رنگی اصلی (بنفش، نعنایی و کهربایی)، آیکون اختصاصی در هدر، مقادیر عددی بزرگ برجسته، زیرعنوان واحد، بج درصدی انتها، و مینی نوار پیشرفت خمیری گود رفته (`ClayProgressBar`).
+- **مستندات اختصاصی**: [`component/stats/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/stats/README.md)
+
+### ۱۷. بنر و کارت قهرمان مرور هوشمند FSRS (`com.learnian.core.ui.component.review`)
+- **کلاس**: `ClayReviewBannerCard`
+- **توضیحات**: کارت بنر تعاملی خمیری ۳بعدی جهت شروع مرورهای مبتنی بر الگوریتم‌های تکرار فاصله‌دار (FSRS v5). دارای بج تگ وضعیت در بالا، عنوان و متن توضیحی انگیزشی، تصویر سه‌بعدی زاویه‌دار دفترچه در حاشیه، و دکمه اکشن بزرگ خمیری ۳بعدی شامل نشان زمان تخمینی، متن شروع و آیکون موشک.
+- **مستندات اختصاصی**: [`component/review/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/review/README.md)
 
 ---
 
@@ -175,3 +185,54 @@ fun SampleScreen() {
     }
 }
 ```
+
+---
+
+## 18. ClayToast & BaseScreen (مدیریت امن داده و تست پیام‌های ۳بعدی)
+
+### ClayToast (توست ۳بعدی متحرک)
+سیستم پیام شناور کلیمورفیک با ۴ نوع پیام (`Success`, `Error`, `Warning`, `Info`) و افکت ورود/خروج فنری (`spring`):
+
+```kotlin
+val toastHostState = rememberClayToastHostState()
+
+// درون Coroutine / LaunchedEffect:
+toastHostState.showSuccess("تنظیمات با موفقیت ذخیره شد!")
+toastHostState.showError("خطا در برقراری ارتباط")
+toastHostState.showWarning("هشدار اتصال اینترنت")
+toastHostState.showInfo("نسخه جدید در دسترس است")
+
+// دسترسی سراسری از طریق LocalClayToastHost:
+val toastHost = LocalClayToastHost.current
+```
+
+### BaseScreen & LoadableUiState (حفظ کش و عدم پرش صفحه)
+کلاس پایه صفحات با مدیریت وضعیت MVI بدون پاک شدن داده‌های قبلی در زمان رفرش یا خطای شبکه:
+
+```kotlin
+data class MyState(
+    override val isLoading: Boolean = false,
+    override val data: MyData? = null,
+    override val cachedData: MyData? = null,
+    override val errorMessage: String? = null,
+    override val supportsCache: Boolean = true,
+    override val isRefreshing: Boolean = false,
+) : LoadableUiState<MyData>
+
+@Composable
+fun MyScreen(viewModel: MyViewModel = koinViewModel()) {
+    val state by viewModel.uiState.collectAsState()
+    val toastHost = rememberClayToastHostState()
+
+    BaseScreen(
+        state = state,
+        isRefreshing = state.isRefreshing,
+        toastHostState = toastHost,
+        onRefresh = { viewModel.dispatch(MyIntent.Refresh) },
+        onRetry = { viewModel.dispatch(MyIntent.Retry) }
+    ) { data ->
+        // رندر صفحه با امنیت کامل و حفظ کش در زمان رفرش
+    }
+}
+```
+

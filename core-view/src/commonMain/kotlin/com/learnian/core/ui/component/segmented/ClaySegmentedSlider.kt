@@ -105,7 +105,7 @@ fun <T> ClaySegmentedSlider(
                 .clayActionRaised(
                     backgroundColor = thumbColor,
                     cornerRadius = cornerRadius - 2.dp,
-                    shadowColor = if (ClayTheme.isDark) Color(0x66000000) else thumbColor.copy(alpha = 0.35f),
+                    shadowColor = ClayTheme.colors.shadowOuter,
                 ),
         )
 

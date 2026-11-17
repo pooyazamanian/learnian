@@ -138,11 +138,6 @@ fun ClayStatusChip(
                 .padding(contentPadding)
         }
         ClayChipStyle.Embossed -> {
-            val defaultShadow = if (ClayTheme.isDark) {
-                Color(0x66000000)
-            } else {
-                backgroundColor.copy(alpha = 0.28f)
-            }
             modifier
                 .then(
                     if (onClick != null) Modifier.clayPressable(onClick = onClick)
@@ -153,7 +148,7 @@ fun ClayStatusChip(
                     cornerRadius = cornerRadius,
                     borderColor = borderColor,
                     borderWidth = borderWidth,
-                    shadowColor = shadowColor ?: defaultShadow,
+                    shadowColor = shadowColor ?: ClayTheme.colors.shadowOuter,
                 )
                 .padding(contentPadding)
         }
