@@ -1,10 +1,16 @@
-# Learnian Claymorphism Design System & Component Library
-
 > [!IMPORTANT]
-> **قانون اصلی طراحی UI در پروژه:**
-> تمام صفحات پروژه (Screens) بر اساس سیستم **Claymorphism** پیاده‌سازی می‌شوند.
-> **هرگز المان‌های پایه (Button, Text Field, Card, Progress Bar, TopBar, BottomBar) را از نو طراحی نکنید.**
-> قبل از پیاده‌سازی هر صفحه جدید، حتماً این سند و پوشه مربوط به هر Component در `com.learnian.core.ui.component` را بررسی کنید و از المان‌های موجود استفاده کنید.
+> **قوانین اصلی معماری و طراحی UI در پروژه:**
+> ۱. تمام صفحات پروژه بر اساس سیستم **Claymorphism** پیاده‌سازی می‌شوند.
+> ۲. **قانون ساخت کامپوننت‌های تعمیم‌یافته (General-Purpose) در `core-view` و پرهیز از رپرهای یکبار مصرف (No Disposable Wrappers)**:
+>    - کامپوننت‌های پایه در `:core-view` (مانند `ClayTextField`, `ClayButton`, `ClayOtpInputField`) باید بسیار منعطف، پارامتریک و اسلات‌محور باشند (`leadingContent: (@Composable () -> Unit)?`, `trailingContent: (@Composable () -> Unit)?`, واریانت‌های رنگی و...).
+>    - در صفحات فیچرها باید مستقیماً از همین کامپوننت‌های پایه استفاده و پارامترهای آن‌ها پیکربندی شود.
+>    - **قانون طلایی**: ساخت کامپوننت‌های اختصاصی و رپرهای تک‌منظوره برای یک صفحه خاص (مانند `ClayPhoneTextField` یا `AuthGoogleSsoButton`) ممنوع است! هدف این است که `core-view` منبع واحد حقیقت (Single Source of Truth) باشد تا هر تغییری در ظاهر یا رفتار پایه، در کل اپلیکیشن خودکار و یکپارچه اعمال شود.
+> ۳. **قانون جهت چپ‌به‌راست (Strict LTR) برای فیلدهای OTP و کدهای عددی**:
+>    - در فیلدهای ورود کد تایید (OTP) یا کدهای عددی، جهت پر شدن خانه‌ها و ناوبری در تمام زبان‌ها (حتی در زبان‌های راست‌به‌چپ مثل فارسی و عربی) باید حتماً و الزاماً از چپ به راست (LTR) باشد.
+> ۴. **قانون جامع چندزبانه و عدم هاردکد کردن رشته‌ها (Zero Hardcoded Strings & UiText)**:
+>    - هیچ رشته متنی یا پیام خطایی نباید به صورت هاردکد در Composableها یا ViewModelها باشد.
+>    - خطاهای اعتبارسنجی کلاینت (مانند طول نامعتبر شماره تلفن، پیش‌شماره نامعتبر ۰۹، فیلد الزامی) باید در لایه UseCase تولید و با ساختار `UiText.Resource(Res.string.*)` به لایه‌های بالاتر منتقل شوند تا با تغییر زبان سیستم، خطاها فوراً و به‌صورت داینامیک ترجمه شوند.
+> ۵. **پرهیز از دستکاری Insets در `App.kt`**: هرگز مودیفایرهای تنظیم‌شده برای Insets، StatusBar، NavigationBar و IME در `Scaffold` فایل `App.kt` را دستکاری یا ریورت نکنید.
 
 ---
 
@@ -45,15 +51,21 @@
 ## 🧱 ۳. کاتالوگ المان‌ها (Component Catalog)
 
 ### ۱. دکمه‌ها (`com.learnian.core.ui.component.button`)
-- **کلاس‌ها**: `ClayButton`, `ClayIconButton`
-- **توضیحات**: پیاده‌سازی حالت `Surface 2 • Action Raised`. دارای انیمیشن فشردن لمسی (`scale = 0.96f`).
-- **تغییرات**: `Primary`, `Secondary`, `Tertiary`, `Error`.
+- **کلاس‌ها**: `ClayButton`, `ClayIconButton`, `ClayTextButton`
+- **توضیحات**: پیاده‌سازی حالت `Surface 2 • Action Raised`. دارای انیمیشن فشردن لمسی (`scale = 0.96f`)، سایه سه‌بعدی شناور، و اسلات‌های منعطف برای آیکون‌های ابتدا و انتها (`leadingIcon`, `trailingIcon`).
+- **واریانت‌ها (`ClayButtonVariant`)**:
+  - `Primary`: دکمه بنفش اصلی برند برای اکشن‌های کلیدی.
+  - `Secondary`: دکمه سبز نعنایی برای تایید و موفقیت.
+  - `Tertiary`: دکمه کهربایی برای پاداش و گیمفیکیشن.
+  - `Error`: دکمه قرمز برای عملیات خطرناک یا خروج.
+  - `Surface`: دکمه سفید/روشن خمیری با سایه ملایم و متن تیره، ایده‌آل برای ورود با گوگل (SSO)، اکشن‌های فرعی و دکمه‌های ثانویه.
 - **مستندات اختصاصی**: [`component/button/README.md`](file:///Users/pooya/StudioProjects/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/button/README.md)
 
-### ۲. ورودی‌های متنی (`com.learnian.core.ui.component.textfield`)
-- **کلاس**: `ClayTextField`
-- **توضیحات**: پیاده‌سازی حالت `Surface 0 • Inset Grooved` (شیار گود فرورفته Deep Inset Trench). پشتیبانی از آیکون‌های ابتدا/انتها، لیبل و پیام خطا.
-- **مستندات اختصاصی**: [`component/textfield/README.md`](file:///Users/pooya/StudioProjects/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/textfield/README.md)
+### ۲. ورودی‌های متنی و شیارها (`com.learnian.core.ui.component.textfield`)
+- **کلاس‌ها**:
+  - `ClayTextField`: ورودی استاندارد شیاردار فرورفته (`Surface 0 • Inset Grooved`) و کاملاً تعمیم‌یافته (General-Purpose). دارای اسلات‌های باز `leadingContent: (@Composable () -> Unit)?` و `trailingContent: (@Composable () -> Unit)?` جهت افزودن بج‌های سفارشی (مانند پرچم و کد کشور `+98 🇮🇷`) یا آیکون‌ها بدون نیاز به ساخت کامپوننت‌های رپر جدید. پشتیبانی کامل از `textStyle`, `placeholderStyle`, پیام‌های خطای داینامیک و اکشن‌های کیبورد.
+  - `ClayOtpInputField`: کامپوننت جنرال ورود کد تایید (OTP) فرورفته ۳بعدی ۵ رقمی (طول قابل پیکربندی) با کادر فعال رنگی هنگام فوکوس، انیمیشن فرورفتگی، چیدمان و پر شدن **الزاماً چپ به راست (Strict LTR)** در تمام زبان‌ها و فراخوانی خودکار رویداد `onComplete`.
+- **مستندات اختصاصی**: [`component/textfield/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/textfield/README.md)
 
 ### ۳. کارت‌ها (`com.learnian.core.ui.component.card`)
 - **کلاس**: `ClayCard`
@@ -235,4 +247,22 @@ fun MyScreen(viewModel: MyViewModel = koinViewModel()) {
     }
 }
 ```
+
+---
+
+## 19. Auth & Adaptive Funnel (`features:auth`)
+- **ماژول**: `:features:auth`
+- **کلاس‌های کلیدی**: [`AuthScreen`](class://com.learnian.auth.presentation.ui.AuthScreen), [`PhoneInputContent`](class://com.learnian.auth.presentation.component.PhoneInputContent), [`OtpVerificationContent`](class://com.learnian.auth.presentation.component.OtpVerificationContent), [`PasswordInputContent`](class://com.learnian.auth.presentation.component.PasswordInputContent).
+- **رفتار تطبیقی (Adaptive)**:
+  - در حالت موبایل (`< 600dp`): فرم فول‌اسکرین اسکرول‌شونده با هندلینگ کامل `statusBarsPadding`، `navigationBarsPadding` و `imePadding`.
+  - در حالت تبلت، افقی و دسکتاپ (`>= 600dp`): باکس مرکزی کلیمورفیک با عرض حداکثر `440.dp` و سایه عمیق ۳بعدی.
+- **وضعیت‌های فعال و آماده‌باش**:
+  - مرحله ۱ (فعال): ورود شماره موبایل و دکمه گوگل SSO.
+  - مرحله ۲ (فعال): فیلدهای ۵تایی ارگونومیک کد OTP با تایمر معکوس و امکان ویرایش شماره.
+  - مرحله ۳ (آماده‌باش/کامنت‌شده): رمز عبور و ایمیل.
+- **قوانین متن‌ها و بومی‌سازی (String Resources & Localization)**:
+  - هرگز هیچ متن یا پیامی به صورت هاردکد در Composableها یا ViewModels قرار نمی‌گیرد؛ تمام متن‌ها باید از طریق `stringResource(Res.string.*)` فراخوانی شوند.
+  - خطاهای تولید شده سمت کلاینت (اعتبارسنجی شماره، طول کد تایید و ...) در قالب `UiText.Resource(Res.string.*)` از لایه UseCase برگردانده شده و در UI از طریق `asString()` نمایش می‌یابند.
+
+
 

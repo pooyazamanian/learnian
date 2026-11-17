@@ -125,4 +125,35 @@
     <string name="home_fsrs_desc">یادآوری کلمات درست قبل از لحظه فراموشی مغز با ضریب پایداری پویا</string>
     <string name="home_fsrs_btn_action">شروع مرور هوشمند FSRS</string>
     <string name="home_fsrs_time_estimate">%1$s دقیقه</string>
+
+    <!-- Auth Feature Strings -->
+    <string name="auth_phone_title">ورود با شماره موبایل</string>
+    <string name="auth_phone_subtitle">کد یکبارمصرف تایید برای شما پیامک خواهد شد.</string>
+    <string name="auth_phone_label">شماره تماس شما</string>
+    <string name="auth_phone_placeholder">912 345 6789</string>
+    <string name="auth_btn_send_otp">دریافت کد تایید</string>
+    <string name="auth_btn_sending">در حال ارسال...</string>
+    <string name="auth_divider_quick_login">یا ورود سریع‌تر با</string>
+    <string name="auth_sso_google">ورود با حساب گوگل</string>
+    <string name="auth_guest_login">ورود به عنوان مهمان (آزمون تعیین سطح)</string>
+    <string name="auth_otp_title">کد تایید را وارد کنید</string>
+    <string name="auth_otp_subtitle_format">کد تایید ارسال‌شده به شماره %1$s را وارد کنید</string>
+    <string name="auth_otp_change_phone">ویرایش شماره</string>
+    <string name="auth_otp_resend_countdown">ارسال مجدد کد پس از %1$s ثانیه</string>
+    <string name="auth_otp_resend_action">ارسال مجدد کد تایید</string>
+    <string name="auth_btn_verify">تایید و ورود به لرنیان</string>
+    <string name="auth_terms_notice">با ورود یا ثبت‌نام، قوانین و شرایط استفاده و حریم خصوصی لرنیان را می‌پذیرید.</string>
+    <string name="auth_error_phone_empty">لطفاً شماره موبایل خود را وارد کنید</string>
+    <string name="auth_error_phone_invalid_prefix">شماره موبایل باید با ۰۹ شروع شود</string>
+    <string name="auth_error_phone_invalid_length">شماره موبایل باید ۱۱ رقم باشد</string>
+    <string name="auth_error_invalid_phone">شماره موبایل نامعتبر است</string>
+    <string name="auth_error_invalid_otp">کد تایید باید ۵ رقم باشد</string>
+    <string name="auth_success_welcome">به لرنیان خوش آمدید!</string>
+    <string name="auth_password_title">رمز عبور</string>
+    <string name="auth_password_subtitle">رمز عبور حساب کاربری خود را وارد کنید</string>
+    <string name="auth_email_title">ورود با ایمیل</string>
+    <string name="auth_email_placeholder">example@learnian.com</string>
+    <string name="auth_back">بازگشت</string>
+    <string name="auth_mascot_greeting_title">ورود به لرنیان</string>
+    <string name="auth_mascot_greeting_subtitle">یادگیری هوشمند زبان با لایتنر پیشرفته</string>
 </resources>

@@ -2,6 +2,7 @@ package com.learnian.core.ui.component.textfield
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,16 +17,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.learnian.core.ui.modifiers.clayInsetGrooved
 import com.learnian.core.ui.theme.AppCorners
 import com.learnian.core.ui.theme.AppTypography
 import com.learnian.core.ui.theme.ClayTheme
 
 /**
- * Claymorphism Sunken Text Input (clay-sunken / Deep Inset Trench)
- * Surface 0 Inset Grooved spec for high-legibility text input fields.
+ * Generalized Claymorphic Inset Trench Input (clay-sunken / Deep Inset Trench).
+ * Implements Surface 0 Inset Grooved spec.
+ *
+ * Supports:
+ * - Configurable label, placeholder, and validation error messages.
+ * - [leadingContent] / [leadingIcon] for start-aligned icons, country flag badges, or pills.
+ * - [trailingContent] / [trailingIcon] for end-aligned icons, clear buttons, or action toggles.
+ * - Customizable typography ([textStyle], [placeholderStyle]) and [contentPadding].
  */
 @Composable
 fun ClayTextField(
@@ -37,19 +47,27 @@ fun ClayTextField(
     errorMessage: String? = null,
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingIcon: (@Composable () -> Unit)? = null,
+    leadingContent: (@Composable () -> Unit)? = leadingIcon,
+    trailingContent: (@Composable () -> Unit)? = trailingIcon,
     singleLine: Boolean = true,
     enabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
-    cornerRadius: Dp = AppCorners.Large
+    cornerRadius: Dp = AppCorners.Large,
+    textStyle: TextStyle? = null,
+    placeholderStyle: TextStyle? = null,
+    contentPadding: PaddingValues = PaddingValues(horizontal = 14.dp, vertical = 12.dp),
 ) {
-    Column(modifier = modifier) {
+    Column(modifier = modifier.fillMaxWidth()) {
         if (!label.isNullOrEmpty()) {
             Text(
                 text = label,
-                style = AppTypography.labelMedium,
-                color = ClayTheme.colors.textSecondary,
-                modifier = Modifier.padding(bottom = 6.dp, start = 4.dp)
+                style = AppTypography.labelMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 13.sp,
+                ),
+                color = ClayTheme.colors.textPrimary,
+                modifier = Modifier.padding(bottom = 6.dp, start = 4.dp),
             )
         }
 
@@ -58,45 +76,59 @@ fun ClayTextField(
                 .fillMaxWidth()
                 .clayInsetGrooved(
                     backgroundColor = ClayTheme.colors.surfaceSunken,
-                    cornerRadius = cornerRadius
+                    cornerRadius = cornerRadius,
                 )
-                .padding(horizontal = 16.dp, vertical = 14.dp),
-            contentAlignment = Alignment.CenterStart
+                .padding(contentPadding),
+            contentAlignment = Alignment.CenterStart,
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             ) {
-                if (leadingIcon != null) {
-                    leadingIcon()
+                val activeLeading = leadingContent ?: leadingIcon
+                if (activeLeading != null) {
+                    activeLeading()
                     Spacer(modifier = Modifier.width(10.dp))
                 }
 
-                Box(modifier = Modifier.weight(1f)) {
+                Box(
+                    modifier = Modifier.weight(1f),
+                    contentAlignment = Alignment.CenterStart,
+                ) {
                     if (value.isEmpty() && placeholder.isNotEmpty()) {
+                        val effectivePlaceholderStyle = placeholderStyle ?: AppTypography.bodyLarge.copy(
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = ClayTheme.colors.textSecondary.copy(alpha = 0.45f),
+                        )
                         Text(
                             text = placeholder,
-                            style = AppTypography.bodyLarge,
-                            color = ClayTheme.colors.textSecondary.copy(alpha = 0.6f)
+                            style = effectivePlaceholderStyle,
                         )
                     }
 
+                    val effectiveTextStyle = textStyle ?: AppTypography.bodyLarge.copy(
+                        fontSize = 17.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = ClayTheme.colors.textPrimary,
+                    )
                     BasicTextField(
                         value = value,
                         onValueChange = onValueChange,
                         modifier = Modifier.fillMaxWidth(),
                         singleLine = singleLine,
                         enabled = enabled,
-                        textStyle = AppTypography.bodyLarge.copy(color = ClayTheme.colors.textPrimary),
+                        textStyle = effectiveTextStyle,
                         cursorBrush = SolidColor(ClayTheme.colors.primary),
                         keyboardOptions = keyboardOptions,
-                        keyboardActions = keyboardActions
+                        keyboardActions = keyboardActions,
                     )
                 }
 
-                if (trailingIcon != null) {
+                val activeTrailing = trailingContent ?: trailingIcon
+                if (activeTrailing != null) {
                     Spacer(modifier = Modifier.width(10.dp))
-                    trailingIcon()
+                    activeTrailing()
                 }
             }
         }
@@ -105,9 +137,11 @@ fun ClayTextField(
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = errorMessage,
-                style = AppTypography.labelMedium,
+                style = AppTypography.labelMedium.copy(
+                    fontSize = 12.sp,
+                ),
                 color = ClayTheme.colors.error,
-                modifier = Modifier.padding(start = 4.dp)
+                modifier = Modifier.padding(start = 4.dp),
             )
         }
     }

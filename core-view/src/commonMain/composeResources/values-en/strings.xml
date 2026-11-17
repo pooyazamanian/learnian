@@ -125,4 +125,35 @@
     <string name="home_fsrs_desc">Recall words right before memory decay using dynamic stability coefficient</string>
     <string name="home_fsrs_btn_action">Start Smart FSRS Review</string>
     <string name="home_fsrs_time_estimate">%1$s min</string>
+
+    <!-- Auth Feature Strings -->
+    <string name="auth_phone_title">Sign in with Mobile</string>
+    <string name="auth_phone_subtitle">A one-time verification code will be sent via SMS.</string>
+    <string name="auth_phone_label">Your Phone Number</string>
+    <string name="auth_phone_placeholder">912 345 6789</string>
+    <string name="auth_btn_send_otp">Get Verification Code</string>
+    <string name="auth_btn_sending">Sending...</string>
+    <string name="auth_divider_quick_login">Or quick sign in with</string>
+    <string name="auth_sso_google">Continue with Google</string>
+    <string name="auth_guest_login">Continue as Guest (Placement Test)</string>
+    <string name="auth_otp_title">Enter Verification Code</string>
+    <string name="auth_otp_subtitle_format">Enter the verification code sent to %1$s</string>
+    <string name="auth_otp_change_phone">Edit number</string>
+    <string name="auth_otp_resend_countdown">Resend code in %1$s s</string>
+    <string name="auth_otp_resend_action">Resend Code</string>
+    <string name="auth_btn_verify">Verify and Sign In</string>
+    <string name="auth_terms_notice">By signing in or registering, you agree to Learnian Terms of Service and Privacy Policy.</string>
+    <string name="auth_error_phone_empty">Please enter your mobile phone number</string>
+    <string name="auth_error_phone_invalid_prefix">Mobile number must start with 09</string>
+    <string name="auth_error_phone_invalid_length">Mobile number must be 11 digits</string>
+    <string name="auth_error_invalid_phone">Invalid phone number</string>
+    <string name="auth_error_invalid_otp">Verification code must be 5 digits</string>
+    <string name="auth_success_welcome">Welcome to Learnian!</string>
+    <string name="auth_password_title">Password</string>
+    <string name="auth_password_subtitle">Enter your account password</string>
+    <string name="auth_email_title">Sign in with Email</string>
+    <string name="auth_email_placeholder">example@learnian.com</string>
+    <string name="auth_back">Back</string>
+    <string name="auth_mascot_greeting_title">Sign In to Learnian</string>
+    <string name="auth_mascot_greeting_subtitle">Smart language learning with advanced Leitner</string>
 </resources>

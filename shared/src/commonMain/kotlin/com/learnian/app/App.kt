@@ -25,8 +25,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import com.learnian.app.di.initKoin
 import com.learnian.app.viewmodel.AppThemeViewModel
+import com.learnian.auth.presentation.ui.AuthScreen
 import com.learnian.core.ui.navigation.AnimatedNavHost
 import com.learnian.core.ui.navigation.AppRoute
 import com.learnian.core.ui.navigation.appRouteTransitionSpec
@@ -67,12 +69,9 @@ fun App() {
                 Scaffold(
                     modifier = Modifier
                         .background(
-                            Brush.verticalGradient(
-                                listOf(
-                                    MaterialTheme.colorScheme.primary,
-                                    MaterialTheme.colorScheme.background
-                                )
-                            )
+
+                                SolidColor(ClayTheme.colors.background)
+
                         )
                         .imePadding()
                         .fillMaxSize()
@@ -85,7 +84,11 @@ fun App() {
                         is AppRoute.Splash -> {
                             SplashScreen(
                                 onSplashFinished = {
-                                    rootNavController.replace(AppRoute.MainApp.Home)
+                                    // When backend auth is live: redirect to Auth if not logged in
+                                    // val tokenStorage: com.learnian.core.network.auth.TokenStorage = org.koin.mp.KoinPlatform.getKoin().get()
+                                    // val hasValidToken = tokenStorage.getToken() != null
+                                    // rootNavController.replace(if (hasValidToken) AppRoute.MainApp.Home else AppRoute.Auth)
+                                    rootNavController.replace(AppRoute.Auth.PhoneInput)
                                 },
                             )
                         }
@@ -104,16 +107,11 @@ fun App() {
                         }
 
                         is AppRoute.Auth -> {
-                            Box(
-                                modifier = Modifier.fillMaxSize(),
-                                contentAlignment = Alignment.Center,
-                            ) {
-                                Text(
-                                    text = stringResource(CoreRes.string.auth_title),
-                                    style = AppTypography.headlineLarge,
-                                    color = ClayTheme.colors.textPrimary,
-                                )
-                            }
+                            AuthScreen(
+                                onAuthSuccess = {
+                                    rootNavController.replace(AppRoute.MainApp.Home)
+                                },
+                            )
                         }
 
                         else -> {

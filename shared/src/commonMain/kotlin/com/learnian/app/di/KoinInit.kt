@@ -1,6 +1,7 @@
 package com.learnian.app.di
 
 import com.learnian.app.viewmodel.AppThemeViewModel
+import com.learnian.auth.di.authModule
 import com.learnian.core.database.di.coreDatabaseModule
 import com.learnian.core.datastore.di.coreDataStoreModule
 import com.learnian.core.network.di.coreNetworkModule
@@ -22,6 +23,7 @@ val appModules: List<Module> = listOf(
     coreNetworkModule,
     coreDatabaseModule,
     coreDataStoreModule,
+    authModule,
     splashModule,
     homeModule,
     profileModule,
