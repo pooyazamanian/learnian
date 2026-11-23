@@ -156,4 +156,96 @@
     <string name="auth_back">Back</string>
     <string name="auth_mascot_greeting_title">Sign In to Learnian</string>
     <string name="auth_mascot_greeting_subtitle">Smart language learning with advanced Leitner</string>
+
+    <!-- Intro Flow Strings -->
+    <string name="intro_btn_skip">Skip</string>
+    <string name="intro_btn_next">Next</string>
+    <string name="intro_btn_start">Start Learning with Learnyan</string>
+    <string name="intro_btn_already_account">Already have an account? Sign in</string>
+
+    <!-- Slide 1 -->
+    <string name="intro_slide1_tag">✨ Fresh &amp; Lasting Learning</string>
+    <string name="intro_slide1_title">A few words every day, forever</string>
+    <string name="intro_slide1_subtitle">Scientific formulation for effortless memory. FSRS brings words to mind right before they fade away.</string>
+    <string name="intro_slide1_feat1_title">Adaptive FSRS v5 Algorithm</string>
+    <string name="intro_slide1_feat1_desc">Millisecond-level personalized review intervals</string>
+    <string name="intro_slide1_feat2_title">Review at Golden Forgetting Point</string>
+    <string name="intro_slide1_feat2_desc">Eliminating 97% of redundant and wasted reviews</string>
+    <string name="intro_slide1_feat3_title">Daily Motivation &amp; Gamification</string>
+    <string name="intro_slide1_feat3_desc">Claymorphic rewards and sustainable learning streaks</string>
+
+    <!-- Slide 2 -->
+    <string name="intro_slide2_tag">🧠 Smart AI Coach</string>
+    <string name="intro_slide2_title">Long-term Memory Solidification</string>
+    <string name="intro_slide2_subtitle">A dedicated AI coach with friendly guidance and interactive simulations to engrave words in your mind.</string>
+    <string name="intro_slide2_feat1_title">Smart Roots &amp; Collocations</string>
+    <string name="intro_slide2_feat1_desc">Deep comprehension of vocabulary in real contexts</string>
+    <string name="intro_slide2_feat2_title">US &amp; UK Native Pronunciation</string>
+    <string name="intro_slide2_feat2_desc">Simultaneous listening and speaking mastery</string>
+    <string name="intro_slide2_feat3_title">Stress-Free Adaptive Quizzes</string>
+    <string name="intro_slide2_feat3_desc">Continuous progress tracking without memory anxiety</string>
+
+    <!-- Slide 3 -->
+    <string name="intro_slide3_tag">🎯 Tailored Learning Journey</string>
+    <string name="intro_slide3_title">Customized to Your Level &amp; Time</string>
+    <string name="intro_slide3_subtitle">From initial placement tests to advanced IELTS vocabulary with flexible daily goals and offline learning.</string>
+    <string name="intro_slide3_feat1_title">Placement &amp; Level Assessment</string>
+    <string name="intro_slide3_feat1_desc">Start at the ideal point without wasting time</string>
+    <string name="intro_slide3_feat2_title">Flexible 10 to 30 Words Daily</string>
+    <string name="intro_slide3_feat2_desc">Harmonized with your schedule and cognitive capacity</string>
+    <string name="intro_slide3_feat3_title">Cloud Sync &amp; Offline Access</string>
+    <string name="intro_slide3_feat3_desc">Review anytime and anywhere, even without internet</string>
+
+    <!-- Word Review & Detail Strings -->
+    <string name="review_title">Word Review</string>
+    <string name="review_level_lesson_format">Level %1$s • %2$s</string>
+    <string name="review_progress_streak">%1$s Days</string>
+    <string name="review_progress_format">Review Progress %1$s of %2$s</string>
+    <string name="review_coach_banner_text">“Let\'s tackle a high-frequency key word from exams...”</string>
+    <string name="review_pos_verb_tag">• Verb</string>
+    <string name="review_meaning_label">Persian Meaning</string>
+    <string name="review_context_sentence_label">Example Sentence</string>
+    <string name="review_synonyms_label">Key Synonyms</string>
+    <string name="review_mnemonic_label">Mnemonic Hook:</string>
+    <string name="review_rate_again">Again</string>
+    <string name="review_rate_hard">Hard</string>
+    <string name="review_rate_good">Good</string>
+    <string name="review_rate_easy">Easy</string>
+    <string name="review_interval_min">&lt; 10 min</string>
+    <string name="review_interval_one_day">1 day</string>
+    <string name="review_interval_four_days">4 days</string>
+    <string name="review_interval_eight_days">8 days</string>
+    <string name="review_bookmark_added">Added to bookmarks</string>
+    <string name="review_bookmark_removed">Removed from bookmarks</string>
+    <string name="review_audio_playing">Playing pronunciation %1$s...</string>
+    <string name="review_view_full_detail">View Full Word Details</string>
+
+    <!-- Word Detail Strings -->
+    <string name="word_detail_title">Word Detail</string>
+    <string name="word_detail_level_format">Advanced Level • %1$s</string>
+    <string name="word_detail_audio_us">US</string>
+    <string name="word_detail_audio_uk">UK</string>
+    <string name="word_detail_pos_verb">Verb</string>
+    <string name="word_detail_pos_noun">Noun</string>
+    <string name="word_detail_pos_adj">Adjective</string>
+    <string name="word_detail_section_meaning">Practical &amp; Lexical Meaning</string>
+    <string name="word_detail_simple_english">SIMPLE ENGLISH</string>
+    <string name="word_detail_section_mnemonic">Smart AI Coding &amp; Mnemonic</string>
+    <string name="word_detail_tag_ai_coding">AI Coding</string>
+    <string name="word_detail_section_etymology">Etymology &amp; Word Roots</string>
+    <string name="word_detail_etymology_derivatives">Common Derivatives</string>
+    <string name="word_detail_section_collocations">Common Collocations</string>
+    <string name="word_detail_section_synonyms_antonyms">Key Synonyms &amp; Antonyms</string>
+    <string name="word_detail_synonyms_title">Synonyms</string>
+    <string name="word_detail_antonyms_title">Antonyms</string>
+    <string name="word_detail_section_real_examples">Real Context Examples</string>
+    <string name="word_detail_examples_count_format">%1$s Examples</string>
+    <string name="word_detail_bookmark_desc">Bookmark word</string>
+    <string name="word_detail_back">Back</string>
+    <string name="word_detail_rating_prompt">How did this word feel?</string>
+    <string name="word_detail_no_derivatives">No derivatives recorded</string>
+    <string name="review_rated_success">Rating saved. Scheduling updated.</string>
+    <string name="review_error_load">Could not load this word. Check your connection and try again.</string>
+    <string name="review_error_rate">Could not save your rating. Please try again.</string>
+    <string name="review_error_bookmark">Could not update the bookmark. Please try again.</string>
 </resources>

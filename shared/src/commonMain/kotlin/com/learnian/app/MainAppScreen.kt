@@ -239,6 +239,9 @@ fun MainAppScreen(
                             MainBottomTab.Home -> HomeScreen(
                                 modifier = Modifier.fillMaxSize(),
                                 contentPadding = contentPadding,
+                                onNavigateToReview = {
+                                    onNavigateToRoute?.invoke(AppRoute.WordReview())
+                                },
                             )
                             MainBottomTab.Services -> {}
                             MainBottomTab.Wallet -> {}

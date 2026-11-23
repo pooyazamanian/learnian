@@ -39,6 +39,10 @@ import com.learnian.core.ui.theme.ClayTheme
 import com.learnian.core.view.resources.Res as CoreRes
 import com.learnian.core.view.resources.auth_title
 import com.learnian.core.view.resources.intro_title
+import com.learnian.intro.domain.usecase.CheckIntroCompletedUseCase
+import com.learnian.intro.presentation.ui.IntroScreen
+import com.learnian.review.presentation.ui.WordDetailScreen
+import com.learnian.review.presentation.ui.WordReviewScreen
 import com.learnian.splash.presentation.ui.SplashScreen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -59,6 +63,7 @@ fun App() {
         val userSettings by themeViewModel.userSettings.collectAsState()
         val rootNavController = rememberNavController<AppRoute>(AppRoute.Splash)
         val currentRoute = rootNavController.currentRoute
+        val appScope = rememberCoroutineScope()
 
         AppPlatformTheme(userSettings = userSettings) {
             AnimatedNavHost(
@@ -84,26 +89,25 @@ fun App() {
                         is AppRoute.Splash -> {
                             SplashScreen(
                                 onSplashFinished = {
-                                    // When backend auth is live: redirect to Auth if not logged in
-                                    // val tokenStorage: com.learnian.core.network.auth.TokenStorage = org.koin.mp.KoinPlatform.getKoin().get()
-                                    // val hasValidToken = tokenStorage.getToken() != null
-                                    // rootNavController.replace(if (hasValidToken) AppRoute.MainApp.Home else AppRoute.Auth)
-                                    rootNavController.replace(AppRoute.Auth.PhoneInput)
+                                    appScope.launch {
+                                        val checkIntroUseCase: CheckIntroCompletedUseCase = KoinPlatform.getKoin().get()
+                                        val isCompleted = checkIntroUseCase()
+                                        if (!isCompleted) {
+                                            rootNavController.replace(AppRoute.Intro.Welcome)
+                                        } else {
+                                            rootNavController.replace(AppRoute.Auth.PhoneInput)
+                                        }
+                                    }
                                 },
                             )
                         }
 
                         is AppRoute.Intro -> {
-                            Box(
-                                modifier = Modifier.fillMaxSize(),
-                                contentAlignment = Alignment.Center,
-                            ) {
-                                Text(
-                                    text = stringResource(CoreRes.string.intro_title),
-                                    style = AppTypography.headlineLarge,
-                                    color = ClayTheme.colors.textPrimary,
-                                )
-                            }
+                            IntroScreen(
+                                onCompleteIntro = { _ ->
+                                    rootNavController.replace(AppRoute.Auth.PhoneInput)
+                                },
+                            )
                         }
 
                         is AppRoute.Auth -> {
@@ -111,6 +115,23 @@ fun App() {
                                 onAuthSuccess = {
                                     rootNavController.replace(AppRoute.MainApp.Home)
                                 },
+                            )
+                        }
+
+                        is AppRoute.WordReview -> {
+                            WordReviewScreen(
+                                wordId = route.wordId,
+                                onBackClick = { rootNavController.pop() },
+                                onNavigateToWordDetail = { wordId ->
+                                    rootNavController.navigate(AppRoute.WordDetail(wordId = wordId))
+                                },
+                            )
+                        }
+
+                        is AppRoute.WordDetail -> {
+                            WordDetailScreen(
+                                wordId = route.wordId,
+                                onBackClick = { rootNavController.pop() },
                             )
                         }
 

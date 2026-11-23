@@ -32,4 +32,8 @@ include(":features:home")
 include(":features:splash")
 include(":features:profile")
 include(":features:auth")
+include(":features:intro")
+include(":features:review")
 include(":shared")
+
+

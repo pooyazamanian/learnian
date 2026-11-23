@@ -156,4 +156,96 @@
     <string name="auth_back">بازگشت</string>
     <string name="auth_mascot_greeting_title">ورود به لرنیان</string>
     <string name="auth_mascot_greeting_subtitle">یادگیری هوشمند زبان با لایتنر پیشرفته</string>
+
+    <!-- Intro Flow Strings -->
+    <string name="intro_btn_skip">رد شدن</string>
+    <string name="intro_btn_next">ادامه</string>
+    <string name="intro_btn_start">شروع یادگیری با لرنیان</string>
+    <string name="intro_btn_already_account">قبلاً عضو شده‌ام / ورود به حساب کاربری</string>
+
+    <!-- Slide 1 -->
+    <string name="intro_slide1_tag">✨ یادگیری شاداب و ماندگار</string>
+    <string name="intro_slide1_title">هر روز چند لغت، برای همیشه</string>
+    <string name="intro_slide1_subtitle">فرمولاسیون علمی یادگیری بدون فرسایش. سیستم FSRS دقیقاً در آستانه فراموشی لغت را به یاد شما می‌آورد.</string>
+    <string name="intro_slide1_feat1_title">الگوریتم تطبیقی FSRS v5</string>
+    <string name="intro_slide1_feat1_desc">شخصی‌سازی میلی‌ثانیه‌ای فواصل مرور هر واژه</string>
+    <string name="intro_slide1_feat2_title">مرور در نقطه طلایی فراموشی</string>
+    <string name="intro_slide1_feat2_desc">حذف ۹۷٪ مرورهای تکراری و اتلاف وقت</string>
+    <string name="intro_slide1_feat3_title">انگیزه روزانه و گیمیفیکیشن</string>
+    <string name="intro_slide1_feat3_desc">پاداش‌های خمیری و استریک یادگیری پایدار</string>
+
+    <!-- Slide 2 -->
+    <string name="intro_slide2_tag">🧠 مربی هوشمند یادگیری</string>
+    <string name="intro_slide2_title">تثبیت هوشمند در حافظه بلندمدت</string>
+    <string name="intro_slide2_subtitle">مربی هوش مصنوعی اختصاصی که با لحن دوستانه و آزمون‌های شبیه‌ساز، واژگان را در ذهن شما حک می‌کند.</string>
+    <string name="intro_slide2_feat1_title">تحلیل هوشمند ریشه و کالوکیشن‌ها</string>
+    <string name="intro_slide2_feat1_desc">درک عمیق کاربرد واژه در متن‌های واقعی</string>
+    <string name="intro_slide2_feat2_title">تلفظ دوزبانه بریتانیایی و آمریکایی</string>
+    <string name="intro_slide2_feat2_desc">تقویت همزمان مهارت شنیداری و گفتاری</string>
+    <string name="intro_slide2_feat3_title">آزمون‌های تعاملی بدون استرس</string>
+    <string name="intro_slide2_feat3_desc">سنجش مداوم پیشرفت بدون نگرانی از فراموشی</string>
+
+    <!-- Slide 3 -->
+    <string name="intro_slide3_tag">🎯 مسیر کاملاً شخصی‌سازی‌شده</string>
+    <string name="intro_slide3_title">متناسب با سطح، زمان و هدف تو</string>
+    <string name="intro_slide3_subtitle">از سنجش اولیه تا واژگان پیشرفته آیلتس با هدف‌گذاری منعطف روزانه و یادگیری آفلاین در هر مکان.</string>
+    <string name="intro_slide3_feat1_title">سنجش اولیه و آزمون تعیین سطح</string>
+    <string name="intro_slide3_feat1_desc">شروع از نقطه مناسب بدون اتلاف وقت روی واژگان ساده</string>
+    <string name="intro_slide3_feat2_title">هدف‌گذاری متغیر ۱۰ تا ۳۰ واژه</string>
+    <string name="intro_slide3_feat2_desc">هماهنگ با زمان و توان ذهنی شما در طول روز</string>
+    <string name="intro_slide3_feat3_title">همگام‌سازی ابری و دسترسی آفلاین</string>
+    <string name="intro_slide3_feat3_desc">امکان مرور در هر زمان و مکان حتی بدون اینترنت</string>
+
+    <!-- Word Review & Detail Strings -->
+    <string name="review_title">مرور واژگان</string>
+    <string name="review_level_lesson_format">سطح %1$s • %2$s</string>
+    <string name="review_progress_streak">%1$s روز</string>
+    <string name="review_progress_format">پیشرفت مرور %1$s از %2$s</string>
+    <string name="review_coach_banner_text">«بریم سراغ یک کلمه کلیدی که در آزمون‌ها پرتکرار است...»</string>
+    <string name="review_pos_verb_tag">• فعل • Verb</string>
+    <string name="review_meaning_label">معنی فارسی</string>
+    <string name="review_context_sentence_label">جمله در متن کاربردی</string>
+    <string name="review_synonyms_label">مترادف‌های کلیدی (Synonyms)</string>
+    <string name="review_mnemonic_label">کد یادآوری ذهنی (Mnemonic):</string>
+    <string name="review_rate_again">دوباره</string>
+    <string name="review_rate_hard">سخت</string>
+    <string name="review_rate_good">خوب</string>
+    <string name="review_rate_easy">آسان</string>
+    <string name="review_interval_min">&lt; ۱۰ دقیقه</string>
+    <string name="review_interval_one_day">۱ روز</string>
+    <string name="review_interval_four_days">۴ روز</string>
+    <string name="review_interval_eight_days">۸ روز</string>
+    <string name="review_bookmark_added">به واژگان نشان‌شده اضافه شد</string>
+    <string name="review_bookmark_removed">از واژگان نشان‌شده حذف شد</string>
+    <string name="review_audio_playing">در حال پخش تلفظ %1$s...</string>
+    <string name="review_view_full_detail">مشاهده جزئیات کامل واژه</string>
+
+    <!-- Word Detail Strings -->
+    <string name="word_detail_title">جزئیات واژه</string>
+    <string name="word_detail_level_format">سطح پیشرفته • %1$s</string>
+    <string name="word_detail_audio_us">US</string>
+    <string name="word_detail_audio_uk">UK</string>
+    <string name="word_detail_pos_verb">فعل (Verb)</string>
+    <string name="word_detail_pos_noun">اسم (Noun)</string>
+    <string name="word_detail_pos_adj">صفت (Adjective)</string>
+    <string name="word_detail_section_meaning">معنای کاربردی و واژگانی</string>
+    <string name="word_detail_simple_english">SIMPLE ENGLISH</string>
+    <string name="word_detail_section_mnemonic">ترفند هوشمند کدینگ و تجسم ذهنی</string>
+    <string name="word_detail_tag_ai_coding">AI کدینگ</string>
+    <string name="word_detail_section_etymology">ریشه‌شناسی و اجزای واژه</string>
+    <string name="word_detail_etymology_derivatives">مشتقات رایج</string>
+    <string name="word_detail_section_collocations">عبارات و همنشین‌های پرتکرار (Collocations)</string>
+    <string name="word_detail_section_synonyms_antonyms">مترادف‌ها و متضادهای کلیدی</string>
+    <string name="word_detail_synonyms_title">مترادف‌ها (Synonyms)</string>
+    <string name="word_detail_antonyms_title">متضادها (Antonyms)</string>
+    <string name="word_detail_section_real_examples">جملات نمونه در بافت واقعی</string>
+    <string name="word_detail_examples_count_format">%1$s نمونه</string>
+    <string name="word_detail_bookmark_desc">نشانک واژه</string>
+    <string name="word_detail_back">بازگشت</string>
+    <string name="word_detail_rating_prompt">این کلمه چطور بود؟</string>
+    <string name="word_detail_no_derivatives">مشتقی ثبت نشده</string>
+    <string name="review_rated_success">نمره ثبت شد و زمان‌بندی مرور به‌روز شد.</string>
+    <string name="review_error_load">دریافت این واژه ممکن نشد. اتصال را بررسی کن و دوباره تلاش کن.</string>
+    <string name="review_error_rate">ثبت نمره ممکن نشد. دوباره تلاش کن.</string>
+    <string name="review_error_bookmark">تغییر وضعیت نشانک ممکن نشد. دوباره تلاش کن.</string>
 </resources>

@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -63,10 +64,12 @@ import org.koin.compose.viewmodel.koinViewModel
 fun HomeScreen(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(16.dp),
+    onNavigateToReview: () -> Unit = {},
     viewModel: HomeViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val toastHostState = rememberClayToastHostState()
+    val currentOnNavigateToReview by rememberUpdatedState(onNavigateToReview)
 
     // Listen for one-shot effects from ViewModel
     LaunchedEffect(Unit) {
@@ -76,7 +79,7 @@ fun HomeScreen(
                     toastHostState.showToast(message = effect.text, type = ClayToastType.Info)
                 }
                 is HomeEffect.NavigateToReview -> {
-                    toastHostState.showToast(message = "هدایت به صفحه مرور FSRS...", type = ClayToastType.Success)
+                    currentOnNavigateToReview()
                 }
             }
         }

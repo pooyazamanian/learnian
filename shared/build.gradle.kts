@@ -54,6 +54,8 @@ kotlin {
             implementation(project(":features:splash"))
             implementation(project(":features:profile"))
             implementation(project(":features:auth"))
+            implementation(project(":features:intro"))
+            implementation(project(":features:review"))
             implementation(libs.ktor.client.core)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)

@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
  * 1 - MainApp (Nested: Home, Services, Wallet, Profile, Settings)
  * 2 - Intro (Nested: Welcome, Features, GetStarted)
  * 3 - Auth (Nested: PhoneInput, OtpVerify, Register)
+ * 4 - WordReview / WordDetail (wordId is the navigation argument)
  */
 sealed class AppRoute {
     // 0: Splash Screen
@@ -58,12 +59,18 @@ sealed class AppRoute {
         object OtpVerify : Auth("auth_otp")
         object Register : Auth("auth_register")
     }
+
+    // 4: Word Review & In-depth Detail Graph
+    data class WordReview(val wordId: String = "word_abandon_1") : AppRoute()
+    data class WordDetail(val wordId: String = "word_abandon_1") : AppRoute()
 }
 
 val AppRoute.isSplash: Boolean get() = this is AppRoute.Splash
 val AppRoute.isMainApp: Boolean get() = this is AppRoute.MainApp
 val AppRoute.isIntro: Boolean get() = this is AppRoute.Intro
 val AppRoute.isAuth: Boolean get() = this is AppRoute.Auth
+val AppRoute.isWordReview: Boolean get() = this is AppRoute.WordReview
+val AppRoute.isWordDetail: Boolean get() = this is AppRoute.WordDetail
 
 /**
  * Type-Safe State-Driven NavController for Compose Multiplatform
