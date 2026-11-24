@@ -2,6 +2,7 @@ package com.learnian.review.domain.repository
 
 import com.learnian.base.BaseRepository
 import com.learnian.review.domain.model.FsrsRating
+import com.learnian.review.domain.model.ReviewLibrary
 import com.learnian.review.domain.model.WordReviewData
 
 /**
@@ -13,6 +14,12 @@ interface ReviewRepository : BaseRepository<WordReviewData> {
      * Retrieves the complete vocabulary and review data for the specified [wordId].
      */
     suspend fun getWordDetail(wordId: String): Result<WordReviewData>
+
+    /**
+     * Loads the review hub snapshot: every vocabulary card enriched with its
+     * FSRS progress and saved state. All three hub sections read this one list.
+     */
+    suspend fun getLibrary(): Result<ReviewLibrary>
 
     /**
      * Submits an FSRS rating for [wordId], updating the spaced repetition schedule.

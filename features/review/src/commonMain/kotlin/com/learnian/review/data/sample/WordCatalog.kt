@@ -106,6 +106,7 @@ class WordCatalog {
             goodText = "۴ روز",
             easyText = "۸ روز",
         ),
+        isBookmarked = true,
     )
 
     private fun resilientWord(): WordReviewData = WordReviewData(
@@ -183,6 +184,7 @@ class WordCatalog {
             goodText = "۶ روز",
             easyText = "۱۲ روز",
         ),
+        isBookmarked = true,
     )
 
     private fun meticulousWord(): WordReviewData = WordReviewData(
@@ -264,6 +266,242 @@ class WordCatalog {
             hardText = "۳ روز",
             goodText = "۹ روز",
             easyText = "۱۸ روز",
+        ),
+    )
+
+    private fun benevolentWord(): WordReviewData = WordReviewData(
+        wordId = "word_benevolent_4",
+        word = "Benevolent",
+        phonetic = "/bəˈnevələnt/",
+        level = "B2",
+        lesson = "درس ۷",
+        partsOfSpeech = listOf("Adjective"),
+        primaryPartOfSpeechFa = "صفت",
+        primaryPartOfSpeechEn = "Adjective",
+        persianMeanings = listOf("خیرخواه", "نیکوکار", "بخشنده"),
+        persianExplanation = "داشتن نیت خیر و تمایل خالصانه برای کمک به دیگران.",
+        simpleEnglishDefinition = "Kind and generous; wishing to do good to other people.",
+        contextSentence = ContextSentence(
+            englishText = "A benevolent smile lit up her face.",
+            highlightedWord = "benevolent",
+            persianText = "«لبخندی خیرخواهانه چهره‌اش را روشن کرد.»",
+        ),
+        synonyms = listOf("Kind", "Generous", "Compassionate", "Charitable"),
+        antonyms = listOf("Cruel", "Selfish", "Malevolent"),
+        mnemonic = WordMnemonic(
+            title = "تصویرسازی ذهنی: «بِن + وُلِنت»",
+            story = "یک «بِن» (پسر) داوطلب را تصور کن که همیشه اولین نفر برای کمک به دیگران است.",
+            hookFa = "«بِن وُلِنت = پسرِ داوطلبِ خیرخواه»",
+            highlightedHook = "بِن وُلِنت",
+            codingTag = "AI کدینگ",
+        ),
+        etymology = WordEtymology(
+            rootOrigin = "ریشه لاتین",
+            rootTerm = "bene + velle",
+            rootMeaning = "«خوب» + «خواستن» یعنی خوب خواستن",
+            derivatives = listOf(
+                WordDerivative(
+                    title = "مشتقات رایج",
+                    englishTerm = "Benevolence",
+                    partOfSpeech = "اسم",
+                    persianMeaning = "خیرخواهی، نیکوکاری",
+                    examplePhrase = "an act of benevolence",
+                ),
+                WordDerivative(
+                    title = "مشتقات رایج",
+                    englishTerm = "Benevolently",
+                    partOfSpeech = "قید",
+                    persianMeaning = "از روی خیرخواهی",
+                    examplePhrase = "she smiled benevolently",
+                ),
+            ),
+        ),
+        collocations = listOf(
+            WordCollocation(englishPhrase = "benevolent smile", persianMeaning = "لبخند خیرخواهانه", iconKey = "sad"),
+            WordCollocation(englishPhrase = "benevolent fund", persianMeaning = "صندوق کمک خیریه", iconKey = "link"),
+            WordCollocation(englishPhrase = "benevolent dictator", persianMeaning = "دیکتاتور خیرخواه", iconKey = "target"),
+        ),
+        realExamples = listOf(
+            WordExample(
+                englishText = "The benevolent donor funded the entire scholarship program.",
+                highlightedWord = "benevolent",
+                persianText = "اهداکننده خیرخواه هزینه کل برنامه بورسیه را تأمین کرد.",
+            ),
+            WordExample(
+                englishText = "A benevolent teacher stayed after class to help every student.",
+                highlightedWord = "benevolent",
+                persianText = "معلمی خیرخواه بعد از کلاس می‌ماند تا به همه دانش‌آموزان کمک کند.",
+            ),
+        ),
+        reviewProgress = ReviewProgressInfo(
+            currentIndex = 6,
+            totalCount = 12,
+            streakDays = 9,
+            coachTip = "«این واژه در متن‌های ادبی زیاد می‌آید؛ یک مثال برایش بساز...»",
+        ),
+        fsrsIntervals = FsrsIntervals(
+            againText = "کمتر از ۵ دقیقه",
+            hardText = "۱ روز",
+            goodText = "۵ روز",
+            easyText = "۱۰ روز",
+        ),
+        isBookmarked = true,
+    )
+
+    private fun ephemeralWord(): WordReviewData = WordReviewData(
+        wordId = "word_ephemeral_5",
+        word = "Ephemeral",
+        phonetic = "/ɪˈfemərəl/",
+        level = "C1",
+        lesson = "درس ۱۱",
+        partsOfSpeech = listOf("Adjective"),
+        primaryPartOfSpeechFa = "صفت",
+        primaryPartOfSpeechEn = "Adjective",
+        persianMeanings = listOf("زودگذر", "ناپایدار", "کم‌دوام"),
+        persianExplanation = "چیزی که تنها برای مدتی بسیار کوتاه وجود دارد و به سرعت محو می‌شود.",
+        simpleEnglishDefinition = "Lasting for a very short time; transitory.",
+        contextSentence = ContextSentence(
+            englishText = "Fame in the digital era can be remarkably ephemeral.",
+            highlightedWord = "ephemeral",
+            persianText = "«شهرت در عصر دیجیتال می‌تواند به‌طور چشمگیری زودگذر باشد.»",
+        ),
+        synonyms = listOf("Fleeting", "Transient", "Brief", "Momentary"),
+        antonyms = listOf("Permanent", "Enduring", "Lasting", "Eternal"),
+        mnemonic = WordMnemonic(
+            title = "تصویرسازی ذهنی: «اِف + مِرال»",
+            story = "یک حباب صابون را تصور کن: یک لحظه می‌درخشد، می‌چرخد و قبل از اینکه خوب نگاهش کنی ترکیده است.",
+            hookFa = "«اِفِمرال = افکتِ گذرا در فیلم»",
+            highlightedHook = "افکتِ گذرا",
+            codingTag = "AI کدینگ",
+        ),
+        etymology = WordEtymology(
+            rootOrigin = "ریشه یونانی",
+            rootTerm = "epi + hemera",
+            rootMeaning = "«روی» + «روز» یعنی فقط برای یک روز",
+            derivatives = listOf(
+                WordDerivative(
+                    title = "مشتقات رایج",
+                    englishTerm = "Ephemera",
+                    partOfSpeech = "اسم",
+                    persianMeaning = "چیزهای زودگذر، آثار کم‌دوام",
+                    examplePhrase = "a collection of Victorian ephemera",
+                ),
+                WordDerivative(
+                    title = "مشتقات رایج",
+                    englishTerm = "Ephemerally",
+                    partOfSpeech = "قید",
+                    persianMeaning = "به‌صورت زودگذر",
+                    examplePhrase = "exist ephemerally",
+                ),
+            ),
+        ),
+        collocations = listOf(
+            WordCollocation(englishPhrase = "ephemeral nature", persianMeaning = "ماهیت زودگذر", iconKey = "cancel"),
+            WordCollocation(englishPhrase = "ephemeral trend", persianMeaning = "ترند گذرا", iconKey = "link"),
+            WordCollocation(englishPhrase = "ephemeral pleasure", persianMeaning = "لذت زودگذر", iconKey = "sad"),
+        ),
+        realExamples = listOf(
+            WordExample(
+                englishText = "The beauty of cherry blossoms is ephemeral, lasting only a few weeks.",
+                highlightedWord = "ephemeral",
+                persianText = "زیبایی شکوفه‌های گیلاس زودگذر است و فقط چند هفته دوام دارد.",
+            ),
+            WordExample(
+                englishText = "Most online fame is ephemeral and disappears within weeks.",
+                highlightedWord = "ephemeral",
+                persianText = "بیشتر شهرت‌های اینترنتی زودگذرند و در عرض چند هفته محو می‌شوند.",
+            ),
+        ),
+        reviewProgress = ReviewProgressInfo(
+            currentIndex = 8,
+            totalCount = 12,
+            streakDays = 14,
+            coachTip = "«کلمات هم‌خانواده را با هم مرور کن تا در حافظه دوام بیشتری پیدا کنند...»",
+        ),
+        fsrsIntervals = FsrsIntervals(
+            againText = "کمتر از ۵ دقیقه",
+            hardText = "۱ روز",
+            goodText = "۳ روز",
+            easyText = "۶ روز",
+        ),
+        isBookmarked = true,
+    )
+
+    private fun pragmaticWord(): WordReviewData = WordReviewData(
+        wordId = "word_pragmatic_6",
+        word = "Pragmatic",
+        phonetic = "/præɡˈmætɪk/",
+        level = "B2/C1",
+        lesson = "درس ۱۳",
+        partsOfSpeech = listOf("Adjective"),
+        primaryPartOfSpeechFa = "صفت",
+        primaryPartOfSpeechEn = "Adjective",
+        persianMeanings = listOf("عمل‌گرا", "واقع‌بینانه", "کارکردی"),
+        persianExplanation = "برخورد با امور بر پایه شرایط واقعی و نتایج عملی، به جای ایده‌آل‌های نظری.",
+        simpleEnglishDefinition = "Dealing with things sensibly and realistically, based on practical considerations.",
+        contextSentence = ContextSentence(
+            englishText = "We need a pragmatic approach to solve this budget issue.",
+            highlightedWord = "pragmatic",
+            persianText = "«ما به یک رویکرد عمل‌گرایانه برای حل این مشکل بودجه نیاز داریم.»",
+        ),
+        synonyms = listOf("Practical", "Realistic", "Sensible", "Businesslike"),
+        antonyms = listOf("Idealistic", "Impractical", "Theoretical", "Dogmatic"),
+        mnemonic = WordMnemonic(
+            title = "تصویرسازی ذهنی: «پراگ + ماتیک»",
+            story = "در شهر «پراگ» یک مهندس ریاضی («ماتیک») زندگی می‌کند که فقط چیزهایی می‌سازد که واقعاً کار کنند.",
+            hookFa = "«پراگ + ماتیک = حسابِ عمل‌گرا در شهر پراگ»",
+            highlightedHook = "پراگ + ماتیک",
+            codingTag = "AI کدینگ",
+        ),
+        etymology = WordEtymology(
+            rootOrigin = "ریشه یونانی",
+            rootTerm = "pragma",
+            rootMeaning = "به معنای «کار، عمل» یعنی مربوط به عمل",
+            derivatives = listOf(
+                WordDerivative(
+                    title = "مشتقات رایج",
+                    englishTerm = "Pragmatism",
+                    partOfSpeech = "اسم",
+                    persianMeaning = "عمل‌گرایی",
+                    examplePhrase = "a spirit of pragmatism",
+                ),
+                WordDerivative(
+                    title = "مشتقات رایج",
+                    englishTerm = "Pragmatically",
+                    partOfSpeech = "قید",
+                    persianMeaning = "به‌صورت عمل‌گرایانه",
+                    examplePhrase = "pragmatically speaking",
+                ),
+            ),
+        ),
+        collocations = listOf(
+            WordCollocation(englishPhrase = "pragmatic approach", persianMeaning = "رویکرد عمل‌گرا", iconKey = "target"),
+            WordCollocation(englishPhrase = "pragmatic solution", persianMeaning = "راه‌حل عملی", iconKey = "link"),
+            WordCollocation(englishPhrase = "pragmatic decision", persianMeaning = "تصمیم واقع‌بینانه", iconKey = "ship"),
+        ),
+        realExamples = listOf(
+            WordExample(
+                englishText = "Her pragmatic response calmed the whole team.",
+                highlightedWord = "pragmatic",
+                persianText = "واکنش عمل‌گرایانه او کل تیم را آرام کرد.",
+            ),
+            WordExample(
+                englishText = "The government took a pragmatic view of the energy crisis.",
+                highlightedWord = "pragmatic",
+                persianText = "دولت نگاه عمل‌گرایانه‌ای به بحران انرژی داشت.",
+            ),
+        ),
+        reviewProgress = ReviewProgressInfo(
+            currentIndex = 5,
+            totalCount = 12,
+            streakDays = 11,
+            coachTip = "«این واژه در مکالمه‌های کاری پرکاربرد است؛ با یک جمله واقعی تمرینش کن...»",
+        ),
+        fsrsIntervals = FsrsIntervals(
+            againText = "کمتر از ۱۰ دقیقه",
+            hardText = "۲ روز",
+            goodText = "۶ روز",
+            easyText = "۱۲ روز",
         ),
     )
 }

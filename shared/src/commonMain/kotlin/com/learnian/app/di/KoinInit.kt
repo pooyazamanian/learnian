@@ -11,6 +11,7 @@ import com.learnian.profile.di.profileModule
 import com.learnian.quiz.di.quizModule
 import com.learnian.review.di.reviewModule
 import com.learnian.splash.di.splashModule
+import com.learnian.stats.di.statsModule
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.viewModelOf
@@ -33,6 +34,7 @@ val appModules: List<Module> = listOf(
     profileModule,
     reviewModule,
     quizModule,
+    statsModule,
     appModule,
 )
 

@@ -91,6 +91,7 @@ fun ClayStatCard(
     title: String,
     modifier: Modifier = Modifier,
     value: String? = null,
+    valueSuffix: String? = null,
     subtitle: String? = null,
     icon: (@Composable () -> Unit)? = null,
     trailingBadge: (@Composable () -> Unit)? = null,
@@ -175,16 +176,35 @@ fun ClayStatCard(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center,
                     ) {
-                        Text(
-                            text = value,
-                            style = AppTypography.headlineLarge.copy(
-                                fontWeight = FontWeight.Black,
-                                fontSize = 28.sp,
-                                lineHeight = 30.sp,
-                            ),
-                            color = primaryTextColor,
-                            textAlign = TextAlign.Center,
-                        )
+                        Row(
+                            verticalAlignment = Alignment.Bottom,
+                            horizontalArrangement = Arrangement.spacedBy(Spacing.ExtraSmall),
+                        ) {
+                            Text(
+                                text = value,
+                                style = AppTypography.headlineLarge.copy(
+                                    fontWeight = FontWeight.Black,
+                                    fontSize = 28.sp,
+                                    lineHeight = 30.sp,
+                                ),
+                                color = primaryTextColor,
+                                textAlign = TextAlign.Center,
+                                maxLines = 1,
+                            )
+
+                            if (valueSuffix != null) {
+                                Text(
+                                    text = valueSuffix,
+                                    style = AppTypography.labelMedium.copy(
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 12.sp,
+                                    ),
+                                    color = primaryTextColor.copy(alpha = 0.75f),
+                                    maxLines = 1,
+                                    modifier = Modifier.padding(bottom = 3.dp),
+                                )
+                            }
+                        }
 
                         if (subtitle != null) {
                             Spacer(modifier = Modifier.height(Spacing.Tiny))

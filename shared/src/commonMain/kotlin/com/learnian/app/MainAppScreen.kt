@@ -49,6 +49,8 @@ import com.learnian.core.view.resources.nav_stats
 import com.learnian.core.view.resources.topbar_logo_desc
 import com.learnian.home.presentation.ui.HomeScreen
 import com.learnian.profile.presentation.ui.ProfileScreen
+import com.learnian.review.presentation.ui.ReviewHubScreen
+import com.learnian.stats.presentation.ui.StatsScreen
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
@@ -247,8 +249,20 @@ fun MainAppScreen(
                                 },
                             )
                             MainBottomTab.Services -> {}
-                            MainBottomTab.Wallet -> {}
-                            MainBottomTab.Profile -> {}
+                            MainBottomTab.Wallet -> ReviewHubScreen(
+                                modifier = Modifier.fillMaxSize(),
+                                contentPadding = contentPadding,
+                                onNavigateToWordDetail = { wordId ->
+                                    onNavigateToRoute?.invoke(AppRoute.WordDetail(wordId))
+                                },
+                                onStartReview = { wordId ->
+                                    onNavigateToRoute?.invoke(AppRoute.WordReview(wordId))
+                                },
+                            )
+                            MainBottomTab.Profile -> StatsScreen(
+                                modifier = Modifier.fillMaxSize(),
+                                contentPadding = contentPadding,
+                            )
                             MainBottomTab.Settings -> ProfileScreen(
                                 modifier = Modifier.fillMaxSize(),
                                 contentPadding = contentPadding,

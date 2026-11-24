@@ -2,10 +2,14 @@ package com.learnian.review.data.repository
 
 import com.learnian.base.ResourceKey
 import com.learnian.review.data.mapper.toDomain
+import com.learnian.review.data.mapper.toLibraryWord
 import com.learnian.review.data.remote.ReviewApi
+import com.learnian.review.data.sample.ReviewLibraryCatalog
 import com.learnian.review.data.sample.WordCatalog
 import com.learnian.review.domain.model.FsrsRating
+import com.learnian.review.domain.model.ReviewLibrary
 import com.learnian.review.domain.model.WordReviewData
+import com.learnian.review.domain.model.buildReviewLibrary
 import com.learnian.review.domain.repository.ReviewRepository
 
 /**
@@ -23,6 +27,7 @@ import com.learnian.review.domain.repository.ReviewRepository
 class ReviewRepositoryImpl(
     private val api: ReviewApi,
     private val catalog: WordCatalog,
+    private val libraryCatalog: ReviewLibraryCatalog,
 ) : ReviewRepository {
 
     override val resourceKey: ResourceKey = ResourceKey("word_review")
@@ -47,6 +52,22 @@ class ReviewRepositoryImpl(
         )
         cache[wordId] = merged
         return Result.success(merged)
+    }
+
+    /**
+     * Builds the hub from the same catalog the detail screen resolves, so every
+     * card is guaranteed to open a real word card. Bookmarks are applied from
+     * the local overrides, keeping the saved list in sync with the detail screen.
+     */
+    override suspend fun getLibrary(): Result<ReviewLibrary> {
+        val words = catalog.all().map { word ->
+            word.toLibraryWord(
+                progress = libraryCatalog.progressFor(word.wordId),
+                isSaved = bookmarkOverrides[word.wordId] ?: word.isBookmarked,
+            )
+        }
+
+        return Result.success(buildReviewLibrary(words))
     }
 
     override suspend fun submitRating(wordId: String, rating: FsrsRating): Result<Unit> {

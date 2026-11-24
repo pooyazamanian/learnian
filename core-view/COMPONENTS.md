@@ -135,8 +135,9 @@
 - **مستندات اختصاصی**: [`component/sidebar/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/sidebar/README.md)
 
 ### ۱۶. کارت‌های آماری و متریک خمیری (`com.learnian.core.ui.component.stats`)
-- **کلاس‌ها**: `ClayStatCard`, `ClayStatsRow`, `ClayStatCardVariant`
-- **توضیحات**: کارت‌های متریک و آماری خمیری سه‌بعدی و ماژولار مناسب برای صفحه اصلی، صفحه مرور، جزئیات دسته‌ها و جعبه لایتنر. پشتیبانی از سه تم رنگی اصلی (بنفش، نعنایی و کهربایی)، آیکون اختصاصی در هدر، مقادیر عددی بزرگ برجسته، زیرعنوان واحد، بج درصدی انتها، و مینی نوار پیشرفت خمیری گود رفته (`ClayProgressBar`).
+- **کلاس‌ها**: `ClayStatCard`, `ClayStatsRow`, `ClayStatCardVariant`, `ClayDonutChart`, `ClayBarChart`, `ClayDonutSegment`, `ClayBarChartBar`
+- **توضیحات**: کارت‌های متریک و آماری خمیری سه‌بعدی و ماژولار مناسب برای صفحه اصلی، صفحه مرور، جزئیات دسته‌ها و جعبه لایتنر. پشتیبانی از سه تم رنگی اصلی (بنفش، نعنایی و کهربایی)، آیکون اختصاصی در هدر، مقادیر عددی بزرگ برجسته با واحد کوچک کنار عدد (`valueSuffix`)، زیرعنوان واحد، بج درصدی انتها، و مینی نوار پیشرفت خمیری گود رفته (`ClayProgressBar`).
+- **نمودارها**: `ClayDonutChart` حلقه‌ی خمیری با ترک گود، قوس‌های برجسته‌ی براق (سایه‌ی رنگی نرم + گرادیان روشن‌به‌تیره + ریم درخشان) و محتوای مرکزی اسلات‌محور (برای تفکیک تسلط واژگان)، و `ClayBarChart` شیارهای فرورفته با فیل قرصی برجسته و برجسته‌سازی ستون فعال (برای فعالیت هفتگی).
 - **مستندات اختصاصی**: [`component/stats/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/stats/README.md)
 
 ### ۱۷. بنر و کارت قهرمان مرور هوشمند FSRS (`com.learnian.core.ui.component.review`)
