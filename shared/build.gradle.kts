@@ -56,6 +56,7 @@ kotlin {
             implementation(project(":features:auth"))
             implementation(project(":features:intro"))
             implementation(project(":features:review"))
+            implementation(project(":features:quiz"))
             implementation(libs.ktor.client.core)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)

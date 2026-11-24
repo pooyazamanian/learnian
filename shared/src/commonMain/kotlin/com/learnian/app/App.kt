@@ -41,6 +41,7 @@ import com.learnian.core.view.resources.auth_title
 import com.learnian.core.view.resources.intro_title
 import com.learnian.intro.domain.usecase.CheckIntroCompletedUseCase
 import com.learnian.intro.presentation.ui.IntroScreen
+import com.learnian.quiz.presentation.ui.QuizScreen
 import com.learnian.review.presentation.ui.WordDetailScreen
 import com.learnian.review.presentation.ui.WordReviewScreen
 import com.learnian.splash.presentation.ui.SplashScreen
@@ -135,7 +136,13 @@ fun App() {
                             )
                         }
 
-                        else -> {
+                        is AppRoute.Quiz -> {
+                            QuizScreen(
+                                onBackClick = { rootNavController.pop() },
+                            )
+                        }
+
+                        is AppRoute.MainApp -> {
                             // Root Pull-To-Refresh animation structure active across all app sections
                             var isRefreshing by remember { mutableStateOf(false) }
                             val coroutineScope = rememberCoroutineScope()
@@ -151,19 +158,12 @@ fun App() {
                                 },
                                 modifier = Modifier.fillMaxSize(),
                             ) {
-                                when (route) {
-                                    is AppRoute.MainApp -> {
-                                        MainAppScreen(
-                                            initialRoute = route,
-                                            onNavigateToRoute = { destination ->
-                                                rootNavController.navigate(destination)
-                                            },
-                                        )
-                                    }
-                                    else -> {
-                                        // Fallback for future routes
-                                    }
-                                }
+                                MainAppScreen(
+                                    initialRoute = route,
+                                    onNavigateToRoute = { destination ->
+                                        rootNavController.navigate(destination)
+                                    },
+                                )
                             }
                         }
                     }

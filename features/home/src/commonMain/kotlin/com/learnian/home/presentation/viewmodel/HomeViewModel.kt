@@ -23,6 +23,10 @@ class HomeViewModel(
             HomeIntent.StartReview -> {
                 sendEffect(HomeEffect.NavigateToReview)
             }
+
+            HomeIntent.StartQuiz -> {
+                sendEffect(HomeEffect.NavigateToQuiz)
+            }
         }
     }
 

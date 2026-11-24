@@ -63,6 +63,9 @@ sealed class AppRoute {
     // 4: Word Review & In-depth Detail Graph
     data class WordReview(val wordId: String = "word_abandon_1") : AppRoute()
     data class WordDetail(val wordId: String = "word_abandon_1") : AppRoute()
+
+    // 5: Daily Vocabulary Quiz (all five question formats)
+    data object Quiz : AppRoute()
 }
 
 val AppRoute.isSplash: Boolean get() = this is AppRoute.Splash
@@ -71,6 +74,7 @@ val AppRoute.isIntro: Boolean get() = this is AppRoute.Intro
 val AppRoute.isAuth: Boolean get() = this is AppRoute.Auth
 val AppRoute.isWordReview: Boolean get() = this is AppRoute.WordReview
 val AppRoute.isWordDetail: Boolean get() = this is AppRoute.WordDetail
+val AppRoute.isQuiz: Boolean get() = this is AppRoute.Quiz
 
 /**
  * Type-Safe State-Driven NavController for Compose Multiplatform

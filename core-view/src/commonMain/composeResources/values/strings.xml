@@ -248,4 +248,55 @@
     <string name="review_error_load">Could not load this word. Check your connection and try again.</string>
     <string name="review_error_rate">Could not save your rating. Please try again.</string>
     <string name="review_error_bookmark">Could not update the bookmark. Please try again.</string>
+
+    <!-- Quiz Feature Strings -->
+    <string name="quiz_title">Vocabulary Quiz</string>
+    <string name="quiz_blank_placeholder" translatable="false">______</string>
+    <string name="quiz_question_of_format">Question %1$s of %2$s</string>
+    <string name="quiz_streak_days_format">%1$s day streak</string>
+    <string name="quiz_type_en_to_fa">English to Persian</string>
+    <string name="quiz_type_fa_to_en">Persian to English</string>
+    <string name="quiz_type_listening">Listening</string>
+    <string name="quiz_type_spelling">Spelling</string>
+    <string name="quiz_type_sentence">Sentence fill</string>
+    <string name="quiz_prompt_en_to_fa">Choose the correct Persian meaning</string>
+    <string name="quiz_prompt_fa_to_en">Which English word matches this meaning?</string>
+    <string name="quiz_prompt_listening">Listen and choose the exact word or meaning</string>
+    <string name="quiz_prompt_spelling">Complete the missing letters of the word</string>
+    <string name="quiz_prompt_sentence">Complete the sentence with the right option</string>
+    <string name="quiz_level_format">Level: %1$s</string>
+    <string name="quiz_listen_natural">Hear the natural pronunciation</string>
+    <string name="quiz_play_audio">Play audio</string>
+    <string name="quiz_speed_normal">1.0x (normal)</string>
+    <string name="quiz_speed_slow">0.75x (slow)</string>
+    <string name="quiz_context_title">In context</string>
+    <string name="quiz_mnemonic_title">Mnemonic image</string>
+    <string name="quiz_etymology_title">Etymology</string>
+    <string name="quiz_ai_hint_title">Lurny AI hint</string>
+    <string name="quiz_ipa_guide_format">IPA guide: %1$s</string>
+    <string name="quiz_hint_title">Smart hint</string>
+    <string name="quiz_undo_letter">Delete the last letter</string>
+    <string name="quiz_choose_letter">Pick the next letter</string>
+    <string name="quiz_answer_correct">Correct answer</string>
+    <string name="quiz_answer_wrong">Not quite</string>
+    <string name="quiz_correct_answer_format">Correct answer: %1$s</string>
+    <string name="quiz_confirm_answer">Confirm and check answer</string>
+    <string name="quiz_next_question">Confirm and go to the next question</string>
+    <string name="quiz_finish">Finish quiz</string>
+    <string name="quiz_back">Back</string>
+    <string name="quiz_error_load">Couldn't load the quiz. Please try again.</string>
+    <string name="quiz_error_submit">Couldn't submit the answer. Please try again.</string>
+    <string name="quiz_answer_recorded">Answer recorded</string>
+    <string name="quiz_audio_icon_desc">Play pronunciation</string>
+    <string name="quiz_streak_icon_desc">Study streak</string>
+    <string name="quiz_accent_us">US accent (Native)</string>
+    <string name="quiz_accent_uk">UK accent (Native)</string>
+    <string name="quiz_completed">Round complete</string>
+
+    <!-- Home quiz entry card -->
+    <string name="home_quiz_tag">5 quiz modes</string>
+    <string name="home_quiz_title">Daily vocabulary challenge</string>
+    <string name="home_quiz_desc">Meaning, listening, spelling and sentence questions in one round</string>
+    <string name="home_quiz_action">Start the quiz</string>
+    <string name="home_quiz_meta">%1$s questions</string>
 </resources>

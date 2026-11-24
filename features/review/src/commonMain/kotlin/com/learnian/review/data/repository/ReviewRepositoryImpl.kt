@@ -13,11 +13,12 @@ import com.learnian.review.domain.repository.ReviewRepository
  *
  * Resolution order for [getWordDetail]:
  * 1. Remote API (`GET words/{id}`) — authoritative, variable payload.
- * 2. Last in-memory copy — preserves local mutations (rating/bookmark) on refresh.
+ * 2. Last in-memory copy — keeps the screen usable while the process is alive.
  * 3. Bundled [WordCatalog] — keeps the screen usable when the backend is offline.
  *
- * Ratings and bookmarks are applied locally first (optimistic, never blocks the
- * user) and then pushed to the server on a best-effort basis.
+ * The review index (`review_progress.currentIndex`) is never recomputed here: it
+ * is whatever the payload says, so it cannot drift or get stuck.
+ * Bookmarks are applied locally first (optimistic) and pushed on a best-effort basis.
  */
 class ReviewRepositoryImpl(
     private val api: ReviewApi,
@@ -49,18 +50,9 @@ class ReviewRepositoryImpl(
     }
 
     override suspend fun submitRating(wordId: String, rating: FsrsRating): Result<Unit> {
-        val current = cache[wordId] ?: catalog.find(wordId)
-        if (current != null) {
-            val progress = current.reviewProgress
-            cache[wordId] = current.copy(
-                reviewProgress = progress.copy(
-                    currentIndex = (progress.currentIndex + 1).coerceAtMost(progress.totalCount),
-                ),
-            )
-        }
-
-        // Best effort: the local schedule is already updated, so a network
-        // failure must not break the review flow.
+        // Best effort: the review queue position is owned by the backend, so a
+        // network failure must not break the review flow. Nothing is written
+        // back into `cache` — the index shown is always the one in the payload.
         api.submitRating(wordId, rating.score)
         return Result.success(Unit)
     }

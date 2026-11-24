@@ -242,6 +242,9 @@ fun MainAppScreen(
                                 onNavigateToReview = {
                                     onNavigateToRoute?.invoke(AppRoute.WordReview())
                                 },
+                                onNavigateToQuiz = {
+                                    onNavigateToRoute?.invoke(AppRoute.Quiz)
+                                },
                             )
                             MainBottomTab.Services -> {}
                             MainBottomTab.Wallet -> {}

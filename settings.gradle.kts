@@ -34,6 +34,7 @@ include(":features:profile")
 include(":features:auth")
 include(":features:intro")
 include(":features:review")
+include(":features:quiz")
 include(":shared")
 
 

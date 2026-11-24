@@ -19,6 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.learnian.core.ui.component.card.ClayCard
+import com.learnian.core.ui.component.chip.ClayStatusChip
 import com.learnian.core.ui.component.icon.BaseIcon
 import com.learnian.core.ui.component.review.ClayReviewBannerCard
 import com.learnian.core.ui.component.stats.ClayStatCard
@@ -27,6 +29,7 @@ import com.learnian.core.ui.component.stats.ClayStatsRow
 import com.learnian.core.ui.component.toast.ClayToastType
 import com.learnian.core.ui.component.toast.rememberClayToastHostState
 import com.learnian.core.ui.theme.AppTypography
+import com.learnian.core.ui.theme.ClayTheme
 import com.learnian.core.ui.theme.Spacing
 import com.learnian.core.view.resources.Res
 import com.learnian.core.view.resources.home_fsrs_btn_action
@@ -40,6 +43,10 @@ import com.learnian.core.view.resources.home_stat_new_words
 import com.learnian.core.view.resources.home_stat_new_words_unit
 import com.learnian.core.view.resources.home_stat_review_today
 import com.learnian.core.view.resources.home_stat_review_unit
+import com.learnian.core.view.resources.home_quiz_action
+import com.learnian.core.view.resources.home_quiz_desc
+import com.learnian.core.view.resources.home_quiz_tag
+import com.learnian.core.view.resources.home_quiz_title
 import com.learnian.core.view.resources.ic_brain_ai
 import com.learnian.core.view.resources.ic_clock
 import com.learnian.home.presentation.component.HomeGreetingHeader
@@ -65,11 +72,13 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(16.dp),
     onNavigateToReview: () -> Unit = {},
+    onNavigateToQuiz: () -> Unit = {},
     viewModel: HomeViewModel = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val toastHostState = rememberClayToastHostState()
     val currentOnNavigateToReview by rememberUpdatedState(onNavigateToReview)
+    val currentOnNavigateToQuiz by rememberUpdatedState(onNavigateToQuiz)
 
     // Listen for one-shot effects from ViewModel
     LaunchedEffect(Unit) {
@@ -80,6 +89,10 @@ fun HomeScreen(
                 }
                 is HomeEffect.NavigateToReview -> {
                     currentOnNavigateToReview()
+                }
+
+                is HomeEffect.NavigateToQuiz -> {
+                    currentOnNavigateToQuiz()
                 }
             }
         }
@@ -196,6 +209,39 @@ fun HomeScreen(
                 onActionClick = { viewModel.dispatch(HomeIntent.StartReview) },
                 modifier = Modifier.fillMaxWidth(),
             )
+
+            // 5. Daily vocabulary quiz entry (all five question modes)
+            ClayCard(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = { viewModel.dispatch(HomeIntent.StartQuiz) },
+            ) {
+                Column(verticalArrangement = Arrangement.spacedBy(Spacing.Small)) {
+                    ClayStatusChip(
+                        text = stringResource(Res.string.home_quiz_tag),
+                        textStyle = AppTypography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                        textColor = ClayTheme.colors.primary,
+                        backgroundColor = ClayTheme.colors.primaryContainer,
+                    )
+
+                    Text(
+                        text = stringResource(Res.string.home_quiz_title),
+                        style = AppTypography.titleMedium.copy(fontWeight = FontWeight.ExtraBold),
+                        color = ClayTheme.colors.textPrimary,
+                    )
+
+                    Text(
+                        text = stringResource(Res.string.home_quiz_desc),
+                        style = AppTypography.bodySmall,
+                        color = ClayTheme.colors.textSecondary,
+                    )
+
+                    Text(
+                        text = stringResource(Res.string.home_quiz_action),
+                        style = AppTypography.labelLarge.copy(fontWeight = FontWeight.Bold),
+                        color = ClayTheme.colors.primary,
+                    )
+                }
+            }
         }
     }
 }

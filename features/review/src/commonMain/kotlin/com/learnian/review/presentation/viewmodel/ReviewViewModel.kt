@@ -100,19 +100,7 @@ class ReviewViewModel(
         launchWithHandler {
             rateWordUseCase(word.wordId, rating).fold(
                 onSuccess = {
-                    val progress = word.reviewProgress
-                    val updated = word.copy(
-                        reviewProgress = progress.copy(
-                            currentIndex = (progress.currentIndex + 1).coerceAtMost(progress.totalCount),
-                        ),
-                    )
-                    updateState {
-                        copy(
-                            isRating = false,
-                            data = updated,
-                            cachedData = updated,
-                        )
-                    }
+                    updateState { copy(isRating = false) }
                     sendEffect(ReviewEffect.WordRatedSuccessfully)
                 },
                 onFailure = {

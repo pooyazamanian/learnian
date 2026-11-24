@@ -8,6 +8,7 @@ import com.learnian.core.network.di.coreNetworkModule
 import com.learnian.home.di.homeModule
 import com.learnian.intro.di.introModule
 import com.learnian.profile.di.profileModule
+import com.learnian.quiz.di.quizModule
 import com.learnian.review.di.reviewModule
 import com.learnian.splash.di.splashModule
 import org.koin.core.context.startKoin
@@ -31,6 +32,7 @@ val appModules: List<Module> = listOf(
     homeModule,
     profileModule,
     reviewModule,
+    quizModule,
     appModule,
 )
 

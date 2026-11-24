@@ -248,4 +248,55 @@
     <string name="review_error_load">دریافت این واژه ممکن نشد. اتصال را بررسی کن و دوباره تلاش کن.</string>
     <string name="review_error_rate">ثبت نمره ممکن نشد. دوباره تلاش کن.</string>
     <string name="review_error_bookmark">تغییر وضعیت نشانک ممکن نشد. دوباره تلاش کن.</string>
+
+    <!-- Quiz Feature Strings -->
+    <string name="quiz_title">آزمون واژگان روزانه</string>
+    <string name="quiz_blank_placeholder" translatable="false">______</string>
+    <string name="quiz_question_of_format">سوال %1$s از %2$s</string>
+    <string name="quiz_streak_days_format">%1$s روز مستمر</string>
+    <string name="quiz_type_en_to_fa">انگلیسی به فارسی</string>
+    <string name="quiz_type_fa_to_en">فارسی به انگلیسی</string>
+    <string name="quiz_type_listening">شنیداری</string>
+    <string name="quiz_type_spelling">املا و نوشتار</string>
+    <string name="quiz_type_sentence">جای خالی در جمله</string>
+    <string name="quiz_prompt_en_to_fa">معنی فارسی درست را انتخاب کنید</string>
+    <string name="quiz_prompt_fa_to_en">کلمه انگلیسی متناظر با معنی زیر چیست؟</string>
+    <string name="quiz_prompt_listening">فایل صوتی را بشنوید و واژه یا معنی دقیق را انتخاب کنید</string>
+    <string name="quiz_prompt_spelling">املای صحیح کلمه را کامل کنید</string>
+    <string name="quiz_prompt_sentence">جمله را با گزینه درست کامل کنید</string>
+    <string name="quiz_level_format">سطح: %1$s</string>
+    <string name="quiz_listen_natural">شنیدن تلفظ طبیعی</string>
+    <string name="quiz_play_audio">پخش صوت</string>
+    <string name="quiz_speed_normal">۱.۰x (عادی)</string>
+    <string name="quiz_speed_slow">۰.۷۵x (آهسته)</string>
+    <string name="quiz_context_title">کاربرد در جمله نمونه</string>
+    <string name="quiz_mnemonic_title">تصویر یادآور ذهنی</string>
+    <string name="quiz_etymology_title">ریشه‌شناسی</string>
+    <string name="quiz_ai_hint_title">یار هوشمند لرنیان</string>
+    <string name="quiz_ipa_guide_format">راهنمای آوایی IPA: %1$s</string>
+    <string name="quiz_hint_title">راهنمایی هوشمند</string>
+    <string name="quiz_undo_letter">پاک کردن حرف آخر</string>
+    <string name="quiz_choose_letter">حرف بعدی را انتخاب کنید</string>
+    <string name="quiz_answer_correct">پاسخ درست</string>
+    <string name="quiz_answer_wrong">پاسخ نادرست</string>
+    <string name="quiz_correct_answer_format">پاسخ درست: %1$s</string>
+    <string name="quiz_confirm_answer">تایید و بررسی پاسخ</string>
+    <string name="quiz_next_question">تایید و رفتن به سوال بعد</string>
+    <string name="quiz_finish">پایان آزمون</string>
+    <string name="quiz_back">بازگشت</string>
+    <string name="quiz_error_load">بارگذاری آزمون ممکن نشد. دوباره تلاش کن.</string>
+    <string name="quiz_error_submit">ثبت پاسخ ممکن نشد. دوباره تلاش کن.</string>
+    <string name="quiz_answer_recorded">پاسخ ثبت شد</string>
+    <string name="quiz_audio_icon_desc">پخش تلفظ</string>
+    <string name="quiz_streak_icon_desc">روزهای پیوسته مطالعه</string>
+    <string name="quiz_accent_us">لهجه آمریکایی (US Native)</string>
+    <string name="quiz_accent_uk">لهجه بریتانیایی (UK Native)</string>
+    <string name="quiz_completed">دور آزمون کامل شد</string>
+
+    <!-- Home quiz entry card -->
+    <string name="home_quiz_tag">۵ حالت آزمون</string>
+    <string name="home_quiz_title">چالش واژگان روزانه</string>
+    <string name="home_quiz_desc">معنی، شنیداری، املا و جای خالی در جمله در یک دور</string>
+    <string name="home_quiz_action">شروع آزمون</string>
+    <string name="home_quiz_meta">%1$s سوال</string>
 </resources>

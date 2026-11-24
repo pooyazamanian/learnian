@@ -27,10 +27,12 @@ data class HomeState(
 sealed interface HomeIntent : UiIntent {
     data object LoadDashboard : HomeIntent
     data object StartReview : HomeIntent
+    data object StartQuiz : HomeIntent
     data object Refresh : HomeIntent
 }
 
 sealed interface HomeEffect : UiEffect {
     data object NavigateToReview : HomeEffect
+    data object NavigateToQuiz : HomeEffect
     data class ShowMessage(val text: String) : HomeEffect
 }
