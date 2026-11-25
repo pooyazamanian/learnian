@@ -58,6 +58,7 @@ kotlin {
             implementation(project(":features:review"))
             implementation(project(":features:quiz"))
             implementation(project(":features:stats"))
+            implementation(project(":features:learning"))
             implementation(libs.ktor.client.core)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)

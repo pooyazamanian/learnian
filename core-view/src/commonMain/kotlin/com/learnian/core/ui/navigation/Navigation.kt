@@ -31,6 +31,8 @@ import androidx.compose.ui.Modifier
  * 2 - Intro (Nested: Welcome, Features, GetStarted)
  * 3 - Auth (Nested: PhoneInput, OtpVerify, Register)
  * 4 - WordReview / WordDetail (wordId is the navigation argument)
+ * 5 - Quiz
+ * 6 - PackageDetails / PackageSettings (packageId is the navigation argument)
  */
 sealed class AppRoute {
     // 0: Splash Screen
@@ -66,6 +68,10 @@ sealed class AppRoute {
 
     // 5: Daily Vocabulary Quiz (all five question formats)
     data object Quiz : AppRoute()
+
+    // 6: Learning package detail (enrollment) and its study settings
+    data class PackageDetails(val packageId: String) : AppRoute()
+    data class PackageSettings(val packageId: String) : AppRoute()
 }
 
 val AppRoute.isSplash: Boolean get() = this is AppRoute.Splash
@@ -75,6 +81,8 @@ val AppRoute.isAuth: Boolean get() = this is AppRoute.Auth
 val AppRoute.isWordReview: Boolean get() = this is AppRoute.WordReview
 val AppRoute.isWordDetail: Boolean get() = this is AppRoute.WordDetail
 val AppRoute.isQuiz: Boolean get() = this is AppRoute.Quiz
+val AppRoute.isPackageDetails: Boolean get() = this is AppRoute.PackageDetails
+val AppRoute.isPackageSettings: Boolean get() = this is AppRoute.PackageSettings
 
 /**
  * Type-Safe State-Driven NavController for Compose Multiplatform

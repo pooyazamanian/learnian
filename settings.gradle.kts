@@ -36,6 +36,7 @@ include(":features:intro")
 include(":features:review")
 include(":features:quiz")
 include(":features:stats")
+include(":features:learning")
 include(":shared")
 
 

@@ -7,6 +7,7 @@ import com.learnian.core.datastore.di.coreDataStoreModule
 import com.learnian.core.network.di.coreNetworkModule
 import com.learnian.home.di.homeModule
 import com.learnian.intro.di.introModule
+import com.learnian.learning.di.learningModule
 import com.learnian.profile.di.profileModule
 import com.learnian.quiz.di.quizModule
 import com.learnian.review.di.reviewModule
@@ -35,6 +36,7 @@ val appModules: List<Module> = listOf(
     reviewModule,
     quizModule,
     statsModule,
+    learningModule,
     appModule,
 )
 

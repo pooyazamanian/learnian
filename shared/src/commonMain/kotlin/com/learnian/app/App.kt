@@ -41,6 +41,8 @@ import com.learnian.core.view.resources.auth_title
 import com.learnian.core.view.resources.intro_title
 import com.learnian.intro.domain.usecase.CheckIntroCompletedUseCase
 import com.learnian.intro.presentation.ui.IntroScreen
+import com.learnian.learning.presentation.ui.PackageDetailsScreen
+import com.learnian.learning.presentation.ui.PackageSettingsScreen
 import com.learnian.quiz.presentation.ui.QuizScreen
 import com.learnian.review.presentation.ui.WordDetailScreen
 import com.learnian.review.presentation.ui.WordReviewScreen
@@ -138,6 +140,23 @@ fun App() {
 
                         is AppRoute.Quiz -> {
                             QuizScreen(
+                                onBackClick = { rootNavController.pop() },
+                            )
+                        }
+
+                        is AppRoute.PackageDetails -> {
+                            PackageDetailsScreen(
+                                packageId = route.packageId,
+                                onBackClick = { rootNavController.pop() },
+                                onOpenSettings = { packageId ->
+                                    rootNavController.navigate(AppRoute.PackageSettings(packageId))
+                                },
+                            )
+                        }
+
+                        is AppRoute.PackageSettings -> {
+                            PackageSettingsScreen(
+                                packageId = route.packageId,
                                 onBackClick = { rootNavController.pop() },
                             )
                         }

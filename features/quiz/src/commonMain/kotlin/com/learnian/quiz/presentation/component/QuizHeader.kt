@@ -8,25 +8,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.learnian.core.ui.component.button.ClayIconButton
 import com.learnian.core.ui.component.chip.ClayChipStyle
 import com.learnian.core.ui.component.chip.ClayStatusChip
+import com.learnian.core.ui.component.header.ClayScreenHeader
 import com.learnian.core.ui.component.icon.BaseIcon
 import com.learnian.core.ui.component.progress.ClayProgressBar
-import com.learnian.core.ui.theme.AppCorners
 import com.learnian.core.ui.theme.AppTypography
 import com.learnian.core.ui.theme.ClayTheme
 import com.learnian.core.ui.theme.Spacing
 import com.learnian.core.view.resources.Res
-import com.learnian.core.view.resources.ic_arrow_left
 import com.learnian.core.view.resources.ic_streak_flame
-import com.learnian.core.view.resources.quiz_back
 import com.learnian.core.view.resources.quiz_question_of_format
 import com.learnian.core.view.resources.quiz_streak_days_format
 import com.learnian.core.view.resources.quiz_streak_icon_desc
@@ -40,7 +35,7 @@ import com.learnian.quiz.domain.model.QuizQuestionType
 import org.jetbrains.compose.resources.stringResource
 
 /**
- * Quiz header: round identity, position, streak, progress bar and the format rail.
+ * Quiz header: the shared [ClayScreenHeader] plus the round progress and the format rail.
  *
  * The rail is a read-only indicator of the active question format — the server decides
  * the format of each question, so the learner cannot switch it manually.
@@ -59,59 +54,29 @@ fun QuizHeader(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(Spacing.Comfortable),
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(Spacing.Small),
-        ) {
-            ClayIconButton(
-                onClick = onBackClick,
-                size = 40.dp,
-                cornerRadius = AppCorners.Medium,
-                backgroundColor = ClayTheme.colors.surface,
-            ) {
-                BaseIcon(
-                    resource = Res.drawable.ic_arrow_left,
-                    contentDescription = stringResource(Res.string.quiz_back),
-                    tint = ClayTheme.colors.textPrimary,
-                    modifier = Modifier.size(20.dp),
+        ClayScreenHeader(
+            title = stringResource(Res.string.quiz_title),
+            subtitle = stringResource(
+                Res.string.quiz_question_of_format,
+                (currentIndex + 1).toString(),
+                totalCount.toString(),
+            ),
+            onBackClick = onBackClick,
+            trailing = {
+                ClayStatusChip(
+                    text = stringResource(Res.string.quiz_streak_days_format, streakDays.toString()),
+                    style = ClayChipStyle.Resting,
+                    icon = {
+                        BaseIcon(
+                            resource = Res.drawable.ic_streak_flame,
+                            contentDescription = stringResource(Res.string.quiz_streak_icon_desc),
+                            modifier = Modifier.size(14.dp),
+                            tint = ClayTheme.colors.tertiary,
+                        )
+                    },
                 )
-            }
-
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(Spacing.Tiny),
-            ) {
-                Text(
-                    text = stringResource(Res.string.quiz_title),
-                    style = AppTypography.titleMedium.copy(
-                        fontWeight = FontWeight.ExtraBold,
-                    ),
-                    color = ClayTheme.colors.textPrimary,
-                )
-                Text(
-                    text = stringResource(
-                        Res.string.quiz_question_of_format,
-                        (currentIndex + 1).toString(),
-                        totalCount.toString(),
-                    ),
-                    style = AppTypography.labelSmall,
-                    color = ClayTheme.colors.textSecondary,
-                )
-            }
-
-            ClayStatusChip(
-                text = stringResource(Res.string.quiz_streak_days_format, streakDays.toString()),
-                style = ClayChipStyle.Resting,
-                icon = {
-                    BaseIcon(
-                        resource = Res.drawable.ic_streak_flame,
-                        contentDescription = stringResource(Res.string.quiz_streak_icon_desc),
-                        tint = ClayTheme.colors.tertiary,
-                        modifier = Modifier.size(14.dp),
-                    )
-                },
-            )
-        }
+            },
+        )
 
         ClayProgressBar(
             progress = progress.coerceIn(0f, 1f),

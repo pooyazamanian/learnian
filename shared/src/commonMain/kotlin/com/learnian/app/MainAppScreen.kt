@@ -48,6 +48,7 @@ import com.learnian.core.view.resources.nav_review
 import com.learnian.core.view.resources.nav_stats
 import com.learnian.core.view.resources.topbar_logo_desc
 import com.learnian.home.presentation.ui.HomeScreen
+import com.learnian.learning.presentation.ui.LearningScreen
 import com.learnian.profile.presentation.ui.ProfileScreen
 import com.learnian.review.presentation.ui.ReviewHubScreen
 import com.learnian.stats.presentation.ui.StatsScreen
@@ -248,7 +249,19 @@ fun MainAppScreen(
                                     onNavigateToRoute?.invoke(AppRoute.Quiz)
                                 },
                             )
-                            MainBottomTab.Services -> {}
+                            MainBottomTab.Services -> LearningScreen(
+                                modifier = Modifier.fillMaxSize(),
+                                contentPadding = contentPadding,
+                                onOpenPackage = { packageId ->
+                                    onNavigateToRoute?.invoke(AppRoute.PackageDetails(packageId))
+                                },
+                                onOpenPackageSettings = { packageId ->
+                                    onNavigateToRoute?.invoke(AppRoute.PackageSettings(packageId))
+                                },
+                                onStartStudy = {
+                                    onNavigateToRoute?.invoke(AppRoute.Quiz)
+                                },
+                            )
                             MainBottomTab.Wallet -> ReviewHubScreen(
                                 modifier = Modifier.fillMaxSize(),
                                 contentPadding = contentPadding,

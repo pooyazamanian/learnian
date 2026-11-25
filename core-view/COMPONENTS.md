@@ -59,6 +59,7 @@
   - `Tertiary`: دکمه کهربایی برای پاداش و گیمفیکیشن.
   - `Error`: دکمه قرمز برای عملیات خطرناک یا خروج.
   - `Surface`: دکمه سفید/روشن خمیری با سایه ملایم و متن تیره، ایده‌آل برای ورود با گوگل (SSO)، اکشن‌های فرعی و دکمه‌های ثانویه.
+- **رپرهای صوتی**: `VoiceIconButton` (پوشش `ClayIconButton` با اندازه ۵۶dp) و `VoiceScaffold` (منسوخ؛ از `ClayScaffold` استفاده کنید) — [`component/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/README.md)
 - **مستندات اختصاصی**: [`component/button/README.md`](file:///Users/pooya/StudioProjects/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/button/README.md)
 
 ### ۲. ورودی‌های متنی و شیارها (`com.learnian.core.ui.component.textfield`)
@@ -145,6 +146,22 @@
 - **توضیحات**: کارت بنر تعاملی خمیری ۳بعدی جهت شروع مرورهای مبتنی بر الگوریتم‌های تکرار فاصله‌دار (FSRS v5). دارای بج تگ وضعیت در بالا، عنوان و متن توضیحی انگیزشی، تصویر سه‌بعدی زاویه‌دار دفترچه در حاشیه، و دکمه اکشن بزرگ خمیری ۳بعدی شامل نشان زمان تخمینی، متن شروع و آیکون موشک.
 - **مستندات اختصاصی**: [`component/review/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/review/README.md)
 
+### ۱۸. هدرهای بخش و صفحه (`com.learnian.core.ui.component.header`)
+- **کلاس‌ها**: `ClaySectionHeader`, `ClayScreenHeader`
+- **توضیحات**: هدر یکسان و مشترک تمام صفحه‌ها. `ClaySectionHeader` عنوان (و زیرعنوان اختیاری) یک بخش درون‌صفحه‌ای را با اسلات `trailing` (آیکون یا اکشن) رندر می‌کند و `ClayScreenHeader` هدر بالای صفحات فرزند (جزئیات، تنظیمات) با دکمه بازگشت ۴۲dp و اسلات اکشن سمت مقابل است. هر دو فقط از توکن‌های `AppTypography` و `ClayTheme.colors` استفاده می‌کنند و به‌صورت RTL-first چیده می‌شوند.
+- **قانون صفحه‌های فرزند**: هر صفحه‌ای که روی تب‌بار هل داده می‌شود (بدون باتم‌بار سراسری) باید هدر خود را از `ClayScreenHeader` بسازد؛ ساخت دکمه بازگشت یا ردیف عنوان اختصاصی ممنوع است.
+- **مستندات اختصاصی**: [`component/header/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/header/README.md)
+
+### ۱۹. کاشی انتخاب‌شونده فشرده (`com.learnian.core.ui.component.tile`)
+- **کلاس**: `ClaySelectableTile`
+- **توضیحات**: کاشی خمیری فشرده برای انتخاب یک مقدار از میان چند گزینه در یک ردیف (سهمیه واژه روزانه، درصد سهم، پلن پیشنهادی). عنوان الزامی، زیرنویس اختیاری (`subtitle`) و وضعیت `selected` که با رنگ برند و سایه رنگی نمایش داده می‌شود. برای گزینه‌های تمام‌عرض از `ClayRadioCard` و برای انتخاب پیوسته از `ClaySegmentedSlider` استفاده شود.
+- **مستندات اختصاصی**: [`component/tile/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/tile/README.md)
+
+### ۲۰. توست و میزبان پیام (`com.learnian.core.ui.component.toast`)
+- **کلاس‌ها**: `ClayToast`, `ClayToastHost`, `ClayToastHostState`, `ClayToastData`, `ClayToastType`, `rememberClayToastHostState`, `LocalClayToastHost`
+- **توضیحات**: پیل پیام شناور خمیری با چهار نوع `Success`, `Error`, `Warning`, `Info`، انیمیشن فنری ورود/خروج و میزبان بالای صفحه. پیام‌ها همیشه از `UiText` می‌آیند (خروجی `asStringAsync()` بیرون از `updateState`) و `BaseScreen` میزبان را خودکار می‌چسباند.
+- **مستندات اختصاصی**: [`component/toast/README.md`](file:///Volumes/pooya/project/learnian/core-view/src/commonMain/kotlin/com/learnian/core/ui/component/toast/README.md)
+
 ---
 
 ## 🎨 ۴. مدیریت تم داینامیک، فونت، مقیاس و زبان (`AppPlatformTheme`)
@@ -201,26 +218,8 @@ fun SampleScreen() {
 
 ---
 
-## 18. ClayToast & BaseScreen (مدیریت امن داده و تست پیام‌های ۳بعدی)
-
-### ClayToast (توست ۳بعدی متحرک)
-سیستم پیام شناور کلیمورفیک با ۴ نوع پیام (`Success`, `Error`, `Warning`, `Info`) و افکت ورود/خروج فنری (`spring`):
-
-```kotlin
-val toastHostState = rememberClayToastHostState()
-
-// درون Coroutine / LaunchedEffect:
-toastHostState.showSuccess("تنظیمات با موفقیت ذخیره شد!")
-toastHostState.showError("خطا در برقراری ارتباط")
-toastHostState.showWarning("هشدار اتصال اینترنت")
-toastHostState.showInfo("نسخه جدید در دسترس است")
-
-// دسترسی سراسری از طریق LocalClayToastHost:
-val toastHost = LocalClayToastHost.current
-```
-
-### BaseScreen & LoadableUiState (حفظ کش و عدم پرش صفحه)
-کلاس پایه صفحات با مدیریت وضعیت MVI بدون پاک شدن داده‌های قبلی در زمان رفرش یا خطای شبکه:
+## ۲۱. BaseScreen & LoadableUiState (حفظ کش و عدم پرش صفحه)
+کلاس پایه صفحات با مدیریت وضعیت MVI بدون پاک شدن داده‌های قبلی در زمان رفرش یا خطای شبکه. توست از سرویس مشترک `ClayToastHostState` می‌آید (بخش ۲۰):
 
 ```kotlin
 data class MyState(
@@ -251,7 +250,7 @@ fun MyScreen(viewModel: MyViewModel = koinViewModel()) {
 
 ---
 
-## 19. Auth & Adaptive Funnel (`features:auth`)
+## ۲۲. Auth & Adaptive Funnel (`features:auth`)
 - **ماژول**: `:features:auth`
 - **کلاس‌های کلیدی**: [`AuthScreen`](class://com.learnian.auth.presentation.ui.AuthScreen), [`PhoneInputContent`](class://com.learnian.auth.presentation.component.PhoneInputContent), [`OtpVerificationContent`](class://com.learnian.auth.presentation.component.OtpVerificationContent), [`PasswordInputContent`](class://com.learnian.auth.presentation.component.PasswordInputContent).
 - **رفتار تطبیقی (Adaptive)**:
